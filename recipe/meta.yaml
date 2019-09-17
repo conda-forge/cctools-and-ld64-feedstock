@@ -70,7 +70,7 @@ source:
   #  folder: bootstrap/dyld
 
 build:
-  number: 0
+  number: 1
   skip: True  # [not osx]
   ignore_run_exports:
     - zlib
@@ -101,6 +101,8 @@ outputs:
     script: install-cctools.sh
     build:
       activate_in_script: True
+      ignore_run_exports:
+        - zlib
     requirements:
       build:
         - clang_bootstrap_osx-64  # [osx]
