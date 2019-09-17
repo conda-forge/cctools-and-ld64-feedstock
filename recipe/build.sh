@@ -22,6 +22,12 @@ pushd cctools
     cp ld64/src/other/PruneTrie.cpp libprunetrie/PruneTrie.cpp
   fi
 popd
+
+pushd cctools/ld64
+  LLVM_LTO_LIBRARY=$(find $PREFIX/lib -name "libLTO*${SHLIB_EXT}")
+  LLVM_LTO_LIBRARY="$(basename $LLVM_LTO_LIBRARY)"
+  sed -i.bak "s/libLTO.dylib/${LLVM_LTO_LIBRARY}/g" src/ld/InputFiles.cpp
+popd
 export CPPFLAGS="$CPPFLAGS -DCPU_SUBTYPE_ARM64_E=2"
 export CXXFLAGS="$CXXFLAGS -O2 -gdwarf-4"
 export CFLAGS="$CFLAGS -O2 -gdwarf-4"
