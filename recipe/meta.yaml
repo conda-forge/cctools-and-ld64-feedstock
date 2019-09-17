@@ -163,3 +163,4 @@ outputs:
 extra:
   recipe-maintainers:
     - isuruf
+    - mingwandroid
