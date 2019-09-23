@@ -77,13 +77,7 @@ build:
 
 requirements:
   build:
-    # we use selectors rather than jinja2 here because we only want to use the native
-    #   compiler to build llvm and clang (which are natively cross-compilers.)
-    # We might want to split the runtime libs below into a separate recipe,
-    #    so that this recipe can use jinja2 instead.
-    - gcc_{{ native_compiler_subdir }}  # [linux]
-    - gxx_{{ native_compiler_subdir }}  # [linux]
-    - clang_bootstrap_osx-64  # [osx]
+    - {{ compiler('cxx') }}
     - autoconf
     - automake
     - make
@@ -105,7 +99,7 @@ outputs:
         - zlib
     requirements:
       build:
-        - clang_bootstrap_osx-64  # [osx]
+        - {{ compiler('cxx') }}
         - autoconf
         - automake
         - make
@@ -141,17 +135,20 @@ outputs:
         - /usr/lib/libxar.1.dylib  # [osx]
     requirements:
       build:
-        - clang_bootstrap_osx-64  # [osx]
+        - {{ compiler('cxx') }}
         - autoconf
         - automake
         - make
       host:
         - llvm
+        - clang
         - tapi
         - libcxx  # [osx]
       run:
         - {{ pin_compatible("tapi") }}
         - libcxx  # [osx]
+      run_constrained:
+        - {{ pin_compatible("clang") }}
     test:
       commands:
         - test -f $PREFIX/bin/{{ macos_machine }}-ld
