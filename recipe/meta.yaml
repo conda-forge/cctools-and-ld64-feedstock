@@ -65,7 +65,7 @@ outputs:
         - test -f $PREFIX/bin/{{ macos_machine }}-install_name_tool
         - test -f $PREFIX/bin/{{ macos_machine }}-strip
     about:
-      home: https://opensource.apple.com/source
+      home: https://github.com/tpoechtrager/cctools-port
       license: APSL-2.0
       license_family: Other
       license_file: cctools/APPLE_LICENSE
@@ -99,7 +99,7 @@ outputs:
       commands:
         - test -f $PREFIX/bin/{{ macos_machine }}-ld
     about:
-      home: https://opensource.apple.com/source
+      home: https://github.com/tpoechtrager/cctools-port
       license: APSL-2.0
       license_family: Other
       license_file: cctools/ld64/APPLE_LICENSE
