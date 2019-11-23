@@ -6,22 +6,15 @@ rm -f "${BUILD_PREFIX}"/lib/libz*${SHLIB_EXT}
 # .. if this doesn't work we will need to pass LLVM_ENABLE_ZLIB
 # or add find_library() to LLVM.
 
-if [[ $target_platform == osx-64 ]]; then
-  export CC=$(which clang)
-  export CXX=$(which clang++)
-  export CPU_COUNT=1
-fi
+export CC=$(which clang)
+export CXX=$(which clang++)
 
-pushd cctools
-  if [[ ! -f configure ]]; then
-    autoreconf -vfi
-    # Yuck, sorry.
-    [[ -d include/macho-o ]] || mkdir -p include/macho-o
-    cp ld64/src/other/prune_trie.h include/mach-o/prune_trie.h
-    cp ld64/src/other/prune_trie.h libprunetrie/prune_trie.h
-    cp ld64/src/other/PruneTrie.cpp libprunetrie/PruneTrie.cpp
-  fi
-popd
+if [[ $target_platform == osx-64 ]]; then
+  export CPU_COUNT=1
+else
+  export TCROOT=$CONDA_BUILD_SYSROOT
+  ./tools/fix_unistd_issue.sh
+fi
 
 pushd cctools
   LLVM_LTO_LIBRARY=$(find $PREFIX/lib -name "libLTO*${SHLIB_EXT}")
@@ -30,6 +23,7 @@ pushd cctools
   sed -i.bak "s/libLTO.dylib/${LLVM_LTO_LIBRARY}/g" libstuff/llvm.c
   sed -i.bak "s/libLTO.dylib/${LLVM_LTO_LIBRARY}/g" libstuff/lto.c
 popd
+
 export CPPFLAGS="$CPPFLAGS -DCPU_SUBTYPE_ARM64_E=2"
 export CXXFLAGS="$CXXFLAGS -O2 -gdwarf-4"
 export CFLAGS="$CFLAGS -O2 -gdwarf-4"
@@ -45,22 +39,15 @@ if [[ -z ${DARWIN_TARGET} ]]; then
   exit 1
 fi
 
-declare -a _cctools_config
-_cctools_config+=(--prefix=${PREFIX})
-_cctools_config+=(--host=${HOST})
-_cctools_config+=(--build=${BUILD})
-_cctools_config+=(--target=${DARWIN_TARGET})
-_cctools_config+=(--disable-static)
-_cctools_config+=(--enable-shared)
-_cctools_config+=(--with-llvm=${PREFIX})
-
-if [[ "$target_platform" == "osx-64" ]]; then
-_cctools_config+=(CC="${CC} -isysroot ${CONDA_BUILD_SYSROOT}")
-_cctools_config+=(CXX="${CXX} -isysroot ${CONDA_BUILD_SYSROOT}")
-fi
-
 mkdir cctools_build_final
 pushd cctools_build_final
-  ${SRC_DIR}/cctools/configure "${_cctools_config[@]}"
+  ${SRC_DIR}/cctools/configure \
+    --prefix=${PREFIX} \
+    --host=${HOST} \
+    --build=${BUILD} \
+    --target=${DARWIN_TARGET} \
+    --disable-static \
+    --enable-shared \
+    --with-llvm=${PREFIX}
   make -j${CPU_COUNT} ${VERBOSE_AT} -k
 popd
