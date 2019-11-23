@@ -18,9 +18,8 @@ build:
 
 requirements:
   build:
-    - {{ compiler('cxx') }}  # [linux]
     - clangxx  # [linux]
-    - clang_bootstrap_osx-64  # [osx]
+    - {{ compiler('cxx') }}
     - autoconf
     - automake
     - make
@@ -38,10 +37,11 @@ outputs:
     script: install-cctools.sh
     build:
       activate_in_script: True
+      ignore_run_exports:
+        - zlib
     requirements:
       build:
-        - {{ compiler('cxx') }}  # [linux]
-        - clang_bootstrap_osx-64  # [osx]
+        - {{ compiler('cxx') }}
         - autoconf
         - automake
         - make
@@ -77,18 +77,20 @@ outputs:
         - /usr/lib/libxar.1.dylib  # [osx]
     requirements:
       build:
-        - {{ compiler('cxx') }}  # [linux]
-        - clang_bootstrap_osx-64  # [osx]
+        - {{ compiler('cxx') }}
         - autoconf
         - automake
         - make
       host:
         - llvm
+        - clang
         - tapi
         - libcxx  # [osx]
       run:
         - {{ pin_compatible("tapi") }}
         - libcxx  # [osx]
+      run_constrained:
+        - {{ pin_compatible("clang") }}
     test:
       commands:
         - test -f $PREFIX/bin/{{ macos_machine }}-ld
@@ -102,3 +104,4 @@ outputs:
 extra:
   recipe-maintainers:
     - isuruf
+    - mingwandroid
