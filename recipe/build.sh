@@ -6,12 +6,11 @@ rm -f "${BUILD_PREFIX}"/lib/libz*${SHLIB_EXT}
 # .. if this doesn't work we will need to pass LLVM_ENABLE_ZLIB
 # or add find_library() to LLVM.
 
-export CC=$(which clang)
-export CXX=$(which clang++)
-
 if [[ $target_platform == osx-64 ]]; then
   export CPU_COUNT=1
 else
+  export CC=$(which clang)
+  export CXX=$(which clang++)
   export TCROOT=$CONDA_BUILD_SYSROOT
   ./tools/fix_unistd_issue.sh
 fi
