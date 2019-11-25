@@ -14,6 +14,7 @@ else
   export TCROOT=$CONDA_BUILD_SYSROOT
   ./tools/fix_unistd_issue.sh
 fi
+export cctools_cv_tapi_support=true
 
 pushd cctools
   LLVM_LTO_LIBRARY=$(find $PREFIX/lib -name "libLTO*${SHLIB_EXT}")
