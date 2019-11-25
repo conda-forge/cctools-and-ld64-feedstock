@@ -47,7 +47,8 @@ pushd cctools_build_final
     --build=${BUILD} \
     --target=${DARWIN_TARGET} \
     --disable-static \
-    --enable-shared \
-    --with-llvm=${PREFIX}
+    --enable-shared
+  cat config.log
+  cat config.status
   make -j${CPU_COUNT} ${VERBOSE_AT} -k
 popd
