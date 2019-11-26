@@ -39,9 +39,9 @@ if [[ -z ${DARWIN_TARGET} ]]; then
   exit 1
 fi
 
-mkdir cctools_build_final
-pushd cctools_build_final
-  ${SRC_DIR}/cctools/configure \
+pushd ${SRC_DIR}/cctools
+  autoreconf -i
+  ./configure \
     --prefix=${PREFIX} \
     --host=${HOST} \
     --build=${BUILD} \
