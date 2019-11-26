@@ -62,6 +62,8 @@ outputs:
         - test -f $PREFIX/bin/{{ macos_machine }}-ranlib
         - test -f $PREFIX/bin/{{ macos_machine }}-ar
         - test -f $PREFIX/bin/{{ macos_machine }}-otool
+        # Check that otool is functioning
+        - $PREFIX/bin/{{ macos_machine }}-otool -l $PREFIX/bin/{{ macos_machine }}-otool
         - test -f $PREFIX/bin/{{ macos_machine }}-install_name_tool
         - test -f $PREFIX/bin/{{ macos_machine }}-strip
     about:
