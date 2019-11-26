@@ -41,7 +41,11 @@ fi
 
 pushd ${SRC_DIR}/cctools
   ./autogen.sh
-  ./configure \
+popd
+
+mkdir cctools_build_final
+pushd cctools_build_final
+  ${SRC_DIR}/cctools/configure \
     --prefix=${PREFIX} \
     --host=${HOST} \
     --build=${BUILD} \
