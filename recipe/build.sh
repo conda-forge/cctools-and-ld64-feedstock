@@ -40,7 +40,7 @@ if [[ -z ${DARWIN_TARGET} ]]; then
 fi
 
 pushd ${SRC_DIR}/cctools
-  autoreconf -i
+  ./autogen.sh
   ./configure \
     --prefix=${PREFIX} \
     --host=${HOST} \
