@@ -9,9 +9,11 @@ package:
 source:
   - url: https://github.com/tpoechtrager/cctools-port/archive/{{ cctools_version }}-ld64-{{ ld64_version }}.tar.gz
     sha256: 891981cb7c5490f4abdc32bf505d1b3151a7d64435a3aa36d3a0c296a34a8f64
+    patches:
+      - dont_link_with_libcxxabi.patch
 
 build:
-  number: 1
+  number: 2
   skip: True  # [win]
   ignore_run_exports:
     - zlib
@@ -22,6 +24,7 @@ requirements:
     - {{ compiler('cxx') }}
     - autoconf
     - automake
+    - libtool
     - make
   host:
     #- xar
@@ -62,6 +65,8 @@ outputs:
         - test -f $PREFIX/bin/{{ macos_machine }}-ranlib
         - test -f $PREFIX/bin/{{ macos_machine }}-ar
         - test -f $PREFIX/bin/{{ macos_machine }}-otool
+        # Check that otool is functioning
+        - $PREFIX/bin/{{ macos_machine }}-otool -l $PREFIX/bin/{{ macos_machine }}-otool
         - test -f $PREFIX/bin/{{ macos_machine }}-install_name_tool
         - test -f $PREFIX/bin/{{ macos_machine }}-strip
     about:

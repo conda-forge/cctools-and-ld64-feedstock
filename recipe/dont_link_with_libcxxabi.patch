@@ -1,0 +1,27 @@
+From d7c2a5344bb81dde0af6f30aea949a5fe6f2fd5c Mon Sep 17 00:00:00 2001
+From: Isuru Fernando <isuruf@gmail.com>
+Date: Tue, 26 Nov 2019 03:13:34 -0600
+Subject: [PATCH] Don't link with libc++abi
+
+---
+ cctools/configure.ac | 4 +---
+ 1 file changed, 1 insertion(+), 3 deletions(-)
+
+diff --git a/cctools/configure.ac b/cctools/configure.ac
+index 05068a6..3d9f7c7 100644
+--- a/cctools/configure.ac
++++ b/cctools/configure.ac
+@@ -243,12 +243,10 @@ AC_CHECK_FUNC([write64])
+ 
+ ### Check for __cxa_demangle in various C++ ABI libs ###
+ 
+-AC_CHECK_LIB([c++abi],[__cxa_demangle],[CXXABI_LIB=-lc++abi],[
+-  AC_CHECK_LIB([c++],[__cxa_demangle],[CXXABI_LIB=-lc++],[
++AC_CHECK_LIB([c++],[__cxa_demangle],[CXXABI_LIB=-lc++],[
+     AC_CHECK_LIB([supc++],[__cxa_demangle],[CXXABI_LIB=-lsupc++],[
+       AC_CHECK_LIB([stdc++],[__cxa_demangle],[CXXABI_LIB=-lstdc++],[exit 1])
+     ])
+-  ])
+ ])
+ 
+ AC_SUBST(CXXABI_LIB)

@@ -39,6 +39,10 @@ if [[ -z ${DARWIN_TARGET} ]]; then
   exit 1
 fi
 
+pushd ${SRC_DIR}/cctools
+  ./autogen.sh
+popd
+
 mkdir cctools_build_final
 pushd cctools_build_final
   ${SRC_DIR}/cctools/configure \
