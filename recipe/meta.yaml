@@ -11,7 +11,7 @@ source:
     sha256: 891981cb7c5490f4abdc32bf505d1b3151a7d64435a3aa36d3a0c296a34a8f64
 
 build:
-  number: 0
+  number: 1
   skip: True  # [win]
   ignore_run_exports:
     - zlib
