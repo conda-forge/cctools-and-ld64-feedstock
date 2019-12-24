@@ -1,0 +1,87 @@
+--- cctools-port-927.0.2-ld64-450.3/cctools/ld64/src/ld/Options.cpp.keep	2019-12-24 09:35:13.451035387 +0100
++++ cctools-port-927.0.2-ld64-450.3/cctools/ld64/src/ld/Options.cpp	2019-12-24 09:41:58.103329853 +0100
+@@ -4017,11 +4017,27 @@
+ 
+ void Options::buildSearchPaths(int argc, const char* argv[])
+ {
+-	bool addStandardLibraryDirectories = true;
++	int addStandardLibraryDirectories = 1;
+ 	std::vector<const char*> libraryPaths;
+ 	std::vector<const char*> frameworkPaths;
++	char rawPath[PATH_MAX];
++	char path[PATH_MAX];
+ 	libraryPaths.reserve(10);
+ 	frameworkPaths.reserve(10);
++
++	// Conda-specific modification:
++	// If CONDA_BUILD_SYSROOT is set then add that as fSDKPaths, in the same way and
++	// place that CROSS_SYSROOT is handled (though it is one or the other).
++	const char* condaBuildDisableLD64Hacks = getenv("CONDA_BUILD_DISABLE_LD64_HACKS");
++	const char* envCondaBuildSysroot = (condaBuildDisableLD64Hacks == NULL) ? getenv("CONDA_BUILD_SYSROOT") : NULL;
++	if (envCondaBuildSysroot != NULL) {
++		addStandardLibraryDirectories = 2;
++		realpath(envCondaBuildSysroot, path);
++		if (strlen(path)) {
++			envCondaBuildSysroot = strdup(path);
++		}
++	}
++
+ 	// scan through argv looking for -L, -F, -Z, and -syslibroot options
+ 	for(int i=0; i < argc; ++i) {
+ 		if ( (argv[i][0] == '-') && (argv[i][1] == 'L') ) {
+@@ -4053,7 +4069,7 @@
+ 			frameworkPaths.push_back(frameworkSearchDir);
+ 		}
+ 		else if ( strcmp(argv[i], "-Z") == 0 )
+-			addStandardLibraryDirectories = false;
++			addStandardLibraryDirectories = 0;
+ 		else if ( strcmp(argv[i], "-v") == 0 ) {
+ 			fVerbose = true;
+ 			extern const char ldVersionString[];
+@@ -4166,7 +4182,8 @@
+ 	}
+ 
+ 	// now merge sdk and library paths to make real search paths
+-	fLibrarySearchPaths.reserve(libraryPaths.size()*(fSDKPaths.size()+1));
++	fLibrarySearchPaths.reserve(libraryPaths.size()*(fSDKPaths.size()+2));
++
+ 	int libIndex = 0;
+ 	for (std::vector<const char*>::iterator it = libraryPaths.begin(); it != libraryPaths.end(); ++it, ++libIndex) {
+ 		const char* libDir = *it;
+@@ -4211,7 +4228,7 @@
+ 					else
+ 						fLibrarySearchPaths.push_back(libDir);
+ 				}
+-				else if ( !addStandardLibraryDirectories || (strcmp(libDir, "/usr/local/lib") != 0) ) {
++				else if ( (addStandardLibraryDirectories == 0) || (strcmp(libDir, "/usr/local/lib") != 0) ) {
+ 					warning("directory not found for option '-L%s'", libDir);
+ 				}
+ 			}
+@@ -4270,6 +4287,27 @@
+ 				}
+ 			}
+ 		}
++	}
++
++	// Conda-specific modification:
++	// Add $(dirname of this executable)/../lib as the first library path so that our libc++ gets found first.
++	// No -L or -F concatenations are performed on this path.
++	if (condaBuildDisableLD64Hacks == NULL) {
++		uint32_t bufSize = PATH_MAX;
++		if ( _NSGetExecutablePath(rawPath, &bufSize) != -1 ) {
++			if ( realpath(rawPath, path) != NULL ) {
++				char* lastSlash = strrchr(path, '/');
++				if ( lastSlash != NULL ) {
++					*lastSlash = '\0';
++					char* lastSlash = strrchr(path, '/');
++					lastSlash = strrchr(path, '/');
++					if ( lastSlash != NULL ) {
++						strcpy(lastSlash+1, "lib");
++						fLibrarySearchPaths.insert(fLibrarySearchPaths.begin(), strdup(path));
++					}
++				}
++			}
++		}
+ 	}
+ 
+ 	if ( fVerbose ) {
