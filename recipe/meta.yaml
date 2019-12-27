@@ -11,9 +11,10 @@ source:
     sha256: 891981cb7c5490f4abdc32bf505d1b3151a7d64435a3aa36d3a0c296a34a8f64
     patches:
       - dont_link_with_libcxxabi.patch
+      - 530-ld64-add-conda-specific-env-vars-to-modify-lib-search-paths.patch
 
 build:
-  number: 2
+  number: 3
   skip: True  # [win]
   ignore_run_exports:
     - zlib
@@ -110,7 +111,15 @@ outputs:
       license_file: cctools/ld64/APPLE_LICENSE
       summary: Darwin Mach-O linker
 
+about:
+  home: https://github.com/tpoechtrager/cctools-port
+  license: APSL-2.0
+  license_family: Other
+  license_file: cctools/APPLE_LICENSE
+  summary: Assembler, archiver, ranlib, libtool, otool et al for Darwin Mach-O files. Darwin Mach-O linker.
+
 extra:
   recipe-maintainers:
     - isuruf
     - mingwandroid
+    - davidbrochart
