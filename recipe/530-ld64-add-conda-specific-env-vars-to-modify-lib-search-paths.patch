@@ -1,6 +1,8 @@
---- cctools-port-927.0.2-ld64-450.3/cctools/ld64/src/ld/Options.cpp.keep	2019-12-24 09:35:13.451035387 +0100
-+++ cctools-port-927.0.2-ld64-450.3/cctools/ld64/src/ld/Options.cpp	2019-12-24 09:41:58.103329853 +0100
-@@ -4017,11 +4017,27 @@
+diff --git a/cctools/ld64/src/ld/Options.cpp b/cctools/ld64/src/ld/Options.cpp
+index e4b37ec..5dd207c 100644
+--- a/cctools/ld64/src/ld/Options.cpp
++++ b/cctools/ld64/src/ld/Options.cpp
+@@ -4017,11 +4017,27 @@ bool Options::shouldUseBuildVersion(ld::Platform plat, uint32_t minOSvers) const
  
  void Options::buildSearchPaths(int argc, const char* argv[])
  {
@@ -29,7 +31,7 @@
  	// scan through argv looking for -L, -F, -Z, and -syslibroot options
  	for(int i=0; i < argc; ++i) {
  		if ( (argv[i][0] == '-') && (argv[i][1] == 'L') ) {
-@@ -4053,7 +4069,7 @@
+@@ -4053,7 +4069,7 @@ void Options::buildSearchPaths(int argc, const char* argv[])
  			frameworkPaths.push_back(frameworkSearchDir);
  		}
  		else if ( strcmp(argv[i], "-Z") == 0 )
@@ -38,7 +40,28 @@
  		else if ( strcmp(argv[i], "-v") == 0 ) {
  			fVerbose = true;
  			extern const char ldVersionString[];
-@@ -4166,7 +4182,8 @@
+@@ -4146,11 +4162,19 @@ void Options::buildSearchPaths(int argc, const char* argv[])
+ 			fBundleBitcode = true;
+ 		}
+ 	}
++
++	if((envCondaBuildSysroot != NULL) && (fSDKPaths.size() == 0))
++		fSDKPaths.push_back(envCondaBuildSysroot);
++
+ 	int standardLibraryPathsStartIndex = libraryPaths.size();
+ 	int standardFrameworkPathsStartIndex = frameworkPaths.size();
+ 	if ( addStandardLibraryDirectories ) {
++		// Not that conda will care, but fix:
++		// https://langui.sh/2015/07/24/osx-clang-include-lib-search-paths/
++		if ( addStandardLibraryDirectories == 1 ) {
++			libraryPaths.push_back("/usr/local/lib");
++		}
+ 		libraryPaths.push_back("/usr/lib");
+-		libraryPaths.push_back("/usr/local/lib");
+ 
+ 		frameworkPaths.push_back("/Library/Frameworks/");
+ 		frameworkPaths.push_back("/System/Library/Frameworks/");
+@@ -4166,7 +4190,8 @@ void Options::buildSearchPaths(int argc, const char* argv[])
  	}
  
  	// now merge sdk and library paths to make real search paths
@@ -48,7 +71,7 @@
  	int libIndex = 0;
  	for (std::vector<const char*>::iterator it = libraryPaths.begin(); it != libraryPaths.end(); ++it, ++libIndex) {
  		const char* libDir = *it;
-@@ -4211,7 +4228,7 @@
+@@ -4211,7 +4236,7 @@ void Options::buildSearchPaths(int argc, const char* argv[])
  					else
  						fLibrarySearchPaths.push_back(libDir);
  				}
@@ -57,12 +80,10 @@
  					warning("directory not found for option '-L%s'", libDir);
  				}
  			}
-@@ -4270,6 +4287,27 @@
- 				}
- 			}
+@@ -4272,6 +4297,27 @@ void Options::buildSearchPaths(int argc, const char* argv[])
  		}
-+	}
-+
+ 	}
+ 
 +	// Conda-specific modification:
 +	// Add $(dirname of this executable)/../lib as the first library path so that our libc++ gets found first.
 +	// No -L or -F concatenations are performed on this path.
@@ -82,6 +103,8 @@
 +				}
 +			}
 +		}
- 	}
- 
++	}
++
  	if ( fVerbose ) {
+ 		fprintf(stderr,"Library search paths:\n");
+ 		for (std::vector<const char*>::iterator it = fLibrarySearchPaths.begin();

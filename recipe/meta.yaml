@@ -7,14 +7,15 @@ package:
   version: {{ ld64_version }}
 
 source:
-  - url: https://github.com/tpoechtrager/cctools-port/archive/{{ cctools_version }}-ld64-{{ ld64_version }}.tar.gz
-    sha256: 891981cb7c5490f4abdc32bf505d1b3151a7d64435a3aa36d3a0c296a34a8f64
+  # latest commit from branch {{ cctools_version }}-ld64-{{ ld64_version }}
+  - url: https://github.com/tpoechtrager/cctools-port/archive/ae83e7fcdeb2b8bd838b6008f1972bd853fa0e76.tar.gz
+    sha256: 3149168c513166515406280506c04837f47f6a40723d6ab06b1b7c131a3938b0
     patches:
       - dont_link_with_libcxxabi.patch
       - 530-ld64-add-conda-specific-env-vars-to-modify-lib-search-paths.patch
 
 build:
-  number: 3
+  number: 4
   skip: True  # [win]
   ignore_run_exports:
     - zlib
@@ -104,6 +105,8 @@ outputs:
     test:
       commands:
         - test -f $PREFIX/bin/{{ macos_machine }}-ld
+      downstreams:
+        - gfortran_osx-64  # [osx]
     about:
       home: https://github.com/tpoechtrager/cctools-port
       license: APSL-2.0
