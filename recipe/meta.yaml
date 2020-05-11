@@ -13,6 +13,7 @@ source:
     patches:
       - dont_link_with_libcxxabi.patch
       - 530-ld64-add-conda-specific-env-vars-to-modify-lib-search-paths.patch
+      - fix_sparc_pc.patch
 
 build:
   number: 4
@@ -126,3 +127,4 @@ extra:
     - isuruf
     - mingwandroid
     - davidbrochart
+    - katietz
