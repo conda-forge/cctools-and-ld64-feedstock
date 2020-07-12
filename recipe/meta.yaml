@@ -1,6 +1,6 @@
 {% set cctools_version = '949.0.1' %}
 {% set ld64_version = '530' %}
-{% set native_compiler_subdir = 'linux-64' %}  # [linux]
+{% set cross_platform = 'osx-64' %}
 
 package:
   name: cctools-and-ld64
@@ -37,7 +37,7 @@ requirements:
     - tapi
 
 outputs:
-  - name: cctools
+  - name: cctools_{{ cross_platform }}
     version: {{ cctools_version }}
     script: install-cctools.sh
     build:
@@ -56,10 +56,13 @@ outputs:
         - llvm
         - tapi
         - libcxx  # [osx]
-        - {{ pin_subpackage("ld64", max_pin="x.x") }}
+        - {{ pin_subpackage("ld64_" + cross_platform, max_pin="x.x") }}
       run:
         - libcxx  # [osx]
-        - {{ pin_subpackage("ld64", max_pin="x.x") }}
+        - {{ pin_subpackage("ld64_" + cross_platform, max_pin="x.x") }}
+      run_constrained:
+	- ld64 {{ ld64_version }}.*
+	- cctools {{ cctools_version }}.*
     test:
       commands:
         - test -f $PREFIX/libexec/as/x86_64/as
@@ -78,7 +81,7 @@ outputs:
       license_file: cctools/APPLE_LICENSE
       summary: Assembler, archiver, ranlib, libtool, otool et al for Darwin Mach-O files
 
-  - name: ld64
+  - name: ld64_{{ cross_platform }}
     version: {{ ld64_version }}
     script: install-ld64.sh
     build:
@@ -102,6 +105,9 @@ outputs:
         - libcxx  # [osx]
       run_constrained:
         - {{ pin_compatible("clang") }}
+        - ld {{ ld64_version }}.*
+        - cctools {{ cctools_version }}.*
+        - cctools_{{ cross_platform }} {{ cctools_version }}.*
     test:
       commands:
         - test -f $PREFIX/bin/{{ macos_machine }}-ld
