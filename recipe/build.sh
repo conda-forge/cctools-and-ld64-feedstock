@@ -51,7 +51,7 @@ pushd cctools_build_final
     --build=${BUILD} \
     --target=${DARWIN_TARGET} \
     --disable-static \
-    --enable-shared
+    --enable-shared || (cat config.log && cat config.status && false)
   cat config.log
   cat config.status
   make -j${CPU_COUNT} ${VERBOSE_AT} -k
