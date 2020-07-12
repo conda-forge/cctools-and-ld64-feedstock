@@ -1,6 +1,7 @@
 {% set cctools_version = '949.0.1' %}
 {% set ld64_version = '530' %}
 {% set native_compiler_subdir = 'linux-64' %}  # [linux]
+{% set llvm_version = "9.0.1" %}
 
 package:
   name: cctools-and-ld64
@@ -22,7 +23,7 @@ build:
 
 requirements:
   build:
-    - clangxx  # [linux]
+    - clangxx {{ llvm_version }}.*  # [linux]
     - {{ compiler('cxx') }}
     - autoconf
     - automake
@@ -32,7 +33,7 @@ requirements:
     #- xar
     # We only use the static library from this and only get away with that as it depends on nothing.
     - zlib
-    - llvmdev
+    - llvmdev {{ llvm_version }}.*
     - libuuid   # [linux]
     - tapi
 
@@ -52,8 +53,8 @@ outputs:
         - make
       host:
         - zlib
-        - llvmdev
-        - llvm
+        - llvmdev {{ llvm_version }}.*
+        - llvm {{ llvm_version }}.*
         - tapi
         - libcxx  # [osx]
         - {{ pin_subpackage("ld64", max_pin="x.x") }}
