@@ -1,6 +1,7 @@
-{% set cctools_version = '927.0.2' %}
-{% set ld64_version = '450.3' %}
-{% set native_compiler_subdir = 'linux-64' %}  # [linux]
+{% set cctools_version = '949.0.1' %}
+{% set ld64_version = '530' %}
+{% set cross_platform = 'osx-64' %}
+{% set llvm_version = "9.0.1" %}
 
 package:
   name: cctools-and-ld64
@@ -8,21 +9,21 @@ package:
 
 source:
   # latest commit from branch {{ cctools_version }}-ld64-{{ ld64_version }}
-  - url: https://github.com/tpoechtrager/cctools-port/archive/ae83e7fcdeb2b8bd838b6008f1972bd853fa0e76.tar.gz
-    sha256: 3149168c513166515406280506c04837f47f6a40723d6ab06b1b7c131a3938b0
+  - url: https://github.com/tpoechtrager/cctools-port/archive/4da2f3b485bcf4cef526f30c0b8c0bcda99cdbb4.tar.gz
+    sha256: a2d491c0981cef72fee2b833598f20f42a6c44a7614a61c439bda93d56446fec
     patches:
       - dont_link_with_libcxxabi.patch
       - 530-ld64-add-conda-specific-env-vars-to-modify-lib-search-paths.patch
 
 build:
-  number: 4
+  number: 0
   skip: True  # [win]
   ignore_run_exports:
     - zlib
 
 requirements:
   build:
-    - clangxx  # [linux]
+    - clangxx {{ llvm_version }}.*  # [linux]
     - {{ compiler('cxx') }}
     - autoconf
     - automake
@@ -32,12 +33,12 @@ requirements:
     #- xar
     # We only use the static library from this and only get away with that as it depends on nothing.
     - zlib
-    - llvmdev
+    - llvmdev {{ llvm_version }}.*
     - libuuid   # [linux]
     - tapi
 
 outputs:
-  - name: cctools
+  - name: cctools_{{ cross_platform }}
     version: {{ cctools_version }}
     script: install-cctools.sh
     build:
@@ -52,14 +53,17 @@ outputs:
         - make
       host:
         - zlib
-        - llvmdev
-        - llvm
+        - llvmdev {{ llvm_version }}.*
+        - llvm {{ llvm_version }}.*
         - tapi
         - libcxx  # [osx]
-        - {{ pin_subpackage("ld64", max_pin="x.x") }}
+        - {{ pin_subpackage("ld64_" + cross_platform, max_pin="x.x") }}
       run:
         - libcxx  # [osx]
-        - {{ pin_subpackage("ld64", max_pin="x.x") }}
+        - {{ pin_subpackage("ld64_" + cross_platform, max_pin="x.x") }}
+      run_constrained:
+        - ld64 {{ ld64_version }}.*
+        - cctools {{ cctools_version }}.*
     test:
       commands:
         - test -f $PREFIX/libexec/as/x86_64/as
@@ -78,7 +82,7 @@ outputs:
       license_file: cctools/APPLE_LICENSE
       summary: Assembler, archiver, ranlib, libtool, otool et al for Darwin Mach-O files
 
-  - name: ld64
+  - name: ld64_{{ cross_platform }}
     version: {{ ld64_version }}
     script: install-ld64.sh
     build:
@@ -92,8 +96,8 @@ outputs:
         - automake
         - make
       host:
-        - llvm
-        - clang
+        - llvm  {{ llvm_version }}.*
+        - clang {{ llvm_version }}.*
         - tapi
         - libcxx  # [osx]
         - libuuid  # [linux]
@@ -102,6 +106,9 @@ outputs:
         - libcxx  # [osx]
       run_constrained:
         - {{ pin_compatible("clang") }}
+        - ld {{ ld64_version }}.*
+        - cctools {{ cctools_version }}.*
+        - cctools_{{ cross_platform }} {{ cctools_version }}.*
     test:
       commands:
         - test -f $PREFIX/bin/{{ macos_machine }}-ld
@@ -112,7 +119,53 @@ outputs:
       license: APSL-2.0
       license_family: Other
       license_file: cctools/ld64/APPLE_LICENSE
-      summary: Darwin Mach-O linker
+      summary: Darwin Mach-O cross linker
+
+  - name: ld64
+    version: {{ ld64_version }}
+    script: install-ld64-symlinks.sh
+    requirements:
+      host:
+        - {{ pin_subpackage("ld64_" + cross_platform, exact=True) }}
+      run:
+        - {{ pin_subpackage("ld64_" + cross_platform, exact=True) }}
+      run_constrained:
+        - cctools {{ cctools_version }}.*
+        - cctools_{{ cross_platform }} {{ cctools_version }}.*
+    test:
+      commands:
+        - test -f $PREFIX/bin/ld
+    about:
+      home: https://github.com/tpoechtrager/cctools-port
+      license: APSL-2.0
+      license_family: Other
+      license_file: cctools/ld64/APPLE_LICENSE
+      summary: Darwin Mach-O native linker
+
+  - name: cctools
+    version: {{ cctools_version }}
+    script: install-cctools-symlinks.sh
+    requirements:
+      host:
+        - {{ pin_subpackage("ld64", exact=True) }}
+        - {{ pin_subpackage("cctools_" + cross_platform, exact=True) }}
+      run:
+        - {{ pin_subpackage("ld64", exact=True) }}
+        - {{ pin_subpackage("cctools_" + cross_platform, exact=True) }}
+    test:
+      commands:
+        - test -f $PREFIX/bin/as
+        - test -f $PREFIX/bin/ranlib
+        - test -f $PREFIX/bin/ar
+        - test -f $PREFIX/bin/otool
+        - test -f $PREFIX/bin/install_name_tool
+        - test -f $PREFIX/bin/strip
+    about:
+      home: https://github.com/tpoechtrager/cctools-port
+      license: APSL-2.0
+      license_family: Other
+      license_file: cctools/APPLE_LICENSE
+      summary: Native assembler, archiver, ranlib, libtool, otool et al for Darwin Mach-O files
 
 about:
   home: https://github.com/tpoechtrager/cctools-port
