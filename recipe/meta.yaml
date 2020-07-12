@@ -1,5 +1,5 @@
-{% set cctools_version = '927.0.2' %}
-{% set ld64_version = '450.3' %}
+{% set cctools_version = '949.0.1' %}
+{% set ld64_version = '530' %}
 {% set native_compiler_subdir = 'linux-64' %}  # [linux]
 
 package:
@@ -8,14 +8,14 @@ package:
 
 source:
   # latest commit from branch {{ cctools_version }}-ld64-{{ ld64_version }}
-  - url: https://github.com/tpoechtrager/cctools-port/archive/ae83e7fcdeb2b8bd838b6008f1972bd853fa0e76.tar.gz
-    sha256: 3149168c513166515406280506c04837f47f6a40723d6ab06b1b7c131a3938b0
+  - url: https://github.com/tpoechtrager/cctools-port/archive/4da2f3b485bcf4cef526f30c0b8c0bcda99cdbb4.tar.gz
+    sha256: a2d491c0981cef72fee2b833598f20f42a6c44a7614a61c439bda93d56446fec
     patches:
       - dont_link_with_libcxxabi.patch
       - 530-ld64-add-conda-specific-env-vars-to-modify-lib-search-paths.patch
 
 build:
-  number: 4
+  number: 0
   skip: True  # [win]
   ignore_run_exports:
     - zlib
