@@ -62,8 +62,8 @@ outputs:
         - libcxx  # [osx]
         - {{ pin_subpackage("ld64_" + cross_platform, max_pin="x.x") }}
       run_constrained:
-	- ld64 {{ ld64_version }}.*
-	- cctools {{ cctools_version }}.*
+        - ld64 {{ ld64_version }}.*
+        - cctools {{ cctools_version }}.*
     test:
       commands:
         - test -f $PREFIX/libexec/as/x86_64/as
@@ -126,9 +126,9 @@ outputs:
     script: install-ld64-symlinks.sh
     requirements:
       host:
-	- {{ pin_subpackage("ld64_" + cross_platform, exact=True) }}
+        - {{ pin_subpackage("ld64_" + cross_platform, exact=True) }}
       run:
-	- {{ pin_subpackage("ld64_" + cross_platform, exact=True) }}
+        - {{ pin_subpackage("ld64_" + cross_platform, exact=True) }}
       run_constrained:
         - cctools {{ cctools_version }}.*
         - cctools_{{ cross_platform }} {{ cctools_version }}.*
@@ -147,11 +147,11 @@ outputs:
     script: install-cctools-symlinks.sh
     requirements:
       host:
-	- {{ pin_subpackage("ld64", exact=True) }}
-	- {{ pin_subpackage("cctools_" + cross_platform, exact=True) }}
+        - {{ pin_subpackage("ld64", exact=True) }}
+        - {{ pin_subpackage("cctools_" + cross_platform, exact=True) }}
       run:
-	- {{ pin_subpackage("ld64", exact=True) }}
-	- {{ pin_subpackage("cctools_" + cross_platform, exact=True) }}
+        - {{ pin_subpackage("ld64", exact=True) }}
+        - {{ pin_subpackage("cctools_" + cross_platform, exact=True) }}
     test:
       commands:
         - test -f $PREFIX/bin/as
