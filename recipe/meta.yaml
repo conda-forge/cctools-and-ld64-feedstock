@@ -96,8 +96,8 @@ outputs:
         - automake
         - make
       host:
-        - llvm
-        - clang
+        - llvm  {{ llvm_version }}.*
+        - clang {{ llvm_version }}.*
         - tapi
         - libcxx  # [osx]
         - libuuid  # [linux]
@@ -119,7 +119,53 @@ outputs:
       license: APSL-2.0
       license_family: Other
       license_file: cctools/ld64/APPLE_LICENSE
-      summary: Darwin Mach-O linker
+      summary: Darwin Mach-O cross linker
+
+  - name: ld64
+    version: {{ ld64_version }}
+    script: install-ld64-symlinks.sh
+    requirements:
+      host:
+	- {{ pin_subpackage("ld64_" + cross_platform, exact=True) }}
+      run:
+	- {{ pin_subpackage("ld64_" + cross_platform, exact=True) }}
+      run_constrained:
+        - cctools {{ cctools_version }}.*
+        - cctools_{{ cross_platform }} {{ cctools_version }}.*
+    test:
+      commands:
+        - test -f $PREFIX/bin/ld
+    about:
+      home: https://github.com/tpoechtrager/cctools-port
+      license: APSL-2.0
+      license_family: Other
+      license_file: cctools/ld64/APPLE_LICENSE
+      summary: Darwin Mach-O native linker
+
+  - name: cctools
+    version: {{ cctools_version }}
+    script: install-cctools-symlinks.sh
+    requirements:
+      host:
+	- {{ pin_subpackage("ld64", exact=True) }}
+	- {{ pin_subpackage("cctools_" + cross_platform, exact=True) }}
+      run:
+	- {{ pin_subpackage("ld64", exact=True) }}
+	- {{ pin_subpackage("cctools_" + cross_platform, exact=True) }}
+    test:
+      commands:
+        - test -f $PREFIX/bin/as
+        - test -f $PREFIX/bin/ranlib
+        - test -f $PREFIX/bin/ar
+        - test -f $PREFIX/bin/otool
+        - test -f $PREFIX/bin/install_name_tool
+        - test -f $PREFIX/bin/strip
+    about:
+      home: https://github.com/tpoechtrager/cctools-port
+      license: APSL-2.0
+      license_family: Other
+      license_file: cctools/APPLE_LICENSE
+      summary: Native assembler, archiver, ranlib, libtool, otool et al for Darwin Mach-O files
 
 about:
   home: https://github.com/tpoechtrager/cctools-port
