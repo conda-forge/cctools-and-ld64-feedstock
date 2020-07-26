@@ -80,31 +80,3 @@ index e4b37ec..5dd207c 100644
  					warning("directory not found for option '-L%s'", libDir);
  				}
  			}
-@@ -4272,6 +4297,27 @@ void Options::buildSearchPaths(int argc, const char* argv[])
- 		}
- 	}
- 
-+	// Conda-specific modification:
-+	// Add $(dirname of this executable)/../lib as the first library path so that our libc++ gets found first.
-+	// No -L or -F concatenations are performed on this path.
-+	if (condaBuildDisableLD64Hacks == NULL) {
-+		uint32_t bufSize = PATH_MAX;
-+		if ( _NSGetExecutablePath(rawPath, &bufSize) != -1 ) {
-+			if ( realpath(rawPath, path) != NULL ) {
-+				char* lastSlash = strrchr(path, '/');
-+				if ( lastSlash != NULL ) {
-+					*lastSlash = '\0';
-+					char* lastSlash = strrchr(path, '/');
-+					lastSlash = strrchr(path, '/');
-+					if ( lastSlash != NULL ) {
-+						strcpy(lastSlash+1, "lib");
-+						fLibrarySearchPaths.insert(fLibrarySearchPaths.begin(), strdup(path));
-+					}
-+				}
-+			}
-+		}
-+	}
-+
- 	if ( fVerbose ) {
- 		fprintf(stderr,"Library search paths:\n");
- 		for (std::vector<const char*>::iterator it = fLibrarySearchPaths.begin();
