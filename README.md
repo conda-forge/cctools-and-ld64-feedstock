@@ -1,13 +1,13 @@
 About cctools-and-ld64
 ======================
 
-Home: https://opensource.apple.com/source
+Home: https://github.com/tpoechtrager/cctools-port
 
 Package license: APSL-2.0
 
-Feedstock license: BSD 3-Clause
+Feedstock license: BSD-3-Clause
 
-Summary: Assembler, archiver, ranlib, libtool, otool et al for Darwin Mach-O files
+Summary: Darwin Mach-O linker
 
 
 
@@ -29,6 +29,13 @@ Current build status
         <table>
           <thead><tr><th>Variant</th><th>Status</th></tr></thead>
           <tbody><tr>
+              <td>linux</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=7875&branchName=master">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/cctools-and-ld64-feedstock?branchName=master&jobName=linux&configuration=linux_" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
               <td>osx</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=7875&branchName=master">
@@ -39,12 +46,6 @@ Current build status
           </tbody>
         </table>
       </details>
-    </td>
-  </tr>
-  <tr>
-    <td>Linux</td>
-    <td>
-      <img src="https://img.shields.io/badge/linux-disabled-lightgrey.svg" alt="linux disabled">
     </td>
   </tr>
   <tr>
@@ -105,7 +106,7 @@ A feedstock is made up of a conda recipe (the instructions on what and how to bu
 the package) and the necessary configurations for automatic building using freely
 available continuous integration services. Thanks to the awesome service provided by
 [CircleCI](https://circleci.com/), [AppVeyor](https://www.appveyor.com/)
-and [TravisCI](https://travis-ci.org/) it is possible to build and upload installable
+and [TravisCI](https://travis-ci.com/) it is possible to build and upload installable
 packages to the [conda-forge](https://anaconda.org/conda-forge)
 [Anaconda-Cloud](https://anaconda.org/) channel for Linux, Windows and OSX respectively.
 
@@ -154,6 +155,7 @@ In order to produce a uniquely identifiable distribution:
 Feedstock Maintainers
 =====================
 
+* [@davidbrochart](https://github.com/davidbrochart/)
 * [@isuruf](https://github.com/isuruf/)
 * [@mingwandroid](https://github.com/mingwandroid/)
 
