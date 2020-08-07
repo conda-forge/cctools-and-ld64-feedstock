@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -x
+
 # Ensure we do not end up linking to a shared libz
 rm -f "${PREFIX}"/lib/libz*${SHLIB_EXT}
 rm -f "${BUILD_PREFIX}"/lib/libz*${SHLIB_EXT}
