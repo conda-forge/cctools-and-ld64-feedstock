@@ -2,6 +2,10 @@
 {% set ld64_version = '530' %}
 {% set llvm_version = "10.0.1" %}
 
+{% if cross_platform is not defined %}
+{% set cross_platform = "osx-64" %}
+{% endif %}
+
 package:
   name: cctools-and-ld64
   version: {{ ld64_version }}
