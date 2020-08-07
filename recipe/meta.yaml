@@ -126,6 +126,8 @@ outputs:
 
   - name: ld64
     version: {{ ld64_version }}
+    build:
+      skip: True   # [cross_platform != target_platform]
     script: install-ld64-symlinks.sh
     requirements:
       host:

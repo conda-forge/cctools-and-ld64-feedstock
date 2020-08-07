@@ -28,11 +28,6 @@ popd
 export CXXFLAGS="$CXXFLAGS -O2 -gdwarf-4"
 export CFLAGS="$CFLAGS -O2 -gdwarf-4"
 
-if [[ -z ${DARWIN_TARGET} ]]; then
-  echo "Need a valid DARWIN_TARGET"
-  exit 1
-fi
-
 pushd ${SRC_DIR}/cctools
   ./autogen.sh
 popd
