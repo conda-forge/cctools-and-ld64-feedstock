@@ -2,6 +2,8 @@ channel_sources:
 - conda-forge,defaults
 channel_targets:
 - conda-forge main
+cross_platform:
+- osx-arm64
 cxx_compiler:
 - gxx
 cxx_compiler_version:
@@ -11,11 +13,19 @@ docker_image:
 libuuid:
 - 2.32.1
 macos_machine:
-- x86_64-apple-darwin13.4.0
+- arm64-apple-macos11
 pin_run_as_build:
   libuuid:
     max_pin: x
   zlib:
     max_pin: x.x
+target_platform:
+- linux-64
+uname_machine:
+- arm64
+zip_keys:
+- - macos_machine
+  - cross_platform
+  - uname_machine
 zlib:
 - '1.2'

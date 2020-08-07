@@ -7,7 +7,7 @@ Package license: APSL-2.0
 
 Feedstock license: BSD-3-Clause
 
-Summary: Darwin Mach-O linker
+Summary: Darwin Mach-O cross linker
 
 
 
@@ -29,35 +29,37 @@ Current build status
         <table>
           <thead><tr><th>Variant</th><th>Status</th></tr></thead>
           <tbody><tr>
-              <td>linux</td>
+              <td>linux_64_cross_platformosx-64macos_machinex86_64-apple-darwin13.4.0</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=7875&branchName=master">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/cctools-and-ld64-feedstock?branchName=master&jobName=linux&configuration=linux_" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/cctools-and-ld64-feedstock?branchName=master&jobName=linux&configuration=linux_64_cross_platformosx-64macos_machinex86_64-apple-darwin13.4.0" alt="variant">
                 </a>
               </td>
             </tr><tr>
-              <td>osx</td>
+              <td>linux_64_cross_platformosx-arm64macos_machinearm64-apple-macos11</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=7875&branchName=master">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/cctools-and-ld64-feedstock?branchName=master&jobName=osx&configuration=osx_" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/cctools-and-ld64-feedstock?branchName=master&jobName=linux&configuration=linux_64_cross_platformosx-arm64macos_machinearm64-apple-macos11" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
+              <td>osx_64_cross_platformosx-64macos_machinex86_64-apple-darwin13.4.0</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=7875&branchName=master">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/cctools-and-ld64-feedstock?branchName=master&jobName=osx&configuration=osx_64_cross_platformosx-64macos_machinex86_64-apple-darwin13.4.0" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
+              <td>osx_64_cross_platformosx-arm64macos_machinearm64-apple-macos11</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=7875&branchName=master">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/cctools-and-ld64-feedstock?branchName=master&jobName=osx&configuration=osx_64_cross_platformosx-arm64macos_machinearm64-apple-macos11" alt="variant">
                 </a>
               </td>
             </tr>
           </tbody>
         </table>
       </details>
-    </td>
-  </tr>
-  <tr>
-    <td>Windows</td>
-    <td>
-      <img src="https://img.shields.io/badge/Windows-disabled-lightgrey.svg" alt="Windows disabled">
-    </td>
-  </tr>
-  <tr>
-    <td>Linux_ppc64le</td>
-    <td>
-      <img src="https://img.shields.io/badge/ppc64le-disabled-lightgrey.svg" alt="ppc64le disabled">
     </td>
   </tr>
 </table>
@@ -68,7 +70,11 @@ Current release info
 | Name | Downloads | Version | Platforms |
 | --- | --- | --- | --- |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-cctools-green.svg)](https://anaconda.org/conda-forge/cctools) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/cctools.svg)](https://anaconda.org/conda-forge/cctools) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/cctools.svg)](https://anaconda.org/conda-forge/cctools) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/cctools.svg)](https://anaconda.org/conda-forge/cctools) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-cctools_osx--64-green.svg)](https://anaconda.org/conda-forge/cctools_osx-64) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/cctools_osx-64.svg)](https://anaconda.org/conda-forge/cctools_osx-64) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/cctools_osx-64.svg)](https://anaconda.org/conda-forge/cctools_osx-64) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/cctools_osx-64.svg)](https://anaconda.org/conda-forge/cctools_osx-64) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-cctools_osx--arm64-green.svg)](https://anaconda.org/conda-forge/cctools_osx-arm64) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/cctools_osx-arm64.svg)](https://anaconda.org/conda-forge/cctools_osx-arm64) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/cctools_osx-arm64.svg)](https://anaconda.org/conda-forge/cctools_osx-arm64) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/cctools_osx-arm64.svg)](https://anaconda.org/conda-forge/cctools_osx-arm64) |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-ld64-green.svg)](https://anaconda.org/conda-forge/ld64) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/ld64.svg)](https://anaconda.org/conda-forge/ld64) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/ld64.svg)](https://anaconda.org/conda-forge/ld64) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/ld64.svg)](https://anaconda.org/conda-forge/ld64) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-ld64_osx--64-green.svg)](https://anaconda.org/conda-forge/ld64_osx-64) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/ld64_osx-64.svg)](https://anaconda.org/conda-forge/ld64_osx-64) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/ld64_osx-64.svg)](https://anaconda.org/conda-forge/ld64_osx-64) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/ld64_osx-64.svg)](https://anaconda.org/conda-forge/ld64_osx-64) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-ld64_osx--arm64-green.svg)](https://anaconda.org/conda-forge/ld64_osx-arm64) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/ld64_osx-arm64.svg)](https://anaconda.org/conda-forge/ld64_osx-arm64) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/ld64_osx-arm64.svg)](https://anaconda.org/conda-forge/ld64_osx-arm64) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/ld64_osx-arm64.svg)](https://anaconda.org/conda-forge/ld64_osx-arm64) |
 
 Installing cctools-and-ld64
 ===========================
@@ -79,10 +85,10 @@ Installing `cctools-and-ld64` from the `conda-forge` channel can be achieved by 
 conda config --add channels conda-forge
 ```
 
-Once the `conda-forge` channel has been enabled, `cctools, ld64` can be installed with:
+Once the `conda-forge` channel has been enabled, `cctools, cctools_osx-64, cctools_osx-arm64, ld64, ld64_osx-64, ld64_osx-arm64` can be installed with:
 
 ```
-conda install cctools ld64
+conda install cctools cctools_osx-64 cctools_osx-arm64 ld64 ld64_osx-64 ld64_osx-arm64
 ```
 
 It is possible to list all of the versions of `cctools` available on your platform with:
@@ -157,5 +163,6 @@ Feedstock Maintainers
 
 * [@davidbrochart](https://github.com/davidbrochart/)
 * [@isuruf](https://github.com/isuruf/)
+* [@katietz](https://github.com/katietz/)
 * [@mingwandroid](https://github.com/mingwandroid/)
 
