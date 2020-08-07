@@ -1,6 +1,5 @@
 {% set cctools_version = '949.0.1' %}
 {% set ld64_version = '530' %}
-{% set cross_platform = 'osx-64' %}
 {% set llvm_version = "10.0.1" %}
 
 package:
@@ -113,7 +112,7 @@ outputs:
       commands:
         - test -f $PREFIX/bin/{{ macos_machine }}-ld
       downstreams:
-        - gfortran_osx-64  # [osx]
+        - gfortran_osx-64  # [osx and cross_platform=="osx-64"]
     about:
       home: https://github.com/tpoechtrager/cctools-port
       license: APSL-2.0
