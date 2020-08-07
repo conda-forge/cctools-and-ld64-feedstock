@@ -150,6 +150,8 @@ outputs:
   - name: cctools
     version: {{ cctools_version }}
     script: install-cctools-symlinks.sh
+    build:
+      skip: True   # [cross_platform != target_platform]
     requirements:
       host:
         - {{ pin_subpackage("ld64", exact=True) }}
