@@ -58,17 +58,22 @@ outputs:
         - zlib
         - llvmdev {{ llvm_version }}.*
         - llvm {{ llvm_version }}.*
+        - lld        {{ llvm_version }}.*                                 # [use_llvm_tools]
+        - llvm-tools {{ llvm_version }}.*                                 # [use_llvm_tools]
         - tapi
         - libcxx  # [osx]
-        - {{ pin_subpackage("ld64_" + cross_platform, max_pin="x.x") }}
+        - {{ pin_subpackage("ld64_" + cross_platform, max_pin="x.x") }}   # [not use_llvm_tools]
       run:
         - libcxx  # [osx]
-        - {{ pin_subpackage("ld64_" + cross_platform, max_pin="x.x") }}
+        - lld        {{ llvm_version }}.*                                 # [use_llvm_tools]
+        - llvm-tools {{ llvm_version }}.*                                 # [use_llvm_tools]
+        - {{ pin_subpackage("ld64_" + cross_platform, max_pin="x.x") }}   # [not use_llvm_tools]
       run_constrained:
         - ld64 {{ ld64_version }}.*
         - cctools {{ cctools_version }}.*
     test:
       commands:
+        - echo {{ use_llvm_tools }}
         - test -f $PREFIX/libexec/as/{{ uname_machine }}/as
         - test -f $PREFIX/bin/{{ macos_machine }}-as
         - test -f $PREFIX/bin/{{ macos_machine }}-ranlib
@@ -92,6 +97,7 @@ outputs:
       activate_in_script: True
       missing_dso_whitelist:
         - /usr/lib/libxar.1.dylib  # [osx]
+      skip: True   # [use_llvm_tools]
     requirements:
       build:
         - {{ compiler('cxx') }}

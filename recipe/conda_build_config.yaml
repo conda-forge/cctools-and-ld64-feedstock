@@ -7,10 +7,14 @@ cross_platform:
 uname_machine:
   - x86_64
   - arm64
+use_llvm_tools:
+  - False
+  - True
 zip_keys:
   - - macos_machine
     - cross_platform
     - uname_machine
+    - use_llvm_tools
 cxx_compiler:
   - clang_bootstrap  # [osx]
   - gxx              # [linux]

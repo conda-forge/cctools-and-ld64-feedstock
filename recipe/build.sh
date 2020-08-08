@@ -42,6 +42,7 @@ pushd cctools_build_final
     --build=${BUILD} \
     --target=${macos_machine} \
     --disable-static \
+    --with-libtapi=${PREFIX} \
     --enable-shared || (cat config.log && cat config.status && false)
   cat config.log
   cat config.status
