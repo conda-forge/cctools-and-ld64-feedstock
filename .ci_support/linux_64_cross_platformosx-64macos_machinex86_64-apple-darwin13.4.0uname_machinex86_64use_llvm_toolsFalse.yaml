@@ -1,5 +1,3 @@
-MACOSX_DEPLOYMENT_TARGET:
-- '10.9'
 channel_sources:
 - conda-forge,defaults
 channel_targets:
@@ -7,23 +5,30 @@ channel_targets:
 cross_platform:
 - osx-64
 cxx_compiler:
-- clang_bootstrap
+- gxx
 cxx_compiler_version:
-- '*'
+- '7'
+docker_image:
+- condaforge/linux-anvil-comp7
+libuuid:
+- 2.32.1
 macos_machine:
 - x86_64-apple-darwin13.4.0
-macos_min_version:
-- '10.9'
 pin_run_as_build:
+  libuuid:
+    max_pin: x
   zlib:
     max_pin: x.x
 target_platform:
-- osx-64
+- linux-64
 uname_machine:
 - x86_64
+use_llvm_tools:
+- 'False'
 zip_keys:
 - - macos_machine
   - cross_platform
   - uname_machine
+  - use_llvm_tools
 zlib:
 - '1.2'

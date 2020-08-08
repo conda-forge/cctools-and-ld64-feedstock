@@ -5,13 +5,13 @@ channel_sources:
 channel_targets:
 - conda-forge main
 cross_platform:
-- osx-arm64
+- osx-64
 cxx_compiler:
 - clang_bootstrap
 cxx_compiler_version:
 - '*'
 macos_machine:
-- arm64-apple-macos11
+- x86_64-apple-darwin13.4.0
 macos_min_version:
 - '10.9'
 pin_run_as_build:
@@ -20,10 +20,13 @@ pin_run_as_build:
 target_platform:
 - osx-64
 uname_machine:
-- arm64
+- x86_64
+use_llvm_tools:
+- 'False'
 zip_keys:
 - - macos_machine
   - cross_platform
   - uname_machine
+  - use_llvm_tools
 zlib:
 - '1.2'
