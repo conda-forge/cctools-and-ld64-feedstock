@@ -29,17 +29,17 @@ Current build status
         <table>
           <thead><tr><th>Variant</th><th>Status</th></tr></thead>
           <tbody><tr>
-              <td>linux_64_cross_platformosx-64macos_machinex86_64-apple-darwin13.4.0uname_machinex86_64use_llvm_toolsFalse</td>
+              <td>linux_64_cross_platformosx-64macos_machinex86_64-apple-darwin13.4.0target_platformlinux-64uname_machinex86_64use_llvm_toolsFalse</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=7875&branchName=master">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/cctools-and-ld64-feedstock?branchName=master&jobName=linux&configuration=linux_64_cross_platformosx-64macos_machinex86_64-apple-darwin13.4.0uname_machinex86_64use_llvm_toolsFalse" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/cctools-and-ld64-feedstock?branchName=master&jobName=linux&configuration=linux_64_cross_platformosx-64macos_machinex86_64-apple-darwin13.4.0target_platformlinux-64uname_machinex86_64use_llvm_toolsFalse" alt="variant">
                 </a>
               </td>
             </tr><tr>
-              <td>linux_64_cross_platformosx-arm64macos_machinearm64-apple-macos11uname_machinearm64use_llvm_toolsTrue</td>
+              <td>linux_64_cross_platformosx-arm64macos_machinearm64-apple-macos11target_platformlinux-64uname_machinearm64use_llvm_toolsTrue</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=7875&branchName=master">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/cctools-and-ld64-feedstock?branchName=master&jobName=linux&configuration=linux_64_cross_platformosx-arm64macos_machinearm64-apple-macos11uname_machinearm64use_llvm_toolsTrue" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/cctools-and-ld64-feedstock?branchName=master&jobName=linux&configuration=linux_64_cross_platformosx-arm64macos_machinearm64-apple-macos11target_platformlinux-64uname_machinearm64use_llvm_toolsTrue" alt="variant">
                 </a>
               </td>
             </tr><tr>
