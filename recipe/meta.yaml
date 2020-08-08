@@ -77,10 +77,12 @@ outputs:
         - test -f $PREFIX/libexec/as/{{ uname_machine }}/as
         - test -f $PREFIX/bin/{{ macos_machine }}-as
         - test -f $PREFIX/bin/{{ macos_machine }}-ranlib
+        - test -f $PREFIX/bin/{{ macos_machine }}-ld64          # [use_llvm_tools]
+        - test -f $PREFIX/bin/{{ macos_machine }}-ld            # [not use_llvm_tools]
         - test -f $PREFIX/bin/{{ macos_machine }}-ar
         - test -f $PREFIX/bin/{{ macos_machine }}-otool
         # Check that otool is functioning
-        - $PREFIX/bin/{{ macos_machine }}-otool -l $PREFIX/bin/{{ macos_machine }}-otool
+        - $PREFIX/bin/{{ macos_machine }}-otool -l $PREFIX/bin/{{ macos_machine }}-otool  # [target_platform == build_platform and target_platform == cross_platform]
         - test -f $PREFIX/bin/{{ macos_machine }}-install_name_tool
         - test -f $PREFIX/bin/{{ macos_machine }}-strip
     about:

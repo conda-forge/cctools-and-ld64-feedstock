@@ -22,4 +22,5 @@ if [[ "$use_llvm_tools" == "True" ]]; then
   for tool in ar as lipo nm ranlib size strip; do
      ln -sf $PREFIX/bin/llvm-$tool $PREFIX/bin/$macos_machine-$tool
   done
+  ln -sf $PREFIX/bin/lld $PREFIX/bin/$macos_machine-ld64
 fi
