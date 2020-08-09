@@ -8,11 +8,11 @@ jobs:
     vmImage: macOS-10.15
   strategy:
     matrix:
-      ? osx_64_cross_platformosx-64macos_machinex86_64-apple-darwin13.4.0target_platformosx-64uname_machinex86_64use_llvm_toolsFalse
-      : CONFIG: osx_64_cross_platformosx-64macos_machinex86_64-apple-darwin13.4.0target_platformosx-64uname_machinex86_64use_llvm_toolsFalse
+      osx_64_cross_platformosx-64macos_machinex86_64-apple-darwin13.4.0target_platformosx-64use_llvm_toolsFalse:
+        CONFIG: osx_64_cross_platformosx-64macos_machinex86_64-apple-darwin13.4.0target_platformosx-64use_llvm_toolsFalse
         UPLOAD_PACKAGES: 'True'
-      osx_64_cross_platformosx-arm64macos_machinearm64-apple-macos11target_platformosx-64uname_machinearm64use_llvm_toolsTrue:
-        CONFIG: osx_64_cross_platformosx-arm64macos_machinearm64-apple-macos11target_platformosx-64uname_machinearm64use_llvm_toolsTrue
+      osx_64_cross_platformosx-arm64macos_machinearm64-apple-macos11target_platformosx-64use_llvm_toolsTrue:
+        CONFIG: osx_64_cross_platformosx-arm64macos_machinearm64-apple-macos11target_platformosx-64use_llvm_toolsTrue
         UPLOAD_PACKAGES: 'True'
     maxParallel: 8
   timeoutInMinutes: 360
@@ -24,7 +24,6 @@ jobs:
       export OSX_FORCE_SDK_DOWNLOAD="1"
       export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
       export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
-      export UPLOAD_ON_BRANCH="master"
       ./.scripts/run_osx_build.sh
     displayName: Run OSX build
     env:
