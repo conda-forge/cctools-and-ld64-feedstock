@@ -111,8 +111,13 @@ outputs:
         - cctools {{ cctools_version }}.*
         - cctools_{{ cross_platform }} {{ cctools_version }}.*
     test:
+      requires:
+        - clang {{ llvm_version }}.*
       commands:
         - test -f $PREFIX/bin/{{ macos_machine }}-ld
+        - echo "int main() {}" > lto.c
+        - clang lto.c -o lto.o -flto
+        - $PREFIX/bin/{{ macos_machine }}-ld lto.o -o lto -lSystem
       downstreams:
         - gfortran_osx-64  # [osx]
     about:
