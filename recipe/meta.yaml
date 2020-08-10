@@ -16,7 +16,7 @@ source:
       - 530-ld64-add-conda-specific-env-vars-to-modify-lib-search-paths.patch
 
 build:
-  number: 3
+  number: 4
   skip: True  # [win]
   ignore_run_exports:
     - zlib
@@ -29,6 +29,7 @@ requirements:
     - automake
     - libtool
     - make
+    - sed
   host:
     #- xar
     # We only use the static library from this and only get away with that as it depends on nothing.
@@ -110,8 +111,13 @@ outputs:
         - cctools {{ cctools_version }}.*
         - cctools_{{ cross_platform }} {{ cctools_version }}.*
     test:
+      requires:
+        - clang {{ llvm_version }}.*
       commands:
         - test -f $PREFIX/bin/{{ macos_machine }}-ld
+        - echo "int main() {}" > lto.c                                              # [osx]
+        - clang -c lto.c -o lto.o -flto                                             # [osx]
+        - $PREFIX/bin/{{ macos_machine }}-ld lto.o -o lto -lSystem -arch x86_64     # [osx]
       downstreams:
         - gfortran_osx-64  # [osx]
     about:
