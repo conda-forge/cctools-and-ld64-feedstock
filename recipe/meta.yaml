@@ -29,6 +29,7 @@ requirements:
     - automake
     - libtool
     - make
+    - sed
   host:
     #- xar
     # We only use the static library from this and only get away with that as it depends on nothing.
