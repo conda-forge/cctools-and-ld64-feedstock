@@ -116,8 +116,8 @@ outputs:
       commands:
         - test -f $PREFIX/bin/{{ macos_machine }}-ld
         - echo "int main() {}" > lto.c
-        - clang lto.c -o lto.o -flto
-        - $PREFIX/bin/{{ macos_machine }}-ld lto.o -o lto -lSystem
+        - clang -c lto.c -o lto.o -flto
+        - $PREFIX/bin/{{ macos_machine }}-ld lto.o -o lto -lSystem -arch x86_64
       downstreams:
         - gfortran_osx-64  # [osx]
     about:
