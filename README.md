@@ -7,7 +7,7 @@ Package license: APSL-2.0
 
 Feedstock license: BSD-3-Clause
 
-Summary: Darwin Mach-O cross linker
+Summary: Assembler, archiver, ranlib, libtool, otool et al for Darwin Mach-O files
 
 
 
@@ -29,31 +29,31 @@ Current build status
         <table>
           <thead><tr><th>Variant</th><th>Status</th></tr></thead>
           <tbody><tr>
-              <td>linux_64_cross_platformosx-64macos_machinex86_64-apple-darwin13.4.0target_platformlinux-64use_llvm_toolsFalse</td>
+              <td>linux_64_cross_platformosx-64macos_machinex86_64-apple-darwin13.4.0target_platformlinux-64uname_machinex86_64use_llvm_toolsFalse</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=7875&branchName=master">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/cctools-and-ld64-feedstock?branchName=master&jobName=linux&configuration=linux_64_cross_platformosx-64macos_machinex86_64-apple-darwin13.4.0target_platformlinux-64use_llvm_toolsFalse" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/cctools-and-ld64-feedstock?branchName=master&jobName=linux&configuration=linux_64_cross_platformosx-64macos_machinex86_64-apple-darwin13.4.0target_platformlinux-64uname_machinex86_64use_llvm_toolsFalse" alt="variant">
                 </a>
               </td>
             </tr><tr>
-              <td>linux_64_cross_platformosx-arm64macos_machinearm64-apple-macos11target_platformlinux-64use_llvm_toolsTrue</td>
+              <td>linux_64_cross_platformosx-arm64macos_machinearm64-apple-darwin20.0.0target_platformlinux-64uname_machinearm64use_llvm_toolsTrue</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=7875&branchName=master">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/cctools-and-ld64-feedstock?branchName=master&jobName=linux&configuration=linux_64_cross_platformosx-arm64macos_machinearm64-apple-macos11target_platformlinux-64use_llvm_toolsTrue" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/cctools-and-ld64-feedstock?branchName=master&jobName=linux&configuration=linux_64_cross_platformosx-arm64macos_machinearm64-apple-darwin20.0.0target_platformlinux-64uname_machinearm64use_llvm_toolsTrue" alt="variant">
                 </a>
               </td>
             </tr><tr>
-              <td>osx_64_cross_platformosx-64macos_machinex86_64-apple-darwin13.4.0target_platformosx-64use_llvm_toolsFalse</td>
+              <td>osx_64_cross_platformosx-64macos_machinex86_64-apple-darwin13.4.0target_platformosx-64uname_machinex86_64use_llvm_toolsFalse</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=7875&branchName=master">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/cctools-and-ld64-feedstock?branchName=master&jobName=osx&configuration=osx_64_cross_platformosx-64macos_machinex86_64-apple-darwin13.4.0target_platformosx-64use_llvm_toolsFalse" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/cctools-and-ld64-feedstock?branchName=master&jobName=osx&configuration=osx_64_cross_platformosx-64macos_machinex86_64-apple-darwin13.4.0target_platformosx-64uname_machinex86_64use_llvm_toolsFalse" alt="variant">
                 </a>
               </td>
             </tr><tr>
-              <td>osx_64_cross_platformosx-arm64macos_machinearm64-apple-macos11target_platformosx-64use_llvm_toolsTrue</td>
+              <td>osx_64_cross_platformosx-arm64macos_machinearm64-apple-darwin20.0.0target_platformosx-64uname_machinearm64use_llvm_toolsTrue</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=7875&branchName=master">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/cctools-and-ld64-feedstock?branchName=master&jobName=osx&configuration=osx_64_cross_platformosx-arm64macos_machinearm64-apple-macos11target_platformosx-64use_llvm_toolsTrue" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/cctools-and-ld64-feedstock?branchName=master&jobName=osx&configuration=osx_64_cross_platformosx-arm64macos_machinearm64-apple-darwin20.0.0target_platformosx-64uname_machinearm64use_llvm_toolsTrue" alt="variant">
                 </a>
               </td>
             </tr>
