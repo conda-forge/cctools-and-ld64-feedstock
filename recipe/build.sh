@@ -2,12 +2,6 @@
 
 set -x
 
-# Ensure we do not end up linking to a shared libz
-rm -f "${PREFIX}"/lib/libz*${SHLIB_EXT}
-rm -f "${BUILD_PREFIX}"/lib/libz*${SHLIB_EXT}
-# .. if this doesn't work we will need to pass LLVM_ENABLE_ZLIB
-# or add find_library() to LLVM.
-
 if [[ $target_platform == osx-64 ]]; then
   export CPU_COUNT=1
 else
@@ -19,13 +13,18 @@ fi
 export cctools_cv_tapi_support=yes
 
 pushd cctools
-  LLVM_LTO_LIBRARY=$(find $PREFIX/lib -name "libLTO*${SHLIB_EXT}")
+  LLVM_LTO_LIBRARY=$(find $PREFIX/lib -name "libLTO.*.*")
   LLVM_LTO_LIBRARY="$(basename $LLVM_LTO_LIBRARY)"
   sed -i.bak "s/libLTO.dylib/${LLVM_LTO_LIBRARY}/g" ld64/src/ld/InputFiles.cpp
   sed -i.bak "s@llvm/libLTO.so@${LLVM_LTO_LIBRARY}@g" ld64/src/ld/InputFiles.cpp
   sed -i.bak "s/libLTO.so/${LLVM_LTO_LIBRARY}/g" ld64/src/ld/InputFiles.cpp
+  sed -i.bak "s/libLTO.dylib/${LLVM_LTO_LIBRARY}/g" ld64/doc/man/man1/ld.1
   sed -i.bak "s/libLTO.dylib/${LLVM_LTO_LIBRARY}/g" libstuff/llvm.c
+  sed -i.bak "s/libLTO.so/${LLVM_LTO_LIBRARY}/g" libstuff/llvm.c
+  sed -i.bak "s/libLTO.dylib/${LLVM_LTO_LIBRARY}/g" ld64/src/ld/parsers/lto_file.cpp
+  sed -i.bak "s/libLTO.so/${LLVM_LTO_LIBRARY}/g" ld64/src/ld/parsers/lto_file.cpp
   sed -i.bak "s/libLTO.dylib/${LLVM_LTO_LIBRARY}/g" libstuff/lto.c
+  sed -i.bak "s/libLTO.so/${LLVM_LTO_LIBRARY}/g" libstuff/lto.c
 popd
 
 # export CPPFLAGS="$CPPFLAGS -DCPU_SUBTYPE_ARM64_E=2"
