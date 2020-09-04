@@ -73,7 +73,7 @@ outputs:
     test:
       commands:
         - echo {{ use_llvm_tools }}
-        - test -f $PREFIX/libexec/as/{{ uname_machine }}/as
+        - test -f $PREFIX/libexec/as/x86_64/as
         - test -f $PREFIX/bin/{{ macos_machine }}-as
         - test -f $PREFIX/bin/{{ macos_machine }}-ranlib
         - test -f $PREFIX/bin/{{ macos_machine }}-ld
