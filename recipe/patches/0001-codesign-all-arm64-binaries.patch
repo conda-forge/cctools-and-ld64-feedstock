@@ -1,0 +1,25 @@
+From e4605b27c51769c93202d9f9e0f11715cb390b3d Mon Sep 17 00:00:00 2001
+From: Isuru Fernando <isuruf@gmail.com>
+Date: Wed, 30 Sep 2020 19:43:53 -0500
+Subject: [PATCH 1/2] codesign all arm64 binaries
+
+---
+ cctools/ld64/src/ld/ld.cpp | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/cctools/ld64/src/ld/ld.cpp b/cctools/ld64/src/ld/ld.cpp
+index 05ff299..cb2d698 100644
+--- a/cctools/ld64/src/ld/ld.cpp
++++ b/cctools/ld64/src/ld/ld.cpp
+@@ -1434,7 +1434,7 @@ int main(int argc, const char* argv[])
+ 			fprintf(stderr, "processed %3u dylib files\n", inputFiles._totalDylibsLoaded);
+ 			fprintf(stderr, "wrote output file            totaling %15s bytes\n", commatize(out.fileSize(), temp));
+ 		}
+-		if ( getenv("IOS_SIGN_CODE_WHEN_BUILD") || getenv("IOS_FAKE_CODE_SIGN") ) { // ld64-port   (keep IOS_SIGN_CODE_WHEN_BUILD for compatibility with the 'iOS toolchain based on clang for linux' project)
++		if ( getenv("IOS_SIGN_CODE_WHEN_BUILD") || getenv("IOS_FAKE_CODE_SIGN") || strcmp(archName, "arm64") == 0) { // ld64-port   (keep IOS_SIGN_CODE_WHEN_BUILD for compatibility with the 'iOS toolchain based on clang for linux' project)
+ 			std::string ldid = std::string("ldid -S ") + std::string(options.outputFilePath());
+ 			system(ldid.c_str());
+ 		}
+-- 
+2.28.0
+
