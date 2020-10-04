@@ -12,8 +12,8 @@ package:
 
 source:
   # latest commit from branch {{ cctools_version }}-ld64-{{ ld64_version }}
-  - url: https://github.com/tpoechtrager/cctools-port/archive/32128556efffd873142887d6598f66be5c2dc2be.tar.gz
-    sha256: 201b5cdc2b3318c1238cf71c8c28c70a37d0e93e5ca9ac1cf592ac710893dd01
+  - url: https://github.com/tpoechtrager/cctools-port/archive/23bbd8fd8328ff5bda74412d3febb74a45edd088.tar.gz
+    sha256: 4b99933eea6be405e2f023ff24e539fa3cc3b95ce8afdd91b8eff5702664ea80
     patches:
       - patches/dont_link_with_libcxxabi.patch
       - patches/530-ld64-add-conda-specific-env-vars-to-modify-lib-search-paths.patch
