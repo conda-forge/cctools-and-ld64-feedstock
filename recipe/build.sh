@@ -8,7 +8,6 @@ else
   export CC=$(which clang)
   export CXX=$(which clang++)
   export TCROOT=$CONDA_BUILD_SYSROOT
-  ./tools/fix_unistd_issue.sh
 fi
 export cctools_cv_tapi_support=yes
 

@@ -12,16 +12,14 @@ package:
 
 source:
   # latest commit from branch {{ cctools_version }}-ld64-{{ ld64_version }}
-  - url: https://github.com/tpoechtrager/cctools-port/archive/4da2f3b485bcf4cef526f30c0b8c0bcda99cdbb4.tar.gz
-    sha256: a2d491c0981cef72fee2b833598f20f42a6c44a7614a61c439bda93d56446fec
+  - url: https://github.com/tpoechtrager/cctools-port/archive/32128556efffd873142887d6598f66be5c2dc2be.tar.gz
+    sha256: 201b5cdc2b3318c1238cf71c8c28c70a37d0e93e5ca9ac1cf592ac710893dd01
     patches:
       - patches/dont_link_with_libcxxabi.patch
       - patches/530-ld64-add-conda-specific-env-vars-to-modify-lib-search-paths.patch
-      - patches/0001-codesign-all-arm64-binaries.patch
-      - patches/0002-run-ldid-after-install_name_tool.patch
 
 build:
-  number: 12
+  number: 13
   skip: True  # [win]
   ignore_run_exports:
     - zlib
