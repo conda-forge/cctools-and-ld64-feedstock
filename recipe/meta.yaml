@@ -12,12 +12,11 @@ package:
 
 source:
   # latest commit from branch {{ cctools_version }}-ld64-{{ ld64_version }}
-  - url: https://github.com/tpoechtrager/cctools-port/archive/926b5532b9e52c980116cfca96563a52af09e96d.tar.gz
-    sha256: fe81b876382e9189ef31afde60784b3afe675c1364a126c8677b2ed93aa365f7
+  - url: https://github.com/tpoechtrager/cctools-port/archive/634a084377ee2e2932c66459b0396edf76da2e9f.tar.gz
+    sha256: 2a3f7e32f7f4b1a776a7c58a014ddac57da81a97675a47e5214b05f65177f90b
     patches:
       - patches/dont_link_with_libcxxabi.patch
       - patches/530-ld64-add-conda-specific-env-vars-to-modify-lib-search-paths.patch
-      - patches/gh93.patch
 
 build:
   number: 14
