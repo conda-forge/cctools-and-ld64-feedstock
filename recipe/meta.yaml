@@ -17,9 +17,10 @@ source:
     patches:
       - patches/dont_link_with_libcxxabi.patch
       - patches/530-ld64-add-conda-specific-env-vars-to-modify-lib-search-paths.patch
+      - patches/gh93.patch
 
 build:
-  number: 13
+  number: 14
   skip: True  # [win]
   ignore_run_exports:
     - zlib
