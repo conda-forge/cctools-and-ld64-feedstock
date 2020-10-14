@@ -17,11 +17,8 @@ pin_run_as_build:
     max_pin: x.x
 target_platform:
 - osx-arm64
-use_llvm_tools:
-- 'False'
 zip_keys:
 - - macos_machine
   - cross_platform
-  - use_llvm_tools
 zlib:
 - '1.2'
