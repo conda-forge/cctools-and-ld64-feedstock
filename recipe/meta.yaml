@@ -1,6 +1,6 @@
 {% set cctools_version = '949.0.1' %}
 {% set ld64_version = '530' %}
-{% set llvm_version = "11.0.0.rc1" %}
+{% set llvm_version = "11.0.0" %}
 
 {% if cross_platform is not defined %}
 {% set cross_platform = "osx-64" %}
@@ -67,7 +67,7 @@ outputs:
         - libcxx  # [osx]
         - llvm-tools {{ llvm_version }}.*                                 # [use_llvm_tools]
         - {{ pin_subpackage("ld64_" + cross_platform, max_pin="x.x") }}
-        - ldid    # [cross_platform == "osx-arm64"]
+        - ldid
       run_constrained:
         - ld64 {{ ld64_version }}.*
         - cctools {{ cctools_version }}.*
@@ -114,7 +114,7 @@ outputs:
       run:
         - {{ pin_compatible("tapi") }}
         - libcxx  # [osx]
-        - ldid    # [cross_platform == "osx-arm64"]
+        - ldid
       run_constrained:
         - {{ pin_compatible("clang") }}
         - ld {{ ld64_version }}.*
