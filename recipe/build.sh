@@ -2,7 +2,7 @@
 
 set -x
 
-if [[ $target_platform == osx-64 ]]; then
+if [[ $target_platform == osx-* ]]; then
   export CPU_COUNT=1
 else
   export CC=$(which clang)
