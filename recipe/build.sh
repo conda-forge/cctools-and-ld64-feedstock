@@ -2,13 +2,12 @@
 
 set -x
 
-if [[ $target_platform == osx-64 ]]; then
+if [[ $target_platform == osx-* ]]; then
   export CPU_COUNT=1
 else
   export CC=$(which clang)
   export CXX=$(which clang++)
   export TCROOT=$CONDA_BUILD_SYSROOT
-  ./tools/fix_unistd_issue.sh
 fi
 export cctools_cv_tapi_support=yes
 
@@ -31,17 +30,6 @@ popd
 export CXXFLAGS="$CXXFLAGS -O2 -gdwarf-4"
 export CFLAGS="$CFLAGS -O2 -gdwarf-4"
 
-if [[ ${MACOSX_DEPLOYMENT_TARGET} == 10.10 ]]; then
-  DARWIN_TARGET=x86_64-apple-darwin14.5.0
-else
-  DARWIN_TARGET=x86_64-apple-darwin13.4.0
-fi
-
-if [[ -z ${DARWIN_TARGET} ]]; then
-  echo "Need a valid DARWIN_TARGET"
-  exit 1
-fi
-
 pushd ${SRC_DIR}/cctools
   ./autogen.sh
 popd
@@ -52,8 +40,9 @@ pushd cctools_build_final
     --prefix=${PREFIX} \
     --host=${HOST} \
     --build=${BUILD} \
-    --target=${DARWIN_TARGET} \
+    --target=${macos_machine} \
     --disable-static \
+    --with-libtapi=${PREFIX} \
     --enable-shared || (cat config.log && cat config.status && false)
   cat config.log
   cat config.status

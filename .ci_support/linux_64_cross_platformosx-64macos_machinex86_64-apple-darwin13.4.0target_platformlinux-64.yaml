@@ -2,6 +2,8 @@ channel_sources:
 - conda-forge,defaults
 channel_targets:
 - conda-forge main
+cross_platform:
+- osx-64
 cxx_compiler:
 - gxx
 cxx_compiler_version:
@@ -17,5 +19,10 @@ pin_run_as_build:
     max_pin: x
   zlib:
     max_pin: x.x
+target_platform:
+- linux-64
+zip_keys:
+- - macos_machine
+  - cross_platform
 zlib:
 - '1.2'
