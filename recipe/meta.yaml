@@ -59,13 +59,11 @@ outputs:
         - zlib
         - llvmdev {{ llvm_version }}.*
         - llvm {{ llvm_version }}.*
-        - llvm-tools {{ llvm_version }}.*                                 # [use_llvm_tools]
         - tapi
         - libcxx  # [osx]
         - {{ pin_subpackage("ld64_" + cross_platform, max_pin="x.x") }}
       run:
         - libcxx  # [osx]
-        - llvm-tools {{ llvm_version }}.*                                 # [use_llvm_tools]
         - {{ pin_subpackage("ld64_" + cross_platform, max_pin="x.x") }}
         - ldid
       run_constrained:
@@ -73,7 +71,6 @@ outputs:
         - cctools {{ cctools_version }}.*
     test:
       commands:
-        - echo {{ use_llvm_tools }}
         # For arm64, cctools as calls the clang integrated assembler. Don't check for it
         - test -f $PREFIX/libexec/as/x86_64/as
         - test -f $PREFIX/bin/{{ macos_machine }}-as
