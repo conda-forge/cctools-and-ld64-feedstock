@@ -33,7 +33,7 @@ cat <<EOF > $BUILD_PREFIX/bin/llvm-config
 #!/bin/bash
 if [[ "\$1" == "--include-dir" ]]; then
   echo \$PREFIX/include
-elif [[ "\$1" == "--lib-dir" ]]; then
+elif [[ "\$1" == "--libdir" ]]; then
   echo \$PREFIX/lib
 else
   echo "Unknown args \$@"
