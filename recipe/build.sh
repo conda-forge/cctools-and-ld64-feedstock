@@ -27,19 +27,9 @@ pushd cctools
 popd
 
 if [[ "$CONDA_BUILD_CROSS_COMPILATION" == "1" ]]; then
-# llvm-config from host env is tried by cctools-port
-rm -f $BUILD_PREFIX/bin/llvm-config
-cat <<EOF > $BUILD_PREFIX/bin/llvm-config
-#!/bin/bash
-if [[ "\$1" == "--include-dir" ]]; then
-  echo \$PREFIX/include
-elif [[ "\$1" == "--libdir" ]]; then
-  echo \$PREFIX/lib
-else
-  echo "Unknown args \$@"
-fi
-EOF
-chmod +x $BUILD_PREFIX/bin/llvm-config
+  # llvm-config from host env is tried by cctools-port
+  # Move the build prefix one to host prefix
+  mv $BUILD_PREFIX/bin/llvm-config $PREFIX/bin/llvm-config
 fi
 
 # export CPPFLAGS="$CPPFLAGS -DCPU_SUBTYPE_ARM64_E=2"

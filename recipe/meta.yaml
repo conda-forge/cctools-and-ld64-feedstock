@@ -31,6 +31,7 @@ requirements:
     - autoconf
     - automake
     - libtool
+    - llvmdev {{ llvm_version }}.*  # [build_platform != target_platform]
     - make
     - sed
   host:
