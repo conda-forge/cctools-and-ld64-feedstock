@@ -1,22 +1,28 @@
-MACOSX_DEPLOYMENT_TARGET:
-- '10.9'
+cdt_name:
+- cos6
 channel_sources:
 - conda-forge,defaults
 channel_targets:
 - conda-forge main
 cross_platform:
-- osx-arm64
+- osx-64
 cxx_compiler:
-- clang_bootstrap
+- gxx
 cxx_compiler_version:
-- '10'
+- '9'
+docker_image:
+- condaforge/linux-anvil-comp7
+libuuid:
+- 2.32.1
 macos_machine:
-- arm64-apple-darwin20.0.0
+- x86_64-apple-darwin13.4.0
 pin_run_as_build:
+  libuuid:
+    max_pin: x
   zlib:
     max_pin: x.x
 target_platform:
-- osx-64
+- linux-64
 zip_keys:
 - - macos_machine
   - cross_platform
