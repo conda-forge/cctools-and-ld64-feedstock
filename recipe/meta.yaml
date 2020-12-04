@@ -19,7 +19,7 @@ source:
       - patches/530-ld64-add-conda-specific-env-vars-to-modify-lib-search-paths.patch
 
 build:
-  number: 16
+  number: 18
   skip: True  # [win]
   ignore_run_exports:
     - zlib
