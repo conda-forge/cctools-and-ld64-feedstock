@@ -29,7 +29,12 @@ popd
 if [[ "$CONDA_BUILD_CROSS_COMPILATION" == "1" ]]; then
   # llvm-config from host env is tried by cctools-port
   # Move the build prefix one to host prefix
-  mv $BUILD_PREFIX/bin/llvm-config $PREFIX/bin/llvm-config
+  rm $PREFIX/bin/llvm-config
+  cp $BUILD_PREFIX/bin/llvm-config $PREFIX/bin/llvm-config
+  rm $BUILD_PREFIX/bin/llvm-config
+  if [[ "$build_platform" == osx-* ]]; then
+      $INSTALL_NAME_TOOL -add_rpath "$BUILD_PREFIX/lib" $PREFIX/bin/llvm-config
+  fi
 fi
 
 # export CPPFLAGS="$CPPFLAGS -DCPU_SUBTYPE_ARM64_E=2"
