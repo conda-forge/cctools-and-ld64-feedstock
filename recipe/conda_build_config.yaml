@@ -24,8 +24,9 @@ c_compiler:
 vc:
   - 14
 c_compiler_version:     # [osx]
-  - 11                  # [osx]
-  - 12                  # [osx]
+  - "*"                 # [osx]
 cxx_compiler_version:   # [osx]
-  - 11                  # [osx]
-  - 12                  # [osx]
+  - "*"                 # [osx]
+llvm_version:
+  - 11
+  - 12
