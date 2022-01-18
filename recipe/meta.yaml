@@ -14,14 +14,14 @@ package:
 
 source:
   # latest commit from branch {{ cctools_version }}-ld64-{{ ld64_version }}
-  - url: https://github.com/tpoechtrager/cctools-port/archive/236a426c1205a3bfcf0dbb2e2faf2296f0a100e5.tar.gz
-    sha256: f7c73122ebb0ea2cf094639b9ae387857d528337fea3d07d9800d9d0980241af
+  - url: https://github.com/tpoechtrager/cctools-port/archive/04663295d0425abfac90a42440a7ec02d7155fea.tar.gz
+    sha256: 70a7189418c2086d20c299c5d59250cf5940782c778892ccc899c66516ed240e
     patches:
       - patches/0001-Don-t-link-with-libc-abi.patch
       - patches/0002-ld64-add-conda-specific-env-vars-to-modify-lib-searc.patch
 
 build:
-  number: 1
+  number: 5
   skip: True  # [win]
   ignore_run_exports:
     - zlib
@@ -68,7 +68,7 @@ outputs:
       run:
         - libcxx  # [osx]
         - {{ pin_subpackage("ld64_" + cross_platform, max_pin="x.x") }}
-        - ldid
+        - sigtool
       run_constrained:
         - ld64 {{ ld64_version }}.*
         - cctools {{ cctools_version }}.*
@@ -114,7 +114,7 @@ outputs:
       run:
         - {{ pin_compatible("tapi") }}
         - libcxx  # [osx]
-        - ldid
+        - sigtool
       run_constrained:
         - {{ pin_compatible("clang") }}
         - ld {{ ld64_version }}.*
