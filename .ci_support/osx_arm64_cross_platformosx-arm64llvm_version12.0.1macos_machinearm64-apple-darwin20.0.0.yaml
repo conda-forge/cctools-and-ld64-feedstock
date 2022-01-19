@@ -1,31 +1,25 @@
-cdt_name:
-- cos6
+MACOSX_DEPLOYMENT_TARGET:
+- '11.0'
 channel_sources:
-- conda-forge,defaults
+- conda-forge/label/rust_dev,conda-forge
 channel_targets:
 - conda-forge main
 cross_platform:
 - osx-arm64
 cxx_compiler:
-- gxx
+- clang_bootstrap
 cxx_compiler_version:
-- '9'
-docker_image:
-- quay.io/condaforge/linux-anvil-comp7
-libuuid:
-- 2.32.1
+- '*'
+llvm_version:
+- 12.0.1
 macos_machine:
 - arm64-apple-darwin20.0.0
 pin_run_as_build:
-  libuuid:
-    max_pin: x
   zlib:
     max_pin: x.x
 target_platform:
-- linux-64
+- osx-arm64
 zip_keys:
-- - cdt_name
-  - docker_image
 - - macos_machine
   - cross_platform
 zlib:

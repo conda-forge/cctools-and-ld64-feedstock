@@ -1,6 +1,8 @@
 {% set cctools_version = '973.0.1' %}
 {% set ld64_version = '609' %}
+{% if llvm_version is not defined %}
 {% set llvm_version = "12.0.1" %}
+{% endif %}
 
 {% if cross_platform is not defined %}
 {% set cross_platform = "osx-64" %}
@@ -19,7 +21,7 @@ source:
       - patches/0002-ld64-add-conda-specific-env-vars-to-modify-lib-searc.patch
 
 build:
-  number: 4
+  number: 5
   skip: True  # [win]
   ignore_run_exports:
     - zlib
