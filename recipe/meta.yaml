@@ -19,9 +19,10 @@ source:
     patches:
       - patches/0001-Don-t-link-with-libc-abi.patch
       - patches/0002-ld64-add-conda-specific-env-vars-to-modify-lib-searc.patch
+      - patches/gh116.patch
 
 build:
-  number: 6
+  number: 7
   skip: True  # [win]
   ignore_run_exports:
     - zlib
