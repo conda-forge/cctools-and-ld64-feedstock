@@ -20,9 +20,11 @@ source:
       - patches/0001-Don-t-link-with-libc-abi.patch
       - patches/0002-ld64-add-conda-specific-env-vars-to-modify-lib-searc.patch
       - patches/gh116.patch
+      # Taken from https://github.com/tpoechtrager/cctools-port/pull/118
+      - patches/0003-turn-off-mmap-osx-arm64.patch
 
 build:
-  number: 7
+  number: 8
   skip: True  # [win]
   ignore_run_exports:
     - zlib
