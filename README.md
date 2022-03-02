@@ -166,10 +166,8 @@ Current release info
 | Name | Downloads | Version | Platforms |
 | --- | --- | --- | --- |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-cctools-green.svg)](https://anaconda.org/conda-forge/cctools) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/cctools.svg)](https://anaconda.org/conda-forge/cctools) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/cctools.svg)](https://anaconda.org/conda-forge/cctools) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/cctools.svg)](https://anaconda.org/conda-forge/cctools) |
-| [![Conda Recipe](https://img.shields.io/badge/recipe-cctools_osx--64-green.svg)](https://anaconda.org/conda-forge/cctools_osx-64) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/cctools_osx-64.svg)](https://anaconda.org/conda-forge/cctools_osx-64) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/cctools_osx-64.svg)](https://anaconda.org/conda-forge/cctools_osx-64) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/cctools_osx-64.svg)](https://anaconda.org/conda-forge/cctools_osx-64) |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-cctools_osx--arm64-green.svg)](https://anaconda.org/conda-forge/cctools_osx-arm64) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/cctools_osx-arm64.svg)](https://anaconda.org/conda-forge/cctools_osx-arm64) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/cctools_osx-arm64.svg)](https://anaconda.org/conda-forge/cctools_osx-arm64) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/cctools_osx-arm64.svg)](https://anaconda.org/conda-forge/cctools_osx-arm64) |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-ld64-green.svg)](https://anaconda.org/conda-forge/ld64) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/ld64.svg)](https://anaconda.org/conda-forge/ld64) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/ld64.svg)](https://anaconda.org/conda-forge/ld64) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/ld64.svg)](https://anaconda.org/conda-forge/ld64) |
-| [![Conda Recipe](https://img.shields.io/badge/recipe-ld64_osx--64-green.svg)](https://anaconda.org/conda-forge/ld64_osx-64) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/ld64_osx-64.svg)](https://anaconda.org/conda-forge/ld64_osx-64) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/ld64_osx-64.svg)](https://anaconda.org/conda-forge/ld64_osx-64) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/ld64_osx-64.svg)](https://anaconda.org/conda-forge/ld64_osx-64) |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-ld64_osx--arm64-green.svg)](https://anaconda.org/conda-forge/ld64_osx-arm64) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/ld64_osx-arm64.svg)](https://anaconda.org/conda-forge/ld64_osx-arm64) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/ld64_osx-arm64.svg)](https://anaconda.org/conda-forge/ld64_osx-arm64) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/ld64_osx-arm64.svg)](https://anaconda.org/conda-forge/ld64_osx-arm64) |
 
 Installing cctools-and-ld64
@@ -182,10 +180,10 @@ conda config --add channels conda-forge
 conda config --set channel_priority strict
 ```
 
-Once the `conda-forge` channel has been enabled, `cctools, cctools_osx-64, cctools_osx-arm64, ld64, ld64_osx-64, ld64_osx-arm64` can be installed with:
+Once the `conda-forge` channel has been enabled, `cctools, cctools_osx-arm64, ld64, ld64_osx-arm64` can be installed with:
 
 ```
-conda install cctools cctools_osx-64 cctools_osx-arm64 ld64 ld64_osx-64 ld64_osx-arm64
+conda install cctools cctools_osx-arm64 ld64 ld64_osx-arm64
 ```
 
 It is possible to list all of the versions of `cctools` available on your platform with:
