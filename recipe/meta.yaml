@@ -24,7 +24,7 @@ source:
       - patches/0003-turn-off-mmap-osx-arm64.patch
 
 build:
-  number: 8
+  number: 9
   skip: True  # [win]
   ignore_run_exports:
     - zlib
@@ -147,6 +147,8 @@ outputs:
     script: install-ld64-symlinks.sh
     requirements:
       host:
+        - llvm  {{ llvm_version }}.*
+        - clang {{ llvm_version }}.*
         - {{ pin_subpackage("ld64_" + cross_platform, exact=True) }}
       run:
         - {{ pin_subpackage("ld64_" + cross_platform, exact=True) }}
@@ -170,6 +172,8 @@ outputs:
       skip: True   # [cross_platform != target_platform]
     requirements:
       host:
+        - llvm  {{ llvm_version }}.*
+        - clang {{ llvm_version }}.*
         - {{ pin_subpackage("ld64", exact=True) }}
         - {{ pin_subpackage("cctools_" + cross_platform, exact=True) }}
       run:
