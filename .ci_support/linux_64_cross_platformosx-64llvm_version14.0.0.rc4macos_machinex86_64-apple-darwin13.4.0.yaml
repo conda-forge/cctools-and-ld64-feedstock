@@ -1,11 +1,11 @@
 cdt_name:
 - cos6
 channel_sources:
-- conda-forge
+- conda-forge/label/llvm_rc,conda-forge
 channel_targets:
-- conda-forge main
+- conda-forge llvm_rc
 cross_platform:
-- osx-arm64
+- osx-64
 cxx_compiler:
 - gxx
 cxx_compiler_version:
@@ -15,9 +15,9 @@ docker_image:
 libuuid:
 - '2'
 llvm_version:
-- 11.1.0
+- 14.0.0.rc4
 macos_machine:
-- arm64-apple-darwin20.0.0
+- x86_64-apple-darwin13.4.0
 pin_run_as_build:
   libuuid:
     max_pin: x
