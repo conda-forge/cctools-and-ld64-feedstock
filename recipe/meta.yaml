@@ -24,7 +24,7 @@ source:
       - patches/0003-turn-off-mmap-osx-arm64.patch
 
 build:
-  number: 9
+  number: 10
   skip: True  # [win]
   ignore_run_exports:
     - zlib
