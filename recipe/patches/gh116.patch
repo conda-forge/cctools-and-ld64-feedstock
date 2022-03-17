@@ -32,7 +32,7 @@ index 1377657..5890c1f 100644
  	} else {
 -#endif /* 0 */
 +#endif /* __APPLE__ */
- #ifdef HAVE_CLOCK_GETTIME
+ #ifndef HAVE_CLOCK_GETTIME
  	    if (gettimeofday(&toc_timeval, NULL)) {
  		system_error("gettimeofday failed");
  		return;
