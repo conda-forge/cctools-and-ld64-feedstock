@@ -1,6 +1,8 @@
-{% set cctools_version = '949.0.1' %}
-{% set ld64_version = '530' %}
-{% set llvm_version = "11.0.0.rc1" %}
+{% set cctools_version = '973.0.1' %}
+{% set ld64_version = '609' %}
+{% if llvm_version is not defined %}
+{% set llvm_version = "13.0.1" %}
+{% endif %}
 
 {% if cross_platform is not defined %}
 {% set cross_platform = "osx-64" %}
@@ -12,14 +14,17 @@ package:
 
 source:
   # latest commit from branch {{ cctools_version }}-ld64-{{ ld64_version }}
-  - url: https://github.com/tpoechtrager/cctools-port/archive/634a084377ee2e2932c66459b0396edf76da2e9f.tar.gz
-    sha256: 2a3f7e32f7f4b1a776a7c58a014ddac57da81a97675a47e5214b05f65177f90b
+  - url: https://github.com/tpoechtrager/cctools-port/archive/04663295d0425abfac90a42440a7ec02d7155fea.tar.gz
+    sha256: 70a7189418c2086d20c299c5d59250cf5940782c778892ccc899c66516ed240e
     patches:
-      - patches/dont_link_with_libcxxabi.patch
-      - patches/530-ld64-add-conda-specific-env-vars-to-modify-lib-search-paths.patch
+      - patches/0001-Don-t-link-with-libc-abi.patch
+      - patches/0002-ld64-add-conda-specific-env-vars-to-modify-lib-searc.patch
+      - patches/gh116.patch
+      # Taken from https://github.com/tpoechtrager/cctools-port/pull/118
+      - patches/0003-turn-off-mmap-osx-arm64.patch
 
 build:
-  number: 14
+  number: 10
   skip: True  # [win]
   ignore_run_exports:
     - zlib
@@ -31,6 +36,7 @@ requirements:
     - autoconf
     - automake
     - libtool
+    - llvmdev {{ llvm_version }}.*  # [build_platform != target_platform]
     - make
     - sed
   host:
@@ -59,21 +65,18 @@ outputs:
         - zlib
         - llvmdev {{ llvm_version }}.*
         - llvm {{ llvm_version }}.*
-        - llvm-tools {{ llvm_version }}.*                                 # [use_llvm_tools]
         - tapi
         - libcxx  # [osx]
         - {{ pin_subpackage("ld64_" + cross_platform, max_pin="x.x") }}
       run:
         - libcxx  # [osx]
-        - llvm-tools {{ llvm_version }}.*                                 # [use_llvm_tools]
         - {{ pin_subpackage("ld64_" + cross_platform, max_pin="x.x") }}
-        - ldid    # [cross_platform == "osx-arm64"]
+        - sigtool
       run_constrained:
         - ld64 {{ ld64_version }}.*
         - cctools {{ cctools_version }}.*
     test:
       commands:
-        - echo {{ use_llvm_tools }}
         # For arm64, cctools as calls the clang integrated assembler. Don't check for it
         - test -f $PREFIX/libexec/as/x86_64/as
         - test -f $PREFIX/bin/{{ macos_machine }}-as
@@ -114,7 +117,7 @@ outputs:
       run:
         - {{ pin_compatible("tapi") }}
         - libcxx  # [osx]
-        - ldid    # [cross_platform == "osx-arm64"]
+        - sigtool
       run_constrained:
         - {{ pin_compatible("clang") }}
         - ld {{ ld64_version }}.*
@@ -144,6 +147,8 @@ outputs:
     script: install-ld64-symlinks.sh
     requirements:
       host:
+        - llvm  {{ llvm_version }}.*
+        - clang {{ llvm_version }}.*
         - {{ pin_subpackage("ld64_" + cross_platform, exact=True) }}
       run:
         - {{ pin_subpackage("ld64_" + cross_platform, exact=True) }}
@@ -167,6 +172,8 @@ outputs:
       skip: True   # [cross_platform != target_platform]
     requirements:
       host:
+        - llvm  {{ llvm_version }}.*
+        - clang {{ llvm_version }}.*
         - {{ pin_subpackage("ld64", exact=True) }}
         - {{ pin_subpackage("cctools_" + cross_platform, exact=True) }}
       run:

@@ -1,32 +1,28 @@
 MACOSX_DEPLOYMENT_TARGET:
 - '10.9'
+MACOSX_SDK_VERSION:
+- '10.13'
 channel_sources:
-- conda-forge/label/llvm_rc,conda-forge,defaults
+- conda-forge
 channel_targets:
-- conda-forge llvm_rc
+- conda-forge main
 cross_platform:
-- osx-64
+- osx-arm64
 cxx_compiler:
 - clang_bootstrap
 cxx_compiler_version:
 - '*'
+llvm_version:
+- 11.1.0
 macos_machine:
-- x86_64-apple-darwin13.4.0
-macos_min_version:
-- '10.9'
+- arm64-apple-darwin20.0.0
 pin_run_as_build:
   zlib:
     max_pin: x.x
 target_platform:
 - osx-64
-uname_machine:
-- x86_64
-use_llvm_tools:
-- 'False'
 zip_keys:
 - - macos_machine
   - cross_platform
-  - uname_machine
-  - use_llvm_tools
 zlib:
 - '1.2'

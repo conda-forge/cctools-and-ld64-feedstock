@@ -1,20 +1,18 @@
 macos_machine:
   - x86_64-apple-darwin13.4.0
   - arm64-apple-darwin20.0.0
+MACOSX_SDK_VERSION:  # [osx and x86_64]
+  - 10.13            # [osx and x86_64]
 cross_platform:
   - osx-64
   - osx-arm64
 uname_machine:
   - x86_64
   - arm64
-use_llvm_tools:
-  - False
-  - True
 zip_keys:
   - - macos_machine
     - cross_platform
     - uname_machine
-    - use_llvm_tools
 cxx_compiler:
   - clang_bootstrap  # [osx]
   - gxx              # [linux]
@@ -25,14 +23,11 @@ c_compiler:
   - vs2017           # [win]
 vc:
   - 14
-python:
-  - 3.7
 c_compiler_version:     # [osx]
   - "*"                 # [osx]
 cxx_compiler_version:   # [osx]
   - "*"                 # [osx]
-
-channel_targets:
-  - conda-forge llvm_rc
-channel_sources:
-  - conda-forge/label/llvm_rc,conda-forge,defaults
+llvm_version:
+  - 11.1.0
+  - 12.0.1
+  - 13.0.1

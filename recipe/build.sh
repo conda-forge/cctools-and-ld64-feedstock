@@ -2,7 +2,7 @@
 
 set -x
 
-if [[ $target_platform == osx-64 ]]; then
+if [[ $target_platform == osx-* ]]; then
   export CPU_COUNT=1
 else
   export CC=$(which clang)
@@ -25,6 +25,17 @@ pushd cctools
   sed -i.bak "s/libLTO.dylib/${LLVM_LTO_LIBRARY}/g" libstuff/lto.c
   sed -i.bak "s/libLTO.so/${LLVM_LTO_LIBRARY}/g" libstuff/lto.c
 popd
+
+if [[ "$CONDA_BUILD_CROSS_COMPILATION" == "1" ]]; then
+  # llvm-config from host env is tried by cctools-port
+  # Move the build prefix one to host prefix
+  rm $PREFIX/bin/llvm-config
+  cp $BUILD_PREFIX/bin/llvm-config $PREFIX/bin/llvm-config
+  rm $BUILD_PREFIX/bin/llvm-config
+  if [[ "$build_platform" == osx-* ]]; then
+      $INSTALL_NAME_TOOL -add_rpath "$BUILD_PREFIX/lib" $PREFIX/bin/llvm-config
+  fi
+fi
 
 # export CPPFLAGS="$CPPFLAGS -DCPU_SUBTYPE_ARM64_E=2"
 export CXXFLAGS="$CXXFLAGS -O2 -gdwarf-4"
