@@ -31,3 +31,8 @@ llvm_version:
   - 11.1.0
   - 12.0.1
   - 13.0.1
+
+channel_targets:
+  - conda-forge llvm_rc
+channel_sources:
+  - conda-forge/label/llvm_rc,conda-forge
