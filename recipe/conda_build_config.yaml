@@ -27,6 +27,5 @@ cxx_compiler_version:   # [osx]
   - "*"                 # [osx]
 
 llvm_version:
-  - 11.1.0
-  - 12.0.1
   - 13.0.1
+  - 14.0.3
