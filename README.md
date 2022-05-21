@@ -245,6 +245,7 @@ Feedstock Maintainers
 =====================
 
 * [@davidbrochart](https://github.com/davidbrochart/)
+* [@h-vetinari](https://github.com/h-vetinari/)
 * [@isuruf](https://github.com/isuruf/)
 * [@katietz](https://github.com/katietz/)
 * [@mingwandroid](https://github.com/mingwandroid/)
