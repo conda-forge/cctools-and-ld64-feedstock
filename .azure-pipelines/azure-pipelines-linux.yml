@@ -8,28 +8,20 @@ jobs:
     vmImage: ubuntu-latest
   strategy:
     matrix:
-      linux_64_cross_platformosx-64llvm_version11.1.0macos_machinex86_64-apple-darwin13.4.0:
-        CONFIG: linux_64_cross_platformosx-64llvm_version11.1.0macos_machinex86_64-apple-darwin13.4.0
+      linux_64_cross_platformosx-64llvm_version13.0macos_machinex86_64-apple-darwin13.4.0:
+        CONFIG: linux_64_cross_platformosx-64llvm_version13.0macos_machinex86_64-apple-darwin13.4.0
         UPLOAD_PACKAGES: 'True'
         DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
-      linux_64_cross_platformosx-64llvm_version12.0.1macos_machinex86_64-apple-darwin13.4.0:
-        CONFIG: linux_64_cross_platformosx-64llvm_version12.0.1macos_machinex86_64-apple-darwin13.4.0
+      linux_64_cross_platformosx-64llvm_version14.0macos_machinex86_64-apple-darwin13.4.0:
+        CONFIG: linux_64_cross_platformosx-64llvm_version14.0macos_machinex86_64-apple-darwin13.4.0
         UPLOAD_PACKAGES: 'True'
         DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
-      linux_64_cross_platformosx-64llvm_version13.0.1macos_machinex86_64-apple-darwin13.4.0:
-        CONFIG: linux_64_cross_platformosx-64llvm_version13.0.1macos_machinex86_64-apple-darwin13.4.0
+      linux_64_cross_platformosx-arm64llvm_version13.0macos_machinearm64-apple-darwin20.0.0:
+        CONFIG: linux_64_cross_platformosx-arm64llvm_version13.0macos_machinearm64-apple-darwin20.0.0
         UPLOAD_PACKAGES: 'True'
         DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
-      linux_64_cross_platformosx-arm64llvm_version11.1.0macos_machinearm64-apple-darwin20.0.0:
-        CONFIG: linux_64_cross_platformosx-arm64llvm_version11.1.0macos_machinearm64-apple-darwin20.0.0
-        UPLOAD_PACKAGES: 'True'
-        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
-      linux_64_cross_platformosx-arm64llvm_version12.0.1macos_machinearm64-apple-darwin20.0.0:
-        CONFIG: linux_64_cross_platformosx-arm64llvm_version12.0.1macos_machinearm64-apple-darwin20.0.0
-        UPLOAD_PACKAGES: 'True'
-        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
-      linux_64_cross_platformosx-arm64llvm_version13.0.1macos_machinearm64-apple-darwin20.0.0:
-        CONFIG: linux_64_cross_platformosx-arm64llvm_version13.0.1macos_machinearm64-apple-darwin20.0.0
+      linux_64_cross_platformosx-arm64llvm_version14.0macos_machinearm64-apple-darwin20.0.0:
+        CONFIG: linux_64_cross_platformosx-arm64llvm_version14.0macos_machinearm64-apple-darwin20.0.0
         UPLOAD_PACKAGES: 'True'
         DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
   timeoutInMinutes: 360

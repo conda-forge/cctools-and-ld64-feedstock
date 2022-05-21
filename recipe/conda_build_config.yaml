@@ -13,21 +13,19 @@ zip_keys:
   - - macos_machine
     - cross_platform
     - uname_machine
-cxx_compiler:
-  - clang_bootstrap  # [osx]
-  - gxx              # [linux]
-  - vs2017           # [win]
+
 c_compiler:
   - clang_bootstrap  # [osx]
   - gcc              # [linux]
-  - vs2017           # [win]
-vc:
-  - 14
+cxx_compiler:
+  - clang_bootstrap  # [osx]
+  - gxx              # [linux]
+
 c_compiler_version:     # [osx]
   - "*"                 # [osx]
 cxx_compiler_version:   # [osx]
   - "*"                 # [osx]
+
 llvm_version:
-  - 11.1.0
-  - 12.0.1
-  - 13.0.1
+  - 13.0
+  - 14.0
