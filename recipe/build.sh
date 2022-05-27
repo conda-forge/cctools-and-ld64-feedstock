@@ -1,43 +1,45 @@
 #!/bin/bash
 
-# Ensure we do not end up linking to a shared libz
-rm -f "${PREFIX}"/lib/libz*${SHLIB_EXT}
-rm -f "${BUILD_PREFIX}"/lib/libz*${SHLIB_EXT}
-# .. if this doesn't work we will need to pass LLVM_ENABLE_ZLIB
-# or add find_library() to LLVM.
+set -x
 
-if [[ $target_platform == osx-64 ]]; then
+if [[ $target_platform == osx-* ]]; then
   export CPU_COUNT=1
 else
   export CC=$(which clang)
   export CXX=$(which clang++)
   export TCROOT=$CONDA_BUILD_SYSROOT
-  ./tools/fix_unistd_issue.sh
 fi
 export cctools_cv_tapi_support=yes
 
 pushd cctools
-  LLVM_LTO_LIBRARY=$(find $PREFIX/lib -name "libLTO*${SHLIB_EXT}")
+  LLVM_LTO_LIBRARY=$(find $PREFIX/lib -name "libLTO.*.*")
   LLVM_LTO_LIBRARY="$(basename $LLVM_LTO_LIBRARY)"
   sed -i.bak "s/libLTO.dylib/${LLVM_LTO_LIBRARY}/g" ld64/src/ld/InputFiles.cpp
+  sed -i.bak "s@llvm/libLTO.so@${LLVM_LTO_LIBRARY}@g" ld64/src/ld/InputFiles.cpp
+  sed -i.bak "s/libLTO.so/${LLVM_LTO_LIBRARY}/g" ld64/src/ld/InputFiles.cpp
+  sed -i.bak "s/libLTO.dylib/${LLVM_LTO_LIBRARY}/g" ld64/doc/man/man1/ld.1
   sed -i.bak "s/libLTO.dylib/${LLVM_LTO_LIBRARY}/g" libstuff/llvm.c
+  sed -i.bak "s/libLTO.so/${LLVM_LTO_LIBRARY}/g" libstuff/llvm.c
+  sed -i.bak "s/libLTO.dylib/${LLVM_LTO_LIBRARY}/g" ld64/src/ld/parsers/lto_file.cpp
+  sed -i.bak "s/libLTO.so/${LLVM_LTO_LIBRARY}/g" ld64/src/ld/parsers/lto_file.cpp
   sed -i.bak "s/libLTO.dylib/${LLVM_LTO_LIBRARY}/g" libstuff/lto.c
+  sed -i.bak "s/libLTO.so/${LLVM_LTO_LIBRARY}/g" libstuff/lto.c
 popd
+
+if [[ "$CONDA_BUILD_CROSS_COMPILATION" == "1" ]]; then
+  # llvm-config from host env is tried by cctools-port
+  # Move the build prefix one to host prefix
+  rm $PREFIX/bin/llvm-config
+  cp $BUILD_PREFIX/bin/llvm-config $PREFIX/bin/llvm-config
+  rm $BUILD_PREFIX/bin/llvm-config
+  if [[ "$build_platform" == osx-* ]]; then
+      $INSTALL_NAME_TOOL -add_rpath "$BUILD_PREFIX/lib" $PREFIX/bin/llvm-config
+  fi
+fi
 
 # export CPPFLAGS="$CPPFLAGS -DCPU_SUBTYPE_ARM64_E=2"
 export CXXFLAGS="$CXXFLAGS -O2 -gdwarf-4"
 export CFLAGS="$CFLAGS -O2 -gdwarf-4"
-
-if [[ ${MACOSX_DEPLOYMENT_TARGET} == 10.10 ]]; then
-  DARWIN_TARGET=x86_64-apple-darwin14.5.0
-else
-  DARWIN_TARGET=x86_64-apple-darwin13.4.0
-fi
-
-if [[ -z ${DARWIN_TARGET} ]]; then
-  echo "Need a valid DARWIN_TARGET"
-  exit 1
-fi
 
 pushd ${SRC_DIR}/cctools
   ./autogen.sh
@@ -49,8 +51,9 @@ pushd cctools_build_final
     --prefix=${PREFIX} \
     --host=${HOST} \
     --build=${BUILD} \
-    --target=${DARWIN_TARGET} \
+    --target=${macos_machine} \
     --disable-static \
+    --with-libtapi=${PREFIX} \
     --enable-shared || (cat config.log && cat config.status && false)
   cat config.log
   cat config.status

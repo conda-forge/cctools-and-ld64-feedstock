@@ -1,18 +1,31 @@
 macos_machine:
   - x86_64-apple-darwin13.4.0
-cxx_compiler:
-  - clang_bootstrap  # [osx]
-  - gxx              # [linux]
-  - vs2017           # [win]
+  - arm64-apple-darwin20.0.0
+MACOSX_SDK_VERSION:  # [osx and x86_64]
+  - 10.13            # [osx and x86_64]
+cross_platform:
+  - osx-64
+  - osx-arm64
+uname_machine:
+  - x86_64
+  - arm64
+zip_keys:
+  - - macos_machine
+    - cross_platform
+    - uname_machine
+
 c_compiler:
   - clang_bootstrap  # [osx]
   - gcc              # [linux]
-  - vs2017           # [win]
-vc:
-  - 14
-python:
-  - 3.7
+cxx_compiler:
+  - clang_bootstrap  # [osx]
+  - gxx              # [linux]
+
 c_compiler_version:     # [osx]
   - "*"                 # [osx]
 cxx_compiler_version:   # [osx]
   - "*"                 # [osx]
+
+llvm_version:
+  - 13.0
+  - 14.0

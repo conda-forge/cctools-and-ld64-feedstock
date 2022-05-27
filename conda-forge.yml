@@ -1,7 +1,9 @@
-appveyor:
-  secure: {BINSTAR_TOKEN: tumuXLL8PU75WMnRDemRy02ruEq2RpNxeK3dz0MjFssnosPm2v4EFjfNB4PTotA1}
 provider: {linux_aarch64: default, linux_ppc64le: default}
-travis:
-  secure: {BINSTAR_TOKEN: ZtED1/5jzmpkGcQcwKdPD0YqpNgZcYMJ68KAKYQFASOBY95CpNkPHd1VxIW74Knly1fqYKCer5Y6E+t9qLiYXoculg+DIRCF52OD+KIOILdd2UB5IV3DEXYM2+2xgs++zUIUIIjON1TNPnotIjAwc7VmoM/41Ps0p7LLpTqGloDk+OSLxsrz/St79l2YbuJPn0nshMQNXBpWltO2hpNMB50eABcwXwUs0CGRl1aI9zbuMEBuoVO3Rvud1aP1sYjanKMpychrjKDSfzIUi8JkPLTKKchHEZ1zIikPhFmQfPYfBf6rqMpWVkg0d2v8hwbJKoKMWDK4aKhqGstQIm5cCe8MWCpQfGwH7fTfo/ejU8794r/yMbACQR0K8l/+1gZhB2DVliAN+08N8DjJ0nu+HWcs1arZn7Q9ch56HhVct+z6VB3ws6NbirPQrRULwcNpTm7VUn35Cihoz7TnSaKbTcaMVGM52G+K64vLH45ndRTgj56LTU9tm5SB8ysrctT3QBgCfgQ7bLbh+4VImtehDM/2LGTGHDsiVUxRM/cwMyFH2YIorXPX+ZHSWHj8AheGMCBoXv811OkvdjoKMNOKGMcmgrlX1gG848my0gOLDvig9ue2l3V0TGMuoqXJiiNEVmkqvB+akfjxdrRR833oOAlhgGXupH5/Ck0qjwBK0DM=}
-upload_on_branch: master
 conda_forge_output_validation: true
+build_platform:
+  osx_arm64: osx_64
+test_on_native_only: true
+channel_priority: flexible
+github:
+  branch_name: main
+  tooling_branch_name: main
