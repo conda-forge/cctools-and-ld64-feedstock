@@ -16,15 +16,8 @@ Current build status
 <table><tr>
     <td>Travis</td>
     <td>
-      <a href="https://travis-ci.com/conda-forge/cctools-and-ld64-feedstock">
-        <img alt="macOS" src="https://img.shields.io/travis/com/conda-forge/cctools-and-ld64-feedstock/master.svg?label=macOS">
-      </a>
-    </td>
-  </tr><tr>
-    <td>Drone</td>
-    <td>
-      <a href="https://cloud.drone.io/conda-forge/cctools-and-ld64-feedstock">
-        <img alt="linux" src="https://img.shields.io/drone/build/conda-forge/cctools-and-ld64-feedstock/master.svg?label=Linux">
+      <a href="https://app.travis-ci.com/conda-forge/cctools-and-ld64-feedstock">
+        <img alt="linux" src="https://img.shields.io/travis/com/conda-forge/cctools-and-ld64-feedstock/main.svg?label=Linux">
       </a>
     </td>
   </tr>
@@ -66,6 +59,62 @@ Current build status
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=7875&branchName=main">
                   <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/cctools-and-ld64-feedstock?branchName=main&jobName=linux&configuration=linux_64_cross_platformosx-arm64llvm_version14.0macos_machinearm64-apple-darwin20.0.0" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
+              <td>linux_aarch64_cross_platformosx-64llvm_version13.0macos_machinex86_64-apple-darwin13.4.0</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=7875&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/cctools-and-ld64-feedstock?branchName=main&jobName=linux&configuration=linux_aarch64_cross_platformosx-64llvm_version13.0macos_machinex86_64-apple-darwin13.4.0" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
+              <td>linux_aarch64_cross_platformosx-64llvm_version14.0macos_machinex86_64-apple-darwin13.4.0</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=7875&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/cctools-and-ld64-feedstock?branchName=main&jobName=linux&configuration=linux_aarch64_cross_platformosx-64llvm_version14.0macos_machinex86_64-apple-darwin13.4.0" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
+              <td>linux_aarch64_cross_platformosx-arm64llvm_version13.0macos_machinearm64-apple-darwin20.0.0</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=7875&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/cctools-and-ld64-feedstock?branchName=main&jobName=linux&configuration=linux_aarch64_cross_platformosx-arm64llvm_version13.0macos_machinearm64-apple-darwin20.0.0" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
+              <td>linux_aarch64_cross_platformosx-arm64llvm_version14.0macos_machinearm64-apple-darwin20.0.0</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=7875&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/cctools-and-ld64-feedstock?branchName=main&jobName=linux&configuration=linux_aarch64_cross_platformosx-arm64llvm_version14.0macos_machinearm64-apple-darwin20.0.0" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
+              <td>linux_ppc64le_cross_platformosx-64llvm_version13.0macos_machinex86_64-apple-darwin13.4.0</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=7875&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/cctools-and-ld64-feedstock?branchName=main&jobName=linux&configuration=linux_ppc64le_cross_platformosx-64llvm_version13.0macos_machinex86_64-apple-darwin13.4.0" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
+              <td>linux_ppc64le_cross_platformosx-64llvm_version14.0macos_machinex86_64-apple-darwin13.4.0</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=7875&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/cctools-and-ld64-feedstock?branchName=main&jobName=linux&configuration=linux_ppc64le_cross_platformosx-64llvm_version14.0macos_machinex86_64-apple-darwin13.4.0" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
+              <td>linux_ppc64le_cross_platformosx-arm64llvm_version13.0macos_machinearm64-apple-darwin20.0.0</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=7875&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/cctools-and-ld64-feedstock?branchName=main&jobName=linux&configuration=linux_ppc64le_cross_platformosx-arm64llvm_version13.0macos_machinearm64-apple-darwin20.0.0" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
+              <td>linux_ppc64le_cross_platformosx-arm64llvm_version14.0macos_machinearm64-apple-darwin20.0.0</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=7875&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/cctools-and-ld64-feedstock?branchName=main&jobName=linux&configuration=linux_ppc64le_cross_platformosx-arm64llvm_version14.0macos_machinearm64-apple-darwin20.0.0" alt="variant">
                 </a>
               </td>
             </tr><tr>

@@ -8,16 +8,20 @@ channel_sources:
 - conda-forge
 channel_targets:
 - conda-forge main
+cross_platform:
+- osx-arm64
 cxx_compiler:
 - gxx
 cxx_compiler_version:
-- '7'
+- '10'
 docker_image:
-- condaforge/linux-anvil-aarch64
+- quay.io/condaforge/linux-anvil-aarch64
 libuuid:
-- 2.32.1
+- '2'
+llvm_version:
+- '13.0'
 macos_machine:
-- x86_64-apple-darwin13.4.0
+- arm64-apple-darwin20.0.0
 pin_run_as_build:
   libuuid:
     max_pin: x
@@ -25,5 +29,8 @@ pin_run_as_build:
     max_pin: x.x
 target_platform:
 - linux-aarch64
+zip_keys:
+- - macos_machine
+  - cross_platform
 zlib:
 - '1.2'
