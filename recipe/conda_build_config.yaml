@@ -30,3 +30,7 @@ llvm_version:
   - 14.0
   - 15.0
   - 16.0
+
+# no channel_targets necessary because LLVM rc's not installable without llvm_rc anyway
+channel_sources:
+  - conda-forge/label/llvm_rc,conda-forge
