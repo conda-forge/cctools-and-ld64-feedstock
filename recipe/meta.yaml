@@ -1,7 +1,7 @@
 {% set cctools_version = '973.0.1' %}
 {% set ld64_version = '609' %}
 {% if llvm_version is not defined %}
-{% set llvm_version = "15.0" %}
+{% set llvm_version = "16.0" %}
 {% endif %}
 
 {% if cross_platform is not defined %}
@@ -24,7 +24,7 @@ source:
       - patches/0003-turn-off-mmap-osx-arm64.patch
 
 build:
-  number: 11
+  number: 12
   skip: True  # [win]
   ignore_run_exports:
     - zlib
