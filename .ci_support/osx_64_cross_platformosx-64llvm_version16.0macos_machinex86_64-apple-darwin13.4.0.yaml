@@ -1,25 +1,23 @@
-cdt_name:
-- cos6
+MACOSX_DEPLOYMENT_TARGET:
+- '10.9'
+MACOSX_SDK_VERSION:
+- '10.13'
 channel_sources:
 - conda-forge/label/llvm_rc,conda-forge
 channel_targets:
 - conda-forge main
 cross_platform:
-- osx-arm64
+- osx-64
 cxx_compiler:
-- gxx
+- clang_bootstrap
 cxx_compiler_version:
-- '11'
-docker_image:
-- quay.io/condaforge/linux-anvil-cos7-x86_64
-libuuid:
-- '2'
+- '*'
 llvm_version:
-- '15.0'
+- '16.0'
 macos_machine:
-- arm64-apple-darwin20.0.0
+- x86_64-apple-darwin13.4.0
 target_platform:
-- linux-64
+- osx-64
 zip_keys:
 - - macos_machine
   - cross_platform

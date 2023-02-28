@@ -15,7 +15,7 @@ docker_image:
 libuuid:
 - '2'
 llvm_version:
-- '15.0'
+- '16.0'
 macos_machine:
 - arm64-apple-darwin20.0.0
 target_platform:
