@@ -9,10 +9,6 @@ cross_platform:
 uname_machine:
   - x86_64
   - arm64
-zip_keys:
-  - - macos_machine
-    - cross_platform
-    - uname_machine
 
 c_compiler:
   - clang_bootstrap  # [osx]
@@ -31,6 +27,18 @@ llvm_version:
   - 15.0
   - 16.0
 
-# no channel_targets necessary because LLVM rc's not installable without llvm_rc anyway
+# no channel_targets necessary because LLVM rc's not installable without llvm_rc anyway;
+# zip it to avoid using rc-builds for already-released-in-conda-forge LLVM versions
 channel_sources:
+  - conda-forge
+  - conda-forge
   - conda-forge/label/llvm_rc,conda-forge
+
+zip_keys:
+  -
+    - macos_machine
+    - cross_platform
+    - uname_machine
+  -
+    - llvm_version
+    - channel_sources
