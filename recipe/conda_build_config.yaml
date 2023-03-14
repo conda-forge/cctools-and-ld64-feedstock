@@ -10,13 +10,10 @@ uname_machine:
   - x86_64
   - arm64
 
-c_compiler:
-  - clang_bootstrap  # [osx]
-  - gcc              # [linux]
-cxx_compiler:
-  - clang_bootstrap  # [osx]
-  - gxx              # [linux]
-
+c_compiler:             # [osx]
+  - clang_bootstrap     # [osx]
+cxx_compiler:           # [osx]
+  - clang_bootstrap     # [osx]
 c_compiler_version:     # [osx]
   - "*"                 # [osx]
 cxx_compiler_version:   # [osx]
