@@ -23,6 +23,8 @@ source:
       - patches/0003-Restore-using-__builtin_available-for-macos.patch
       # Taken from https://github.com/tpoechtrager/cctools-port/pull/118
       - patches/0004-Turn-off-outputIsMappableFile-when-building-to-osx-a.patch
+      # Taken from https://github.com/tpoechtrager/cctools-port/pull/133
+      - patches/0005-don-t-try-to-include-__assert-for-NDEBUG-builds.patch
 
 build:
   number: 12

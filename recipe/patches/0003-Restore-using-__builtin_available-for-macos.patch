@@ -1,7 +1,7 @@
 From cc31db916dac03d41729aa7107292bb857143293 Mon Sep 17 00:00:00 2001
 From: Isuru Fernando <isuruf@gmail.com>
 Date: Thu, 3 Feb 2022 21:28:42 -0600
-Subject: [PATCH 3/4] Restore using __builtin_available for macos
+Subject: [PATCH 3/5] Restore using __builtin_available for macos
 
 ---
  cctools/libstuff/writeout.c | 12 ++++++------
