@@ -1,7 +1,7 @@
 cdt_name:
 - cos6
 channel_sources:
-- conda-forge/label/llvm_rc,conda-forge
+- conda-forge
 channel_targets:
 - conda-forge main
 cross_platform:
@@ -21,6 +21,8 @@ macos_machine:
 target_platform:
 - linux-64
 zip_keys:
+- - llvm_version
+  - channel_sources
 - - macos_machine
   - cross_platform
 zlib:
