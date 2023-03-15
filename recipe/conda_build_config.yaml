@@ -9,18 +9,11 @@ cross_platform:
 uname_machine:
   - x86_64
   - arm64
-zip_keys:
-  - - macos_machine
-    - cross_platform
-    - uname_machine
 
-c_compiler:
-  - clang_bootstrap  # [osx]
-  - gcc              # [linux]
-cxx_compiler:
-  - clang_bootstrap  # [osx]
-  - gxx              # [linux]
-
+c_compiler:             # [osx]
+  - clang_bootstrap     # [osx]
+cxx_compiler:           # [osx]
+  - clang_bootstrap     # [osx]
 c_compiler_version:     # [osx]
   - "*"                 # [osx]
 cxx_compiler_version:   # [osx]
@@ -29,3 +22,25 @@ cxx_compiler_version:   # [osx]
 llvm_version:
   - 14.0
   - 15.0
+  - 16.0
+
+# zip it to avoid using rc-builds for already-released-in-conda-forge LLVM versions
+channel_sources:
+  - conda-forge
+  - conda-forge
+  - conda-forge/label/llvm_rc,conda-forge
+
+channel_targets:
+  - conda-forge main
+  - conda-forge main
+  - conda-forge llvm_rc
+
+zip_keys:
+  -
+    - macos_machine
+    - cross_platform
+    - uname_machine
+  -
+    - llvm_version
+    - channel_sources
+    - channel_targets

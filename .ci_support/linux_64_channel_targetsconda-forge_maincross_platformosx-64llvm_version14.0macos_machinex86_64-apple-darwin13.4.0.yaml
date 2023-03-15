@@ -5,11 +5,11 @@ channel_sources:
 channel_targets:
 - conda-forge main
 cross_platform:
-- osx-arm64
+- osx-64
 cxx_compiler:
 - gxx
 cxx_compiler_version:
-- '10'
+- '11'
 docker_image:
 - quay.io/condaforge/linux-anvil-cos7-x86_64
 libuuid:
@@ -17,10 +17,13 @@ libuuid:
 llvm_version:
 - '14.0'
 macos_machine:
-- arm64-apple-darwin20.0.0
+- x86_64-apple-darwin13.4.0
 target_platform:
 - linux-64
 zip_keys:
+- - llvm_version
+  - channel_sources
+  - channel_targets
 - - macos_machine
   - cross_platform
 zlib:

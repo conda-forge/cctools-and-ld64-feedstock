@@ -1,6 +1,5 @@
 #!/bin/bash
-
-set -x
+set -ex
 
 if [[ $target_platform == osx-* ]]; then
   export CPU_COUNT=1
@@ -57,5 +56,5 @@ pushd cctools_build_final
     --enable-shared || (cat config.log && cat config.status && false)
   cat config.log
   cat config.status
-  make -j${CPU_COUNT} ${VERBOSE_AT} -k
+  make -j${CPU_COUNT} ${VERBOSE_AT}
 popd
