@@ -11,7 +11,7 @@ cxx_compiler:
 cxx_compiler_version:
 - '*'
 llvm_version:
-- '14.0'
+- '15.0'
 macos_machine:
 - x86_64-apple-darwin13.4.0
 target_platform:
@@ -19,6 +19,7 @@ target_platform:
 zip_keys:
 - - llvm_version
   - channel_sources
+  - channel_targets
 - - macos_machine
   - cross_platform
 zlib:

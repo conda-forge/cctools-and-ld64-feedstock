@@ -19,6 +19,7 @@ target_platform:
 zip_keys:
 - - llvm_version
   - channel_sources
+  - channel_targets
 - - macos_machine
   - cross_platform
 zlib:
