@@ -24,12 +24,16 @@ llvm_version:
   - 15.0
   - 16.0
 
-# no channel_targets necessary because LLVM rc's not installable without llvm_rc anyway;
 # zip it to avoid using rc-builds for already-released-in-conda-forge LLVM versions
 channel_sources:
   - conda-forge
   - conda-forge
   - conda-forge/label/llvm_rc,conda-forge
+
+channel_targets:
+  - conda-forge main
+  - conda-forge main
+  - conda-forge llvm_rc
 
 zip_keys:
   -
@@ -39,3 +43,4 @@ zip_keys:
   -
     - llvm_version
     - channel_sources
+    - channel_targets
