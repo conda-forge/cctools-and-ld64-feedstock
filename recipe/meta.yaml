@@ -79,7 +79,7 @@ outputs:
         - ld64 {{ ld64_version }}.*
         - cctools {{ cctools_version }}.*
         # clang might pull in the wrong cctools otherwise
-        - libllvm{{ llvm_version }}
+        - clang {{ llvm_version }}.*
     test:
       commands:
         # For arm64, cctools as calls the clang integrated assembler. Don't check for it
