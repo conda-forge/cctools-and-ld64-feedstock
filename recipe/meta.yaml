@@ -49,6 +49,8 @@ requirements:
     - llvmdev {{ llvm_version }}.*
     - libuuid   # [linux]
     - tapi
+  run:
+    - __osx >={{ MACOSX_DEPLOYMENT_TARGET }}  # [osx and x86_64]
 
 outputs:
   - name: cctools_{{ cross_platform }}
