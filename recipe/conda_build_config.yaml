@@ -20,9 +20,9 @@ cxx_compiler_version:   # [osx]
   - "*"                 # [osx]
 
 llvm_version:
-  - 14.0
   - 15.0
   - 16.0
+  - 17.0
 
 zip_keys:
   -
