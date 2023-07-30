@@ -20,6 +20,7 @@ target_platform:
 - osx-64
 zip_keys:
 - - llvm_version
+  - MACOSX_DEPLOYMENT_TARGET
   - channel_sources
   - channel_targets
 - - macos_machine
