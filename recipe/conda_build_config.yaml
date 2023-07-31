@@ -12,10 +12,17 @@ c_compiler:             # [osx]
   - clang_bootstrap     # [osx]
 cxx_compiler:           # [osx]
   - clang_bootstrap     # [osx]
-c_compiler_version:     # [osx]
-  - "*"                 # [osx]
-cxx_compiler_version:   # [osx]
-  - "*"                 # [osx]
+# c_compiler_version:     # [osx]
+#   - "*"                 # [osx]
+# cxx_compiler_version:   # [osx]
+#   - "*"                 # [osx]
+# clang 16+ is not compatible with MacOS 10.9 anymore; stay on 15 for existing builds.
+# this effectively means building everything with clang 15, because we cannot mix
+# {c,cxx}_compiler_version into another zip.
+c_compiler_version:         # [osx]
+  - 15                      # [osx]
+cxx_compiler_version:       # [osx]
+  - 15                      # [osx]
 
 MACOSX_SDK_VERSION:         # [osx and x86_64]
   - "10.13"                 # [osx and x86_64]
