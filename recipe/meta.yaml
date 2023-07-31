@@ -1,7 +1,7 @@
 {% set cctools_version = '973.0.1' %}
 {% set ld64_version = '609' %}
 {% if llvm_version is not defined %}
-{% set llvm_version = "16.0" %}
+{% set llvm_version = "17.0" %}
 {% endif %}
 
 {% if cross_platform is not defined %}
@@ -27,7 +27,7 @@ source:
       - patches/0005-don-t-try-to-include-__assert-for-NDEBUG-builds.patch
 
 build:
-  number: 13
+  number: 14
   skip: True  # [win]
   ignore_run_exports:
     - zlib
@@ -49,6 +49,8 @@ requirements:
     - llvmdev {{ llvm_version }}.*
     - libuuid   # [linux]
     - tapi
+  run:
+    - __osx >={{ MACOSX_DEPLOYMENT_TARGET }}  # [osx and x86_64]
 
 outputs:
   - name: cctools_{{ cross_platform }}

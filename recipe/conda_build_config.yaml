@@ -1,8 +1,6 @@
 macos_machine:
   - x86_64-apple-darwin13.4.0
   - arm64-apple-darwin20.0.0
-MACOSX_SDK_VERSION:  # [osx and x86_64]
-  - 10.13            # [osx and x86_64]
 cross_platform:
   - osx-64
   - osx-arm64
@@ -14,18 +12,49 @@ c_compiler:             # [osx]
   - clang_bootstrap     # [osx]
 cxx_compiler:           # [osx]
   - clang_bootstrap     # [osx]
-c_compiler_version:     # [osx]
-  - "*"                 # [osx]
-cxx_compiler_version:   # [osx]
-  - "*"                 # [osx]
+# c_compiler_version:     # [osx]
+#   - "*"                 # [osx]
+# cxx_compiler_version:   # [osx]
+#   - "*"                 # [osx]
+# clang 16+ is not compatible with MacOS 10.9 anymore; stay on 15 for existing builds.
+# this effectively means building everything with clang 15, because we cannot mix
+# {c,cxx}_compiler_version into another zip.
+c_compiler_version:         # [osx]
+  - 15                      # [osx]
+cxx_compiler_version:       # [osx]
+  - 15                      # [osx]
+
+MACOSX_SDK_VERSION:         # [osx and x86_64]
+  - "10.13"                 # [osx and x86_64]
+# as of LLVM 17, we need 10.13 for MACOSX_DEPLOYMENT_TARGET --> part of zip
+MACOSX_DEPLOYMENT_TARGET:   # [osx and x86_64]
+  - "10.9"                  # [osx and x86_64]
+  - "10.9"                  # [osx and x86_64]
+  - "10.13"                 # [osx and x86_64]
 
 llvm_version:
-  - 14.0
   - 15.0
   - 16.0
+  - 17.0
+
+# zip it to avoid using rc-builds for already-released-in-conda-forge LLVM versions
+channel_sources:
+  - conda-forge
+  - conda-forge
+  - conda-forge/label/llvm_rc,conda-forge
+
+channel_targets:
+  - conda-forge main
+  - conda-forge main
+  - conda-forge llvm_rc
 
 zip_keys:
   -
     - macos_machine
     - cross_platform
     - uname_machine
+  -
+    - llvm_version
+    - MACOSX_DEPLOYMENT_TARGET  # [osx and x86_64]
+    - channel_sources
+    - channel_targets
