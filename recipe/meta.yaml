@@ -1,5 +1,5 @@
-{% set cctools_version = '973.0.1' %}
-{% set ld64_version = '609' %}
+{% set cctools_version = '986' %}
+{% set ld64_version = '711' %}
 {% if llvm_version is not defined %}
 {% set llvm_version = "17.0" %}
 {% endif %}
@@ -14,8 +14,8 @@ package:
 
 source:
   # latest commit from branch {{ cctools_version }}-ld64-{{ ld64_version }}
-  - url: https://github.com/tpoechtrager/cctools-port/archive/04663295d0425abfac90a42440a7ec02d7155fea.tar.gz
-    sha256: 70a7189418c2086d20c299c5d59250cf5940782c778892ccc899c66516ed240e
+  - url: https://github.com/tpoechtrager/cctools-port/archive/437ced391dbf14dce86f977ca050a750d5682f39.tar.gz
+    sha256: cf4020ddb92467de020c322eb13f0cac9ed992daa862a09bc2607e42467b3042
     patches:
       - patches/0001-Don-t-link-with-libc-abi.patch
       - patches/0002-ld64-add-conda-specific-env-vars-to-modify-lib-searc.patch
@@ -27,7 +27,7 @@ source:
       - patches/0005-don-t-try-to-include-__assert-for-NDEBUG-builds.patch
 
 build:
-  number: 16
+  number: 0
   skip: True  # [win]
   ignore_run_exports:
     - zlib
