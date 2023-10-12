@@ -1,34 +1,31 @@
-From 5d6c783218d987da96ac96ede628970122eab0b1 Mon Sep 17 00:00:00 2001
+From 4bc8b0d61a4787ef302ddfc0ab6bc46b7804869d Mon Sep 17 00:00:00 2001
 From: Eli Rykoff <erykoff@stanford.edu>
 Date: Thu, 24 Feb 2022 21:16:24 -0800
-Subject: [PATCH 4/5] Turn off outputIsMappableFile when building to osx-arm64
+Subject: [PATCH 4/4] Turn off outputIsMappableFile when building to osx-arm64
 
 ---
  cctools/ld64/src/ld/OutputFile.cpp | 4 ++--
  1 file changed, 2 insertions(+), 2 deletions(-)
 
 diff --git a/cctools/ld64/src/ld/OutputFile.cpp b/cctools/ld64/src/ld/OutputFile.cpp
-index c6b4270..6cd1591 100644
+index 36772bb..d79cd8a 100644
 --- a/cctools/ld64/src/ld/OutputFile.cpp
 +++ b/cctools/ld64/src/ld/OutputFile.cpp
-@@ -3805,7 +3805,7 @@ void OutputFile::writeOutputFile(ld::Internal& state)
- 			// <rdar://problem/12264302> Don't use mmap on non-hfs volumes
+@@ -3844,7 +3844,7 @@ void OutputFile::writeOutputFile(ld::Internal& state)
  #ifdef __APPLE__ // ld64-port
+ 			// <rdar://problem/12264302> Don't use mmap on non-hfs volumes
  			struct statfs fsInfo;
 -			if ( statfs(_options.outputFilePath(), &fsInfo) != -1 ) {
-+            if ( (_options.architecture() != CPU_TYPE_ARM64) && (statfs(_options.outputFilePath(), &fsInfo) != -1) ) {
- 				if ( (strcmp(fsInfo.f_fstypename, "hfs") == 0) || (strcmp(fsInfo.f_fstypename, "apfs") == 0) ) {
- 					(void)unlink(_options.outputFilePath());
- 					outputIsMappableFile = true;
-@@ -3835,7 +3835,7 @@ void OutputFile::writeOutputFile(ld::Internal& state)
- 			end[1] = '\0';
++			if ( (_options.architecture() != CPU_TYPE_ARM64) && (statfs(_options.outputFilePath(), &fsInfo) != -1) ) {
+ 				// <rdar://problem/72136053>
+ 				(void)unlink(_options.outputFilePath());
+ 
+@@ -3878,7 +3878,7 @@ void OutputFile::writeOutputFile(ld::Internal& state)
+ 			strcpy(dirPath, "./");	// if no slashes path, then writing to cwd
  #ifdef __APPLE__ // ld64-port
- 			struct statfs fsInfo;
--			if ( statfs(dirPath, &fsInfo) != -1 ) {
-+            if ( (_options.architecture() != CPU_TYPE_ARM64) && (statfs(dirPath, &fsInfo) != -1) ) {
- 				if ( (strcmp(fsInfo.f_fstypename, "hfs") == 0) || (strcmp(fsInfo.f_fstypename, "apfs") == 0) ) {
- 					outputIsMappableFile = true;
- 				}
--- 
-2.38.1.windows.1
-
+ 		struct statfs fsInfo;
+-		if ( statfs(dirPath, &fsInfo) != -1 ) {
++		if ( (_options.architecture() != CPU_TYPE_ARM64) && (statfs(dirPath, &fsInfo) != -1) ) {
+ 			if ( (strcmp(fsInfo.f_fstypename, "hfs") == 0) || (strcmp(fsInfo.f_fstypename, "apfs") == 0) ) {
+ 				outputIsMappableFile = true;
+ 			}
