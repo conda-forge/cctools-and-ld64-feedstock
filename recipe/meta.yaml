@@ -27,7 +27,7 @@ source:
       - patches/0005-don-t-try-to-include-__assert-for-NDEBUG-builds.patch
 
 build:
-  number: 15
+  number: 16
   skip: True  # [win]
   ignore_run_exports:
     - zlib
