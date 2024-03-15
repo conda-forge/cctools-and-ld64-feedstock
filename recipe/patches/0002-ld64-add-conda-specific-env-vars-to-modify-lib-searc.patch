@@ -1,7 +1,7 @@
-From 319ada49d0fa9a1af360fc59c6bd9f91a5a0cd0d Mon Sep 17 00:00:00 2001
+From 3a7ebebe7e6a82cce5c58ad7816e175d67791a56 Mon Sep 17 00:00:00 2001
 From: Isuru Fernando <isuruf@gmail.com>
 Date: Mon, 16 Sep 2019 05:17:30 +0000
-Subject: [PATCH 2/5] ld64: add conda specific env vars to modify lib search
+Subject: [PATCH 2/4] ld64: add conda specific env vars to modify lib search
  paths
 
 ---
@@ -9,10 +9,10 @@ Subject: [PATCH 2/5] ld64: add conda specific env vars to modify lib search
  1 file changed, 30 insertions(+), 5 deletions(-)
 
 diff --git a/cctools/ld64/src/ld/Options.cpp b/cctools/ld64/src/ld/Options.cpp
-index 3bb8324..c0c0e05 100644
+index 00500fa..c377e42 100644
 --- a/cctools/ld64/src/ld/Options.cpp
 +++ b/cctools/ld64/src/ld/Options.cpp
-@@ -4237,12 +4237,28 @@ bool Options::shouldUseBuildVersion(ld::Platform plat, uint32_t minOSvers) const
+@@ -4372,12 +4372,28 @@ bool Options::shouldUseBuildVersion(ld::Platform plat, uint32_t minOSvers) const
  
  void Options::buildSearchPaths(int argc, const char* argv[])
  {
@@ -42,7 +42,7 @@ index 3bb8324..c0c0e05 100644
  	// scan through argv looking for -L, -F, -Z, and -syslibroot options
  	for(int i=0; i < argc; ++i) {
  		if ( (argv[i][0] == '-') && (argv[i][1] == 'L') ) {
-@@ -4274,7 +4290,7 @@ void Options::buildSearchPaths(int argc, const char* argv[])
+@@ -4409,7 +4425,7 @@ void Options::buildSearchPaths(int argc, const char* argv[])
  			frameworkPaths.push_back(frameworkSearchDir);
  		}
  		else if ( strcmp(argv[i], "-Z") == 0 )
@@ -51,8 +51,8 @@ index 3bb8324..c0c0e05 100644
  		else if ( strcmp(argv[i], "-v") == 0 ) {
  			fVerbose = true;
  			extern const char ldVersionString[];
-@@ -4383,6 +4399,10 @@ void Options::buildSearchPaths(int argc, const char* argv[])
- 			++i;
+@@ -4522,6 +4538,10 @@ void Options::buildSearchPaths(int argc, const char* argv[])
+ 			platform = info->platform;
  		}
  	}
 +
@@ -62,7 +62,7 @@ index 3bb8324..c0c0e05 100644
  	int standardLibraryPathsStartIndex = libraryPaths.size();
  	int standardFrameworkPathsStartIndex = frameworkPaths.size();
  	if ( addStandardLibraryDirectories ) {
-@@ -4392,8 +4412,12 @@ void Options::buildSearchPaths(int argc, const char* argv[])
+@@ -4531,8 +4551,12 @@ void Options::buildSearchPaths(int argc, const char* argv[])
  			frameworkPaths.push_back("/System/DriverKit/System/Library/Frameworks/");
  		}
  		else {
@@ -76,7 +76,7 @@ index 3bb8324..c0c0e05 100644
  
  			frameworkPaths.push_back("/Library/Frameworks/");
  			frameworkPaths.push_back("/System/Library/Frameworks/");
-@@ -4409,7 +4433,8 @@ void Options::buildSearchPaths(int argc, const char* argv[])
+@@ -4548,7 +4572,8 @@ void Options::buildSearchPaths(int argc, const char* argv[])
  	}
  
  	// now merge sdk and library paths to make real search paths
@@ -86,7 +86,7 @@ index 3bb8324..c0c0e05 100644
  	int libIndex = 0;
  	for (std::vector<const char*>::iterator it = libraryPaths.begin(); it != libraryPaths.end(); ++it, ++libIndex) {
  		const char* libDir = *it;
-@@ -4454,7 +4479,7 @@ void Options::buildSearchPaths(int argc, const char* argv[])
+@@ -4593,7 +4618,7 @@ void Options::buildSearchPaths(int argc, const char* argv[])
  					else
  						fLibrarySearchPaths.push_back(libDir);
  				}
@@ -95,6 +95,3 @@ index 3bb8324..c0c0e05 100644
  					warning("directory not found for option '-L%s'", libDir);
  				}
  			}
--- 
-2.38.1.windows.1
-
