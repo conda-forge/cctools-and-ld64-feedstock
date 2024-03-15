@@ -15,15 +15,12 @@ docker_image:
 libuuid:
 - '2'
 llvm_version:
-- '16.0'
+- '17.0'
 macos_machine:
 - x86_64-apple-darwin13.4.0
 target_platform:
 - linux-64
 zip_keys:
-- - llvm_version
-  - channel_sources
-  - channel_targets
 - - macos_machine
   - cross_platform
 zlib:
