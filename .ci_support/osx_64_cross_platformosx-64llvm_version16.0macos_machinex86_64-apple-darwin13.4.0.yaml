@@ -1,6 +1,8 @@
 MACOSX_DEPLOYMENT_TARGET:
 - '10.13'
-MACOSX_SDK_VERSION:
+c_stdlib:
+- macosx_deployment_target
+c_stdlib_version:
 - '10.13'
 channel_sources:
 - conda-forge
@@ -11,15 +13,15 @@ cross_platform:
 cxx_compiler:
 - clang_bootstrap
 cxx_compiler_version:
-- '15'
+- '*'
 llvm_version:
-- '18.1'
+- '16.0'
 macos_machine:
 - x86_64-apple-darwin13.4.0
 target_platform:
 - osx-64
 zip_keys:
-- - llvm_version
+- - c_stdlib_version
   - MACOSX_DEPLOYMENT_TARGET
 - - macos_machine
   - cross_platform
