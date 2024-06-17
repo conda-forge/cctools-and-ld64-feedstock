@@ -1,5 +1,5 @@
-{% set cctools_version = '986' %}
-{% set ld64_version = '711' %}
+{% set cctools_version = '1109.2' %}
+{% set ld64_version = '907' %}
 {% if llvm_version is not defined %}
 {% set llvm_version = "18.1" %}
 {% endif %}
@@ -14,8 +14,8 @@ package:
 
 source:
   # latest commit from branch {{ cctools_version }}-ld64-{{ ld64_version }}
-  - url: https://github.com/tpoechtrager/cctools-port/archive/437ced391dbf14dce86f977ca050a750d5682f39.tar.gz
-    sha256: cf4020ddb92467de020c322eb13f0cac9ed992daa862a09bc2607e42467b3042
+  - url: https://github.com/tpoechtrager/cctools-port/archive/56751cd356045416fd3bee4d8371d656a2c6de4d.tar.gz
+    sha256: d92ff05be50fcbad5606d3bd99323cbd63f048f8fc780ca0670d1b685c68472c
     patches:
       - patches/0001-Don-t-link-with-libc-abi.patch
       - patches/0002-ld64-add-conda-specific-env-vars-to-modify-lib-searc.patch
