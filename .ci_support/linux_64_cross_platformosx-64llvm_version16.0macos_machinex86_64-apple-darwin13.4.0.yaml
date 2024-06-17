@@ -24,4 +24,4 @@ zip_keys:
 - - macos_machine
   - cross_platform
 zlib:
-- '1.2'
+- '1'
