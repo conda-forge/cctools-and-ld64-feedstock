@@ -1,0 +1,35 @@
+From 9b7d02780cd5e9da6ba82a16b64fbad3a5f6a2d1 Mon Sep 17 00:00:00 2001
+From: Wolf Vollprecht <w.vollprecht@gmail.com>
+Date: Wed, 8 Nov 2023 08:21:24 +0100
+Subject: [PATCH] Make builds more reproducible with `SOURCE_DATE_EPOCH`
+
+In order to support "reproducible builds" for static libraries it would be great if `ar` supports `SOURCE_DATE_EPOCH` as an alternate means to use a timestamp (vs. looking at the `stat` output for a given file).
+
+This is further documented here: https://reproducible-builds.org/docs/source-date-epoch/
+---
+ cctools/ar/archive.c | 10 +++++++---
+ 1 file changed, 7 insertions(+), 3 deletions(-)
+
+diff --git a/cctools/ar/archive.c b/cctools/ar/archive.c
+index 64278f55..d6c2a418 100644
+--- a/cctools/ar/archive.c
++++ b/cctools/ar/archive.c
+@@ -331,11 +331,15 @@ put_arobj(cfp, sb)
+ 		 * places that write archives to allow testing and comparing
+ 		 * things for exact binary equality.
+ 		 */
+-		if (getenv("ZERO_AR_DATE") == NULL)
++		if (getenv("ZERO_AR_DATE") != NULL) {
++			tv_sec = (long int)0;
++		} else if (getenv("SOURCE_DATE_EPOCH") != NULL) {
++			/* If the SOURCE_DATE_EPOCH variable is set to something, use it for deterministic timestamps */
++			tv_sec = (long int)strtoll(getenv("SOURCE_DATE_EPOCH"), NULL, 10);
++		} else {
+ 			/* cctools-port: sb->st_mtimespec.tv_sec -> sb->st_mtime */
+ 			tv_sec = (long int)sb->st_mtime;
+-		else
+-			tv_sec = (long int)0;
++		}
+ 
+ 		/*
+ 		 * If not truncating names and the name is too long or contains
