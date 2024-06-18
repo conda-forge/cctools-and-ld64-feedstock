@@ -36,6 +36,7 @@ requirements:
   build:
     - clangxx {{ llvm_version }}.*  # [linux]
     - {{ compiler('cxx') }}
+    - {{ stdlib('c') }}
     - autoconf
     - automake
     - libtool
@@ -49,8 +50,6 @@ requirements:
     - llvmdev {{ llvm_version }}.*
     - libuuid   # [linux]
     - tapi
-  run:
-    - __osx >={{ MACOSX_DEPLOYMENT_TARGET }}  # [osx and x86_64]
 
 outputs:
   - name: cctools_{{ cross_platform }}
@@ -63,6 +62,7 @@ outputs:
     requirements:
       build:
         - {{ compiler('cxx') }}
+        - {{ stdlib('c') }}
         - autoconf
         - automake
         - make
@@ -112,6 +112,7 @@ outputs:
     requirements:
       build:
         - {{ compiler('cxx') }}
+        - {{ stdlib('c') }}
         - autoconf
         - automake
         - make
