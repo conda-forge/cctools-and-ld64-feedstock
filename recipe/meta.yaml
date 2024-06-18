@@ -23,9 +23,11 @@ source:
       - patches/0003-Restore-using-__builtin_available-for-macos.patch
       # Taken from https://github.com/tpoechtrager/cctools-port/pull/118
       - patches/0004-Turn-off-outputIsMappableFile-when-building-to-osx-a.patch
+      # merged upstream, backported for better reproducibility
+      - patches/0005-use-SOURCE_DATE_EPOCH.patch
 
 build:
-  number: 0
+  number: 1
   skip: True  # [win]
   ignore_run_exports:
     - zlib
@@ -34,6 +36,7 @@ requirements:
   build:
     - clangxx {{ llvm_version }}.*  # [linux]
     - {{ compiler('cxx') }}
+    - {{ stdlib('c') }}
     - autoconf
     - automake
     - libtool
@@ -47,8 +50,6 @@ requirements:
     - llvmdev {{ llvm_version }}.*
     - libuuid   # [linux]
     - tapi
-  run:
-    - __osx >={{ MACOSX_DEPLOYMENT_TARGET }}  # [osx and x86_64]
 
 outputs:
   - name: cctools_{{ cross_platform }}
@@ -61,6 +62,7 @@ outputs:
     requirements:
       build:
         - {{ compiler('cxx') }}
+        - {{ stdlib('c') }}
         - autoconf
         - automake
         - make
@@ -110,6 +112,7 @@ outputs:
     requirements:
       build:
         - {{ compiler('cxx') }}
+        - {{ stdlib('c') }}
         - autoconf
         - automake
         - make
