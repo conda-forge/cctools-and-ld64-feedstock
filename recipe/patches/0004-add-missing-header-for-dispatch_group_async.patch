@@ -1,0 +1,23 @@
+From 545864d56a1876926f467ba00a309ea48ffe3ac0 Mon Sep 17 00:00:00 2001
+From: "H. Vetinari" <h.vetinari@gmx.com>
+Date: Sun, 28 Jul 2024 19:04:45 +1100
+Subject: [PATCH 4/4] add missing header for dispatch_group_async
+
+https://developer.apple.com/documentation/dispatch/1453084-dispatch_group_async
+https://github.com/phracker/MacOSX-SDKs/blob/master/MacOSX10.13.sdk/usr/include/dispatch/group.h#L87
+---
+ cctools/ld64/src/ld/OutputFile.cpp | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/cctools/ld64/src/ld/OutputFile.cpp b/cctools/ld64/src/ld/OutputFile.cpp
+index cc12ba1..3414f95 100644
+--- a/cctools/ld64/src/ld/OutputFile.cpp
++++ b/cctools/ld64/src/ld/OutputFile.cpp
+@@ -45,6 +45,7 @@
+ #include <mach-o/dyld.h>
+ #include <mach-o/fat.h>
+ #include <dispatch/dispatch.h>
++#include <dispatch/group.h>
+ #include <os/lock_private.h>
+ #if defined(__APPLE__) && __has_include(<corecrypto/ccsha2.h>) // ld64-port
+ extern "C" {
