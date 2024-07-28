@@ -19,7 +19,7 @@ docker_image:
 libuuid:
 - '2'
 llvm_version:
-- '16.0'
+- '17.0'
 macos_machine:
 - arm64-apple-darwin20.0.0
 target_platform:
@@ -27,6 +27,9 @@ target_platform:
 zip_keys:
 - - c_stdlib_version
   - cdt_name
+- - llvm_version
+  - channel_sources
+  - channel_targets
 - - macos_machine
   - cross_platform
 zlib:
