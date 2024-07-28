@@ -41,6 +41,8 @@ requirements:
     - llvmdev {{ llvm_version }}.*  # [build_platform != target_platform]
     - make
     - sed
+    # https://github.com/conda-forge/libcxx-feedstock/issues/162
+    - libcxx <18    # [osx]
   host:
     #- xar
     # We only use the static library from this and only get away with that as it depends on nothing.
@@ -48,6 +50,7 @@ requirements:
     - llvmdev {{ llvm_version }}.*
     - libuuid   # [linux]
     - tapi
+    - libcxx <18    # [osx]
 
 outputs:
   - name: cctools_{{ cross_platform }}
