@@ -69,10 +69,10 @@ outputs:
         - llvmdev {{ llvm_version }}.*
         - llvm {{ llvm_version }}.*
         - tapi
-        - libcxx  # [osx]
+        - libcxx <18    # [osx]
         - {{ pin_subpackage("ld64_" + cross_platform, max_pin="x.x") }}
       run:
-        - libcxx  # [osx]
+        - libcxx <18    # [osx]
         - {{ pin_subpackage("ld64_" + cross_platform, max_pin="x.x") }}
         - sigtool
       run_constrained:
@@ -118,11 +118,11 @@ outputs:
         - llvm  {{ llvm_version }}.*
         - clang {{ llvm_version }}.*
         - tapi
-        - libcxx  # [osx]
-        - libuuid  # [linux]
+        - libcxx <18    # [osx]
+        - libuuid       # [linux]
       run:
         - {{ pin_compatible("tapi") }}
-        - libcxx  # [osx]
+        - libcxx <18    # [osx]
         - sigtool
       run_constrained:
         - {{ pin_compatible("clang") }}
