@@ -25,7 +25,7 @@ source:
       - patches/0004-Turn-off-outputIsMappableFile-when-building-to-osx-a.patch
 
 build:
-  number: 0
+  number: 1
   skip: True  # [win]
   ignore_run_exports:
     - zlib
@@ -33,6 +33,7 @@ build:
 requirements:
   build:
     - clangxx {{ llvm_version }}.*  # [linux]
+    - {{ stdlib('c') }}
     - {{ compiler('cxx') }}
     - autoconf
     - automake
@@ -47,8 +48,6 @@ requirements:
     - llvmdev {{ llvm_version }}.*
     - libuuid   # [linux]
     - tapi
-  run:
-    - __osx >={{ MACOSX_DEPLOYMENT_TARGET }}  # [osx and x86_64]
 
 outputs:
   - name: cctools_{{ cross_platform }}
@@ -60,6 +59,7 @@ outputs:
         - zlib
     requirements:
       build:
+        - {{ stdlib('c') }}
         - {{ compiler('cxx') }}
         - autoconf
         - automake
@@ -109,6 +109,7 @@ outputs:
         - /usr/lib/libxar.1.dylib  # [osx]
     requirements:
       build:
+        - {{ stdlib('c') }}
         - {{ compiler('cxx') }}
         - autoconf
         - automake
