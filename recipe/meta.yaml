@@ -21,7 +21,7 @@ source:
       - patches/0002-ld64-add-conda-specific-env-vars-to-modify-lib-searc.patch
       # Taken from https://github.com/tpoechtrager/cctools-port/pull/116
       - patches/0003-Restore-using-__builtin_available-for-macos.patch
-      - patches/0004-add-missing-header-for-dispatch_group_async.patch
+      - patches/0004-add-missing-headers-for-dispatch_group_async.patch
 
 build:
   number: 0
