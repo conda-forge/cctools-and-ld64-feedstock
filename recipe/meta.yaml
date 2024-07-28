@@ -129,6 +129,8 @@ outputs:
         - ld {{ ld64_version }}.*
         - cctools {{ cctools_version }}.*
         - cctools_{{ cross_platform }} {{ cctools_version }}.*
+        # https://github.com/conda-forge/libcxx-feedstock/issues/162
+        - libcxx <18    # [osx]
     test:
       requires:
         - clang {{ llvm_version }}.*
