@@ -162,6 +162,7 @@ outputs:
       host:
         - llvm  {{ llvm_version }}.*
         - clang {{ llvm_version }}.*
+        - libcxx <18    # [osx]
         - {{ pin_subpackage("ld64_" + cross_platform, exact=True) }}
       run:
         - {{ pin_subpackage("ld64_" + cross_platform, exact=True) }}
@@ -187,6 +188,7 @@ outputs:
       host:
         - llvm  {{ llvm_version }}.*
         - clang {{ llvm_version }}.*
+        - libcxx <18    # [osx]
         - {{ pin_subpackage("ld64", exact=True) }}
         - {{ pin_subpackage("cctools_" + cross_platform, exact=True) }}
       run:
