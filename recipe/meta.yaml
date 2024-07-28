@@ -45,7 +45,8 @@ requirements:
     # We only use the static library from this and only get away with that as it depends on nothing.
     - zlib
     - llvmdev {{ llvm_version }}.*
-    - libuuid   # [linux]
+    - libdispatch   # [linux]
+    - libuuid       # [linux]
     - tapi
 
 outputs:
