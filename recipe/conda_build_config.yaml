@@ -17,9 +17,27 @@ llvm_version:
   - 16.0
   - 17.0
   - 18.1
+  - 19.1
+
+# zip it to avoid using rc-builds for already-released-in-conda-forge LLVM versions
+channel_sources:
+  - conda-forge
+  - conda-forge
+  - conda-forge
+  - conda-forge/label/llvm_rc,conda-forge
+
+channel_targets:
+  - conda-forge main
+  - conda-forge main
+  - conda-forge main
+  - conda-forge llvm_rc
 
 zip_keys:
   -
     - macos_machine
     - cross_platform
     - uname_machine
+  -
+    - llvm_version
+    - channel_sources
+    - channel_targets

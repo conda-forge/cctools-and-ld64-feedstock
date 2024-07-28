@@ -23,6 +23,9 @@ macos_machine:
 target_platform:
 - osx-arm64
 zip_keys:
+- - llvm_version
+  - channel_sources
+  - channel_targets
 - - macos_machine
   - cross_platform
 zlib:

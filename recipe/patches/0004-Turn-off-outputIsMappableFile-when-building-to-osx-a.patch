@@ -1,7 +1,7 @@
-From 4bc8b0d61a4787ef302ddfc0ab6bc46b7804869d Mon Sep 17 00:00:00 2001
+From 4867ed0f393db76322469d0c50cee16498064aa0 Mon Sep 17 00:00:00 2001
 From: Eli Rykoff <erykoff@stanford.edu>
 Date: Thu, 24 Feb 2022 21:16:24 -0800
-Subject: [PATCH 4/4] Turn off outputIsMappableFile when building to osx-arm64
+Subject: [PATCH 4/5] Turn off outputIsMappableFile when building to osx-arm64
 
 ---
  cctools/ld64/src/ld/OutputFile.cpp | 4 ++--
