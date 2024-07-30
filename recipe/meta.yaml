@@ -27,7 +27,7 @@ source:
       - patches/0005-Remove-unused-broken-clone-function.patch
 
 build:
-  number: 2
+  number: 3
   skip: True  # [win]
   ignore_run_exports:
     - zlib
@@ -43,8 +43,6 @@ requirements:
     - llvmdev {{ llvm_version }}.*  # [build_platform != target_platform]
     - make
     - sed
-    # https://github.com/conda-forge/libcxx-feedstock/issues/162
-    - libcxx <18    # [osx]
   host:
     #- xar
     # We only use the static library from this and only get away with that as it depends on nothing.
@@ -52,7 +50,6 @@ requirements:
     - llvmdev {{ llvm_version }}.*
     - libuuid   # [linux]
     - tapi
-    - libcxx <18    # [osx]
 
 outputs:
   - name: cctools_{{ cross_platform }}
@@ -66,7 +63,6 @@ outputs:
       build:
         - {{ stdlib('c') }}
         - {{ compiler('cxx') }}
-        - libcxx <18    # [osx]
         - autoconf
         - automake
         - make
@@ -75,10 +71,10 @@ outputs:
         - llvmdev {{ llvm_version }}.*
         - llvm {{ llvm_version }}.*
         - tapi
-        - libcxx <18    # [osx]
+        - libcxx  # [osx]
         - {{ pin_subpackage("ld64_" + cross_platform, max_pin="x.x") }}
       run:
-        - libcxx <18    # [osx]
+        - libcxx  # [osx]
         - {{ pin_subpackage("ld64_" + cross_platform, max_pin="x.x") }}
         - sigtool
       run_constrained:
@@ -117,7 +113,6 @@ outputs:
       build:
         - {{ stdlib('c') }}
         - {{ compiler('cxx') }}
-        - libcxx <18    # [osx]
         - autoconf
         - automake
         - make
@@ -125,19 +120,17 @@ outputs:
         - llvm  {{ llvm_version }}.*
         - clang {{ llvm_version }}.*
         - tapi
-        - libcxx <18    # [osx]
-        - libuuid       # [linux]
+        - libcxx    # [osx]
+        - libuuid   # [linux]
       run:
         - {{ pin_compatible("tapi") }}
-        - libcxx <18    # [osx]
+        - libcxx    # [osx]
         - sigtool
       run_constrained:
         - {{ pin_compatible("clang") }}
         - ld {{ ld64_version }}.*
         - cctools {{ cctools_version }}.*
         - cctools_{{ cross_platform }} {{ cctools_version }}.*
-        # https://github.com/conda-forge/libcxx-feedstock/issues/162
-        - libcxx <18    # [osx]
     test:
       requires:
         - clang {{ llvm_version }}.*
@@ -164,7 +157,6 @@ outputs:
       host:
         - llvm  {{ llvm_version }}.*
         - clang {{ llvm_version }}.*
-        - libcxx <18    # [osx]
         - {{ pin_subpackage("ld64_" + cross_platform, exact=True) }}
       run:
         - {{ pin_subpackage("ld64_" + cross_platform, exact=True) }}
@@ -190,7 +182,6 @@ outputs:
       host:
         - llvm  {{ llvm_version }}.*
         - clang {{ llvm_version }}.*
-        - libcxx <18    # [osx]
         - {{ pin_subpackage("ld64", exact=True) }}
         - {{ pin_subpackage("cctools_" + cross_platform, exact=True) }}
       run:
