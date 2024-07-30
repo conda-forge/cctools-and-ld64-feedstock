@@ -25,9 +25,11 @@ source:
       - patches/0004-Turn-off-outputIsMappableFile-when-building-to-osx-a.patch
       # backport https://github.com/tpoechtrager/cctools-port/commit/69160658f88ebc582f8d9155ecea1575696f8067
       - patches/0005-Remove-unused-broken-clone-function.patch
+      # merged upstream, backported for better reproducibility
+      - patches/0005-use-SOURCE_DATE_EPOCH.patch
 
 build:
-  number: 3
+  number: 4
   skip: True  # [win]
   ignore_run_exports:
     - zlib
