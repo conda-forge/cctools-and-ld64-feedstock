@@ -1,7 +1,7 @@
-From 63172fd52e077315bd3ba089d207952a64a40eb7 Mon Sep 17 00:00:00 2001
+From f0dcf09ba63496779c903c1251f920bcad2017e5 Mon Sep 17 00:00:00 2001
 From: Isuru Fernando <isuruf@gmail.com>
 Date: Thu, 3 Feb 2022 21:28:42 -0600
-Subject: [PATCH 3/5] Restore using __builtin_available for macos
+Subject: [PATCH 3/4] Restore using __builtin_available for macos
 
 ---
  cctools/libstuff/writeout.c | 12 ++++++------
@@ -9,7 +9,7 @@ Subject: [PATCH 3/5] Restore using __builtin_available for macos
  2 files changed, 12 insertions(+), 12 deletions(-)
 
 diff --git a/cctools/libstuff/writeout.c b/cctools/libstuff/writeout.c
-index 763539d..00c1486 100644
+index b10f99a..b224fc8 100644
 --- a/cctools/libstuff/writeout.c
 +++ b/cctools/libstuff/writeout.c
 @@ -149,27 +149,27 @@ uint32_t *throttle)
@@ -47,10 +47,10 @@ index 763539d..00c1486 100644
  	/*
  	 * The environment variable ZERO_AR_DATE is used here and other
 diff --git a/cctools/misc/libtool.c b/cctools/misc/libtool.c
-index 3ab43a1..e098206 100644
+index 4bfda1c..51cd6a8 100644
 --- a/cctools/misc/libtool.c
 +++ b/cctools/misc/libtool.c
-@@ -1389,9 +1389,9 @@ char **envp)
+@@ -1399,9 +1399,9 @@ char **envp)
  	if (cmd_flags.D == FALSE && zero_ar_date == FALSE) {
  #ifndef __OPENSTEP__
  		/* cctools-port: replaced __builtin_available */
@@ -62,7 +62,7 @@ index 3ab43a1..e098206 100644
  #ifdef HAVE_CLOCK_GETTIME
  		if (clock_gettime(CLOCK_REALTIME, &toc_timespec)) {
  		    system_fatal("clock_gettime failed");
-@@ -1399,9 +1399,9 @@ char **envp)
+@@ -1409,9 +1409,9 @@ char **envp)
  		}
  		toc_time = toc_timespec.tv_sec;
  #endif /* HAVE_CLOCK_GETTIME */
@@ -74,7 +74,7 @@ index 3ab43a1..e098206 100644
  #ifndef HAVE_CLOCK_GETTIME
  		if (gettimeofday(&toc_timeval, NULL)) {
  		    system_fatal("gettimeofday failed");
-@@ -1409,9 +1409,9 @@ char **envp)
+@@ -1419,9 +1419,9 @@ char **envp)
  		}
  		toc_time = toc_timeval.tv_sec;
  #endif /* !HAVE_CLOCK_GETTIME */
