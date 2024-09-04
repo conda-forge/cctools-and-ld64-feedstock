@@ -15,7 +15,7 @@ cross_platform:
 cxx_compiler:
 - clang_bootstrap
 cxx_compiler_version:
-- '16'
+- '17'
 llvm_version:
 - '17.0'
 macos_machine:
