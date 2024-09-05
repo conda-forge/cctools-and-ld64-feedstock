@@ -275,14 +275,14 @@ Current release info
 Installing cctools-and-ld64
 ===========================
 
-Installing `cctools-and-ld64` from the `conda-forge/label/llvm_rc` channel can be achieved by adding `conda-forge/label/llvm_rc` to your channels with:
+Installing `cctools-and-ld64` from the `conda-forge` channel can be achieved by adding `conda-forge` to your channels with:
 
 ```
-conda config --add channels conda-forge/label/llvm_rc
+conda config --add channels conda-forge
 conda config --set channel_priority strict
 ```
 
-Once the `conda-forge/label/llvm_rc` channel has been enabled, `cctools, cctools_osx-64, cctools_osx-arm64, ld64, ld64_osx-64, ld64_osx-arm64` can be installed with `conda`:
+Once the `conda-forge` channel has been enabled, `cctools, cctools_osx-64, cctools_osx-arm64, ld64, ld64_osx-64, ld64_osx-arm64` can be installed with `conda`:
 
 ```
 conda install cctools cctools_osx-64 cctools_osx-arm64 ld64 ld64_osx-64 ld64_osx-arm64
@@ -297,26 +297,26 @@ mamba install cctools cctools_osx-64 cctools_osx-arm64 ld64 ld64_osx-64 ld64_osx
 It is possible to list all of the versions of `cctools` available on your platform with `conda`:
 
 ```
-conda search cctools --channel conda-forge/label/llvm_rc
+conda search cctools --channel conda-forge
 ```
 
 or with `mamba`:
 
 ```
-mamba search cctools --channel conda-forge/label/llvm_rc
+mamba search cctools --channel conda-forge
 ```
 
 Alternatively, `mamba repoquery` may provide more information:
 
 ```
 # Search all versions available on your platform:
-mamba repoquery search cctools --channel conda-forge/label/llvm_rc
+mamba repoquery search cctools --channel conda-forge
 
 # List packages depending on `cctools`:
-mamba repoquery whoneeds cctools --channel conda-forge/label/llvm_rc
+mamba repoquery whoneeds cctools --channel conda-forge
 
 # List dependencies of `cctools`:
-mamba repoquery depends cctools --channel conda-forge/label/llvm_rc
+mamba repoquery depends cctools --channel conda-forge
 ```
 
 
