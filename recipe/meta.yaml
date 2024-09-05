@@ -22,6 +22,7 @@ source:
       # Taken from https://github.com/tpoechtrager/cctools-port/pull/116
       - patches/0003-Restore-using-__builtin_available-for-macos.patch
       - patches/0004-add-missing-headers-for-dispatch_group_async.patch
+      - patches/0005-macos-system-dispatch.patch  # [osx]
 
 build:
   number: 0
