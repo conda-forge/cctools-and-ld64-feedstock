@@ -65,6 +65,7 @@ outputs:
         - autoconf
         - automake
         - make
+        - sed
       host:
         - zlib
         - llvmdev {{ llvm_version }}.*
@@ -115,6 +116,7 @@ outputs:
         - autoconf
         - automake
         - make
+        - sed
       host:
         - llvm  {{ llvm_version }}.*
         - clang {{ llvm_version }}.*
