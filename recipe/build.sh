@@ -16,7 +16,7 @@ pushd cctools
   sed -i.bak "s/libLTO.dylib/${LLVM_LTO_LIBRARY}/g" ld64/src/ld/InputFiles.cpp
   sed -i.bak "s@llvm/libLTO.so@${LLVM_LTO_LIBRARY}@g" ld64/src/ld/InputFiles.cpp
   sed -i.bak "s/libLTO.so/${LLVM_LTO_LIBRARY}/g" ld64/src/ld/InputFiles.cpp
-  sed -i.bak "s/libLTO.dylib/${LLVM_LTO_LIBRARY}/g" ld64/doc/man/man1/ld.1
+  sed -i.bak "s/libLTO.dylib/${LLVM_LTO_LIBRARY}/g" ld64/doc/man/man1/ld-classic.1
   sed -i.bak "s/libLTO.dylib/${LLVM_LTO_LIBRARY}/g" libstuff/llvm.c
   sed -i.bak "s/libLTO.so/${LLVM_LTO_LIBRARY}/g" libstuff/llvm.c
   sed -i.bak "s/libLTO.dylib/${LLVM_LTO_LIBRARY}/g" ld64/src/ld/parsers/lto_file.cpp
