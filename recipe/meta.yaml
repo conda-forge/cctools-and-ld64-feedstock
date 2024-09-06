@@ -76,6 +76,7 @@ outputs:
       run:
         - libcxx  # [osx]
         - {{ pin_subpackage("ld64_" + cross_platform, max_pin="x.x") }}
+        - llvm-tools {{ llvm_version }}.*
         - sigtool
       run_constrained:
         - ld64 {{ ld64_version }}.*
