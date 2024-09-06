@@ -19,11 +19,11 @@ source:
     patches:
       - patches/0001-Don-t-link-with-libc-abi.patch
       - patches/0002-ld64-add-conda-specific-env-vars-to-modify-lib-searc.patch
-      # Taken from https://github.com/tpoechtrager/cctools-port/pull/116
+      # backport https://github.com/tpoechtrager/cctools-port/pull/153
       - patches/0003-Restore-using-__builtin_available-for-macos.patch
-      - patches/0004-add-missing-headers-for-dispatch_group_async.patch
-      - patches/0005-macos-system-dispatch.patch  # [osx]
-      - patches/0006-glibc-headers.patch  # [linux]
+      - patches/0004-macos-system-dispatch.patch    # [osx]
+      # backport https://github.com/tpoechtrager/cctools-port/pull/154
+      - patches/0005-fix-glibc-headers.patch        # [linux]
 
 build:
   number: 0
