@@ -23,6 +23,7 @@ source:
       - patches/0003-Restore-using-__builtin_available-for-macos.patch
       - patches/0004-add-missing-headers-for-dispatch_group_async.patch
       - patches/0005-macos-system-dispatch.patch  # [osx]
+      - patches/0006-glibc-headers.patch  # [linux]
 
 build:
   number: 0
