@@ -14,7 +14,6 @@ cxx_compiler:           # [osx]
   - clang_bootstrap     # [osx]
 
 llvm_version:
-  - 16.0
   - 17.0
   - 18.1
   - 19.1
