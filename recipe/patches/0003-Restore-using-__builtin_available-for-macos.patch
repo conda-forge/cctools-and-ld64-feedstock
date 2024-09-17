@@ -1,7 +1,7 @@
-From f0dcf09ba63496779c903c1251f920bcad2017e5 Mon Sep 17 00:00:00 2001
+From fa3b0b8d2c439cd392b5d7bd6f8cbb7b520ec245 Mon Sep 17 00:00:00 2001
 From: Isuru Fernando <isuruf@gmail.com>
 Date: Thu, 3 Feb 2022 21:28:42 -0600
-Subject: [PATCH 3/4] Restore using __builtin_available for macos
+Subject: [PATCH 3/5] Restore using __builtin_available for macos
 
 ---
  cctools/libstuff/writeout.c | 12 ++++++------
@@ -47,7 +47,7 @@ index b10f99a..b224fc8 100644
  	/*
  	 * The environment variable ZERO_AR_DATE is used here and other
 diff --git a/cctools/misc/libtool.c b/cctools/misc/libtool.c
-index 4bfda1c..51cd6a8 100644
+index 64dadd5..8f91011 100644
 --- a/cctools/misc/libtool.c
 +++ b/cctools/misc/libtool.c
 @@ -1399,9 +1399,9 @@ char **envp)
