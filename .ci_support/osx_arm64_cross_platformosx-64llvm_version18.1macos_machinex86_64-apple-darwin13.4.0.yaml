@@ -17,15 +17,12 @@ cxx_compiler:
 cxx_compiler_version:
 - '17'
 llvm_version:
-- '16.0'
+- '18.1'
 macos_machine:
 - x86_64-apple-darwin13.4.0
 target_platform:
 - osx-arm64
 zip_keys:
-- - llvm_version
-  - channel_sources
-  - channel_targets
 - - macos_machine
   - cross_platform
 zlib:
