@@ -5,11 +5,11 @@ c_stdlib_version:
 cdt_name:
 - cos7
 channel_sources:
-- conda-forge/label/llvm_rc,conda-forge
+- conda-forge
 channel_targets:
-- conda-forge llvm_rc
+- conda-forge main
 cross_platform:
-- osx-arm64
+- osx-64
 cxx_compiler:
 - gxx
 cxx_compiler_version:
@@ -19,17 +19,14 @@ docker_image:
 libuuid:
 - '2'
 llvm_version:
-- '19.1'
+- '18.1'
 macos_machine:
-- arm64-apple-darwin20.0.0
+- x86_64-apple-darwin13.4.0
 target_platform:
 - linux-64
 zip_keys:
 - - c_stdlib_version
   - cdt_name
-- - llvm_version
-  - channel_sources
-  - channel_targets
 - - macos_machine
   - cross_platform
 zlib:
