@@ -95,6 +95,9 @@ outputs:
         - test -f $PREFIX/bin/{{ macos_machine }}-strip
         # Check that otool is functioning
         - $PREFIX/bin/{{ macos_machine }}-otool -l $PREFIX/bin/{{ macos_machine }}-otool  # [target_platform == build_platform and target_platform == cross_platform]
+        # ... even if PATH is empty
+        - unset PATH                                        # [target_platform == build_platform and target_platform == cross_platform]
+        - $PREFIX/bin/{{ macos_machine }}-otool --version   # [target_platform == build_platform and target_platform == cross_platform]
 
     about:
       home: https://github.com/tpoechtrager/cctools-port
