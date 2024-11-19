@@ -1,0 +1,54 @@
+From a79de3b20e55d3f3526d71e40d7a06c07ec42672 Mon Sep 17 00:00:00 2001
+From: "H. Vetinari" <h.vetinari@gmx.com>
+Date: Tue, 19 Nov 2024 20:54:51 +1100
+Subject: [PATCH 4/4] point `<target>-otool` to `llvm-otool` in same folder
+
+---
+ cctools/otool-wrapper/main.c | 30 +++++++++++++++++++++++++++---
+ 1 file changed, 27 insertions(+), 3 deletions(-)
+
+diff --git a/cctools/otool-wrapper/main.c b/cctools/otool-wrapper/main.c
+index 892d0fb..c004ae2 100644
+--- a/cctools/otool-wrapper/main.c
++++ b/cctools/otool-wrapper/main.c
+@@ -2,13 +2,37 @@
+ #include <stdlib.h>
+ #include <unistd.h>
+ 
++#include <string>
++
+ int main(int argc, char *argv[]) {
+-    // Assuming llvm-otool binary is in the PATH, otherwise provide the full path
+-    char *binaryPath = "llvm-otool";
++    // we need to replace
++    //   <absolute_path>/x86_64-apple-darwin13.4.0-otool
++    //   <absolute_path>/arm64-apple-darwin20.0.0-otool
++    // coming from argv[0] with
++    //   <absolute_path>/llvm-otool
++    // for this, just detect the last slash and replace everything after that
++    int path_length = (int)strlen(argv[0]);
++
++    otool_orig = (char*)malloc(path_length + 1);
++    memcpy(otool_orig, argv[0], path_length);
++
++    for (i = (int)path_length - 1; i >= 0; --i) {
++      if (otool_orig[i] == '/') {
++        // set to null byte so the string ends before the basename
++        otool_orig[i] = '\0';
++        break;
++      }
++    }
++
++    std::string otool_modified = {otool_orig};
++    otool_modified += "/llvm-otool";
++    // std::string constructor for otool_modified did a deep-copy
++    free(otool_orig);
+ 
+     // Prepare the arguments array for execvp
+     char *new_argv[argc + 1]; // +1 for the NULL terminator
+-    new_argv[0] = binaryPath;
++    // don't want null-terminator between arguments; --> use .data(), not .c_str()
++    new_argv[0] = otool_modified.data();
+     for (int i = 1; i < argc; ++i) {
+         new_argv[i] = argv[i];
+     }
