@@ -1,0 +1,22 @@
+From 62d9249dd3ac2aa82e0eb8705bd544ed50711add Mon Sep 17 00:00:00 2001
+From: Peter Williams <peter@newton.cx>
+Date: Thu, 5 Sep 2024 16:35:00 -0400
+Subject: [PATCH 3/4] macos system dispatch
+
+---
+ cctools/ld64/src/ld/OutputFile.cpp | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/cctools/ld64/src/ld/OutputFile.cpp b/cctools/ld64/src/ld/OutputFile.cpp
+index 838a2f9..e16d830 100644
+--- a/cctools/ld64/src/ld/OutputFile.cpp
++++ b/cctools/ld64/src/ld/OutputFile.cpp
+@@ -7969,7 +7969,7 @@ void OutputFile::buildLINKEDITContent(ld::Internal& state)
+ {
+ 	dispatch_group_t 		group = dispatch_group_create();
+ 	// ld64-port: QOS_CLASS_USER_INITIATED -> DISPATCH_QUEUE_PRIORITY_HIGH
+-	dispatch_queue_global_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0);
++	dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0);
+ 
+ 	// phase 1: build state.stabs and _importedAtoms, _exportedAtoms, _localAtoms in parallel
+ 	__block const char* exceptionMsg = nullptr;

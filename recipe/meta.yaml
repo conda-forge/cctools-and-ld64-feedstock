@@ -14,19 +14,17 @@ package:
 
 source:
   # latest commit from branch {{ cctools_version }}-ld64-{{ ld64_version }}
-  - url: https://github.com/tpoechtrager/cctools-port/archive/e5c9f33485d8e7e45d1a6e78a51656c51a4fcd0e.tar.gz
-    sha256: 9a199de14be0d52718780188de949b7e1f0cb9b26e5e4da306513c8f25914084
+  - url: https://github.com/tpoechtrager/cctools-port/archive/81f205e8ca6bbf2fdbcb6948132454fd1f97839e.tar.gz
+    sha256: 9a836315380f35180f4e8bae0247ed2dac899ad5ba8f43879435977099f69e63
     patches:
       - patches/0001-Don-t-link-with-libc-abi.patch
       - patches/0002-ld64-add-conda-specific-env-vars-to-modify-lib-searc.patch
-      # backport https://github.com/tpoechtrager/cctools-port/pull/153
-      - patches/0003-Restore-using-__builtin_available-for-macos.patch
-      - patches/0004-macos-system-dispatch.patch    # [osx]
-      # backport https://github.com/tpoechtrager/cctools-port/pull/154
-      - patches/0005-fix-glibc-headers.patch        # [linux]
+      - patches/0003-macos-system-dispatch.patch    # [osx]
+      # for #76
+      - patches/0004-point-target-otool-to-llvm-otool-in-same-folder.patch
 
 build:
-  number: 1
+  number: 2
   skip: True  # [win]
   ignore_run_exports:
     - zlib
@@ -88,15 +86,19 @@ outputs:
       commands:
         # For arm64, cctools as calls the clang integrated assembler. Don't check for it
         - test -f $PREFIX/libexec/as/x86_64/as
-        - test -f $PREFIX/bin/{{ macos_machine }}-as
-        - test -f $PREFIX/bin/{{ macos_machine }}-ranlib
-        - test -f $PREFIX/bin/{{ macos_machine }}-ld
         - test -f $PREFIX/bin/{{ macos_machine }}-ar
+        - test -f $PREFIX/bin/{{ macos_machine }}-as
+        - test -f $PREFIX/bin/{{ macos_machine }}-ld
+        - test -f $PREFIX/bin/{{ macos_machine }}-install_name_tool
         - test -f $PREFIX/bin/{{ macos_machine }}-otool
+        - test -f $PREFIX/bin/{{ macos_machine }}-ranlib
+        - test -f $PREFIX/bin/{{ macos_machine }}-strip
         # Check that otool is functioning
         - $PREFIX/bin/{{ macos_machine }}-otool -l $PREFIX/bin/{{ macos_machine }}-otool  # [target_platform == build_platform and target_platform == cross_platform]
-        - test -f $PREFIX/bin/{{ macos_machine }}-install_name_tool
-        - test -f $PREFIX/bin/{{ macos_machine }}-strip
+        # ... even if PATH is empty
+        - unset PATH                                        # [target_platform == build_platform and target_platform == cross_platform]
+        - $PREFIX/bin/{{ macos_machine }}-otool --version   # [target_platform == build_platform and target_platform == cross_platform]
+
     about:
       home: https://github.com/tpoechtrager/cctools-port
       license: APSL-2.0
