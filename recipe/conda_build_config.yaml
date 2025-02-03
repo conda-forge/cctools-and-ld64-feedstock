@@ -1,4 +1,4 @@
-macos_machine:
+cross_macos_machine:
   - x86_64-apple-darwin13.4.0
   - arm64-apple-darwin20.0.0
 cross_platform:
@@ -34,7 +34,7 @@ channel_targets:
 
 zip_keys:
   -
-    - macos_machine
+    - cross_macos_machine
     - cross_platform
     - uname_machine
   -

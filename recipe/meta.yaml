@@ -86,18 +86,18 @@ outputs:
       commands:
         # For arm64, cctools as calls the clang integrated assembler. Don't check for it
         - test -f $PREFIX/libexec/as/x86_64/as
-        - test -f $PREFIX/bin/{{ macos_machine }}-ar
-        - test -f $PREFIX/bin/{{ macos_machine }}-as
-        - test -f $PREFIX/bin/{{ macos_machine }}-ld
-        - test -f $PREFIX/bin/{{ macos_machine }}-install_name_tool
-        - test -f $PREFIX/bin/{{ macos_machine }}-otool
-        - test -f $PREFIX/bin/{{ macos_machine }}-ranlib
-        - test -f $PREFIX/bin/{{ macos_machine }}-strip
+        - test -f $PREFIX/bin/{{ cross_macos_machine }}-ar
+        - test -f $PREFIX/bin/{{ cross_macos_machine }}-as
+        - test -f $PREFIX/bin/{{ cross_macos_machine }}-ld
+        - test -f $PREFIX/bin/{{ cross_macos_machine }}-install_name_tool
+        - test -f $PREFIX/bin/{{ cross_macos_machine }}-otool
+        - test -f $PREFIX/bin/{{ cross_macos_machine }}-ranlib
+        - test -f $PREFIX/bin/{{ cross_macos_machine }}-strip
         # Check that otool is functioning
-        - $PREFIX/bin/{{ macos_machine }}-otool -l $PREFIX/bin/{{ macos_machine }}-otool  # [target_platform == build_platform and target_platform == cross_platform]
+        - $PREFIX/bin/{{ cross_macos_machine }}-otool -l $PREFIX/bin/{{ cross_macos_machine }}-otool  # [target_platform == build_platform and target_platform == cross_platform]
         # ... even if PATH is empty
-        - unset PATH                                        # [target_platform == build_platform and target_platform == cross_platform]
-        - $PREFIX/bin/{{ macos_machine }}-otool --version   # [target_platform == build_platform and target_platform == cross_platform]
+        - unset PATH                                                # [target_platform == build_platform and target_platform == cross_platform]
+        - $PREFIX/bin/{{ cross_macos_machine }}-otool --version     # [target_platform == build_platform and target_platform == cross_platform]
 
     about:
       home: https://github.com/tpoechtrager/cctools-port
@@ -141,10 +141,10 @@ outputs:
       requires:
         - clang {{ llvm_version }}.*
       commands:
-        - test -f $PREFIX/bin/{{ macos_machine }}-ld
-        - echo "int main() {}" > lto.c                                              # [osx]
-        - clang -c lto.c -o lto.o -flto                                             # [osx]
-        - $PREFIX/bin/{{ macos_machine }}-ld lto.o -o lto -lSystem -arch x86_64     # [osx]
+        - test -f $PREFIX/bin/{{ cross_macos_machine }}-ld
+        - echo "int main() {}" > lto.c                                                  # [osx]
+        - clang -c lto.c -o lto.o -flto                                                 # [osx]
+        - $PREFIX/bin/{{ cross_macos_machine }}-ld lto.o -o lto -lSystem -arch x86_64   # [osx]
       downstreams:
         - gfortran_osx-64  # [osx and cross_platform=="osx-64"]
     about:
