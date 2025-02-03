@@ -24,7 +24,7 @@ source:
       - patches/0004-point-target-otool-to-llvm-otool-in-same-folder.patch
 
 build:
-  number: 2
+  number: 3
   skip: True  # [win]
   ignore_run_exports:
     - zlib
