@@ -1,4 +1,4 @@
-prefix="${macos_machine}-"
+prefix="${cross_macos_machine}-"
 
 pushd $PREFIX/bin
   for tool in $(ls ${prefix}*); do

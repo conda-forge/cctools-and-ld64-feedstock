@@ -10,6 +10,8 @@ channel_sources:
 - conda-forge
 channel_targets:
 - conda-forge main
+cross_macos_machine:
+- arm64-apple-darwin20.0.0
 cross_platform:
 - osx-arm64
 cxx_compiler:
@@ -19,11 +21,14 @@ cxx_compiler_version:
 llvm_version:
 - '19.1'
 macos_machine:
-- arm64-apple-darwin20.0.0
+- x86_64-apple-darwin13.4.0
 target_platform:
 - osx-64
 zip_keys:
-- - macos_machine
+- - cross_macos_machine
   - cross_platform
+- - llvm_version
+  - channel_sources
+  - channel_targets
 zlib:
 - '1'

@@ -50,7 +50,7 @@ pushd cctools_build_final
     --prefix=${PREFIX} \
     --host=${HOST} \
     --build=${BUILD} \
-    --target=${macos_machine} \
+    --target=${cross_macos_machine} \
     --disable-static \
     --with-libtapi=${PREFIX} \
     --enable-shared || (cat config.log && cat config.status && false)
