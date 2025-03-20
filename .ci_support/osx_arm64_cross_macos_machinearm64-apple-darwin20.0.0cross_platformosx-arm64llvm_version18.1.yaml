@@ -1,34 +1,31 @@
+MACOSX_DEPLOYMENT_TARGET:
+- '11.0'
+MACOSX_SDK_VERSION:
+- '11.0'
 c_stdlib:
-- sysroot
+- macosx_deployment_target
 c_stdlib_version:
-- '2.17'
-cdt_name:
-- conda
+- '11.0'
 channel_sources:
-- conda-forge/label/llvm_rc,conda-forge
+- conda-forge
 channel_targets:
-- conda-forge llvm_rc
+- conda-forge main
 cross_macos_machine:
 - arm64-apple-darwin20.0.0
 cross_platform:
 - osx-arm64
 cxx_compiler:
-- gxx
+- clang_bootstrap
 cxx_compiler_version:
-- '13'
-docker_image:
-- quay.io/condaforge/linux-anvil-x86_64:alma9
-libuuid:
-- '2'
+- '18'
 llvm_version:
-- '20.1'
+- '18.1'
+macos_machine:
+- arm64-apple-darwin20.0.0
 target_platform:
-- linux-64
+- osx-arm64
 zip_keys:
 - - cross_macos_machine
   - cross_platform
-- - llvm_version
-  - channel_sources
-  - channel_targets
 zlib:
 - '1'

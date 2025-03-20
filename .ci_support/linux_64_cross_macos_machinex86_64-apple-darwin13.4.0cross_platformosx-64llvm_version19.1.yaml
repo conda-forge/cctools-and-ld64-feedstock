@@ -9,9 +9,9 @@ channel_sources:
 channel_targets:
 - conda-forge main
 cross_macos_machine:
-- arm64-apple-darwin20.0.0
+- x86_64-apple-darwin13.4.0
 cross_platform:
-- osx-arm64
+- osx-64
 cxx_compiler:
 - gxx
 cxx_compiler_version:
@@ -21,14 +21,11 @@ docker_image:
 libuuid:
 - '2'
 llvm_version:
-- '18.1'
+- '19.1'
 target_platform:
 - linux-64
 zip_keys:
 - - cross_macos_machine
   - cross_platform
-- - llvm_version
-  - channel_sources
-  - channel_targets
 zlib:
 - '1'
