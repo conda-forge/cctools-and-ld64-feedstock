@@ -1,7 +1,7 @@
 {% set cctools_version = '1010.6' %}
 {% set ld64_version = '951.9' %}
 {% if llvm_version is not defined %}
-{% set llvm_version = "18.1" %}
+{% set llvm_version = "20.1" %}
 {% endif %}
 
 {% if cross_platform is not defined %}
@@ -24,7 +24,7 @@ source:
       - patches/0004-point-target-otool-to-llvm-otool-in-same-folder.patch
 
 build:
-  number: 3
+  number: 4
   skip: True  # [win]
   ignore_run_exports:
     - zlib
