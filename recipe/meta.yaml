@@ -1,7 +1,7 @@
 {% set cctools_version = '1010.6' %}
 {% set ld64_version = '951.9' %}
 {% if llvm_version is not defined %}
-{% set llvm_version = "18.1" %}
+{% set llvm_version = "20.1" %}
 {% endif %}
 
 {% if cross_platform is not defined %}
@@ -24,7 +24,7 @@ source:
       - patches/0004-point-target-otool-to-llvm-otool-in-same-folder.patch
 
 build:
-  number: 3
+  number: 4
   skip: True  # [win]
   ignore_run_exports:
     - zlib
@@ -122,7 +122,7 @@ outputs:
         - make
         - sed
       host:
-        - llvm  {{ llvm_version }}.*
+        - llvm {{ llvm_version }}.*
         - clang {{ llvm_version }}.*
         - tapi
         - libcxx    # [osx]
@@ -186,7 +186,7 @@ outputs:
       skip: True   # [cross_platform != target_platform]
     requirements:
       host:
-        - llvm  {{ llvm_version }}.*
+        - llvm {{ llvm_version }}.*
         - clang {{ llvm_version }}.*
         - {{ pin_subpackage("ld64", exact=True) }}
         - {{ pin_subpackage("cctools_" + cross_platform, exact=True) }}
