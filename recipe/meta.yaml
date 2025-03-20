@@ -122,7 +122,7 @@ outputs:
         - make
         - sed
       host:
-        - llvm  {{ llvm_version }}.*
+        - llvm {{ llvm_version }}.*
         - clang {{ llvm_version }}.*
         - tapi
         - libcxx    # [osx]
@@ -186,7 +186,7 @@ outputs:
       skip: True   # [cross_platform != target_platform]
     requirements:
       host:
-        - llvm  {{ llvm_version }}.*
+        - llvm {{ llvm_version }}.*
         - clang {{ llvm_version }}.*
         - {{ pin_subpackage("ld64", exact=True) }}
         - {{ pin_subpackage("cctools_" + cross_platform, exact=True) }}
