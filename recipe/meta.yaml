@@ -1,5 +1,5 @@
-{% set cctools_version = '1010.6' %}
-{% set ld64_version = '951.9' %}
+{% set cctools_version = '1021.4' %}
+{% set ld64_version = '954.16' %}
 {% if llvm_version is not defined %}
 {% set llvm_version = "20.1" %}
 {% endif %}
@@ -14,18 +14,17 @@ package:
 
 source:
   # latest commit from branch {{ cctools_version }}-ld64-{{ ld64_version }}
-  - url: https://github.com/tpoechtrager/cctools-port/archive/81f205e8ca6bbf2fdbcb6948132454fd1f97839e.tar.gz
-    sha256: 9a836315380f35180f4e8bae0247ed2dac899ad5ba8f43879435977099f69e63
+  - url: https://github.com/tpoechtrager/cctools-port/archive/7ce3e9d500f9fa310f97507e84be763b2e8389ce.tar.gz
+    sha256: fd9b04a97d2360991a414b0aac1306ee627712e48423dc7d724411592be55403
     patches:
       - patches/0001-Don-t-link-with-libc-abi.patch
       - patches/0002-ld64-add-conda-specific-env-vars-to-modify-lib-searc.patch
       - patches/0003-macos-system-dispatch.patch    # [osx]
       # for #76
       - patches/0004-point-target-otool-to-llvm-otool-in-same-folder.patch
-      - patches/0005-omit-duplicate-rpaths.patch    # [osx]
 
 build:
-  number: 6
+  number: 0
   skip: True  # [win]
   ignore_run_exports:
     - zlib
@@ -85,8 +84,6 @@ outputs:
         - clang {{ llvm_version }}.*
     test:
       commands:
-        # For arm64, cctools as calls the clang integrated assembler. Don't check for it
-        - test -f $PREFIX/libexec/as/x86_64/as
         - test -f $PREFIX/bin/{{ cross_macos_machine }}-ar
         - test -f $PREFIX/bin/{{ cross_macos_machine }}-as
         - test -f $PREFIX/bin/{{ cross_macos_machine }}-ld
@@ -219,7 +216,6 @@ about:
 extra:
   recipe-maintainers:
     - isuruf
-    - mingwandroid
     - davidbrochart
     - katietz
     - h-vetinari

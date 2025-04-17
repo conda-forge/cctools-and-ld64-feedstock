@@ -1,4 +1,4 @@
-From a79de3b20e55d3f3526d71e40d7a06c07ec42672 Mon Sep 17 00:00:00 2001
+From e19ac44874d56d069d405730bdd6f30fb7674ffe Mon Sep 17 00:00:00 2001
 From: "H. Vetinari" <h.vetinari@gmx.com>
 Date: Tue, 19 Nov 2024 20:54:51 +1100
 Subject: [PATCH 4/4] point `<target>-otool` to `llvm-otool` in same folder

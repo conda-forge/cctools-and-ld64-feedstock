@@ -13,24 +13,6 @@ Package license: APSL-2.0
 
 Summary: Assembler, archiver, ranlib, libtool, otool et al for Darwin Mach-O files. Darwin Mach-O linker.
 
-About ld64_osx-64
------------------
-
-Home: https://github.com/tpoechtrager/cctools-port
-
-Package license: APSL-2.0
-
-Summary: Darwin Mach-O cross linker
-
-About cctools_osx-64
---------------------
-
-Home: https://github.com/tpoechtrager/cctools-port
-
-Package license: APSL-2.0
-
-Summary: Assembler, archiver, ranlib, libtool, otool et al for Darwin Mach-O files
-
 About ld64_osx-arm64
 --------------------
 
@@ -42,6 +24,24 @@ Summary: Darwin Mach-O cross linker
 
 About cctools_osx-arm64
 -----------------------
+
+Home: https://github.com/tpoechtrager/cctools-port
+
+Package license: APSL-2.0
+
+Summary: Assembler, archiver, ranlib, libtool, otool et al for Darwin Mach-O files
+
+About ld64_osx-64
+-----------------
+
+Home: https://github.com/tpoechtrager/cctools-port
+
+Package license: APSL-2.0
+
+Summary: Darwin Mach-O cross linker
+
+About cctools_osx-64
+--------------------
 
 Home: https://github.com/tpoechtrager/cctools-port
 
@@ -348,5 +348,4 @@ Feedstock Maintainers
 * [@h-vetinari](https://github.com/h-vetinari/)
 * [@isuruf](https://github.com/isuruf/)
 * [@katietz](https://github.com/katietz/)
-* [@mingwandroid](https://github.com/mingwandroid/)
 
