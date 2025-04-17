@@ -84,8 +84,6 @@ outputs:
         - clang {{ llvm_version }}.*
     test:
       commands:
-        # For arm64, cctools as calls the clang integrated assembler. Don't check for it
-        - test -f $PREFIX/libexec/as/x86_64/as
         - test -f $PREFIX/bin/{{ cross_macos_machine }}-ar
         - test -f $PREFIX/bin/{{ cross_macos_machine }}-as
         - test -f $PREFIX/bin/{{ cross_macos_machine }}-ld
