@@ -14,9 +14,9 @@ cxx_compiler:           # [osx]
   - clang_bootstrap     # [osx]
 
 llvm_version:
-  - 18.1
   - 19.1
   - 20.1
+  - 21.1
 
 # zip it to avoid using rc-builds for already-released-in-conda-forge LLVM versions
 channel_sources:
