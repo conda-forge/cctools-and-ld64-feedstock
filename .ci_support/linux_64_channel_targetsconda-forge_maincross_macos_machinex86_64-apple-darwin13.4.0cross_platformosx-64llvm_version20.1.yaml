@@ -21,11 +21,14 @@ docker_image:
 libuuid:
 - '2'
 llvm_version:
-- '19.1'
+- '20.1'
 target_platform:
 - linux-64
 zip_keys:
 - - cross_macos_machine
   - cross_platform
+- - llvm_version
+  - channel_sources
+  - channel_targets
 zlib:
 - '1'
