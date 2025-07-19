@@ -1,5 +1,5 @@
-{% set cctools_version = '1021.4' %}
-{% set ld64_version = '954.16' %}
+{% set cctools_version = '1024.3' %}
+{% set ld64_version = '955.13' %}
 {% if llvm_version is not defined %}
 {% set llvm_version = "21.1" %}
 {% endif %}
@@ -14,8 +14,8 @@ package:
 
 source:
   # latest commit from branch {{ cctools_version }}-ld64-{{ ld64_version }}
-  - url: https://github.com/tpoechtrager/cctools-port/archive/7ce3e9d500f9fa310f97507e84be763b2e8389ce.tar.gz
-    sha256: fd9b04a97d2360991a414b0aac1306ee627712e48423dc7d724411592be55403
+  - url: https://github.com/tpoechtrager/cctools-port/archive/7224fd5c9390ea15cff6ee69ff92ea677b40014b.tar.gz
+    sha256: cf8768ffc10f2117db68d898a90f2d9a69bf59825575bf4afa38ef9cbb296126
     patches:
       - patches/0001-Don-t-link-with-libc-abi.patch
       - patches/0002-ld64-add-conda-specific-env-vars-to-modify-lib-searc.patch
@@ -24,7 +24,7 @@ source:
       - patches/0004-point-target-otool-to-llvm-otool-in-same-folder.patch
 
 build:
-  number: 1
+  number: 0
   skip: True  # [win]
   ignore_run_exports:
     - zlib
