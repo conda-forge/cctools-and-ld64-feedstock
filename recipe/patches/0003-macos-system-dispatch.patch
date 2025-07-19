@@ -1,17 +1,17 @@
-From 52bdb4d3b54535d6f7b1a793529de5a65e5feb5c Mon Sep 17 00:00:00 2001
+From f903ea64a30fe261d838c36877c355e4df1ce034 Mon Sep 17 00:00:00 2001
 From: Peter Williams <peter@newton.cx>
 Date: Thu, 5 Sep 2024 16:35:00 -0400
-Subject: [PATCH 3/4] macos system dispatch
+Subject: [PATCH 3/3] macos system dispatch
 
 ---
  cctools/ld64/src/ld/OutputFile.cpp | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/cctools/ld64/src/ld/OutputFile.cpp b/cctools/ld64/src/ld/OutputFile.cpp
-index 275301f..b7cc588 100644
+index c2eb971..d9e9a03 100644
 --- a/cctools/ld64/src/ld/OutputFile.cpp
 +++ b/cctools/ld64/src/ld/OutputFile.cpp
-@@ -7975,7 +7975,7 @@ void OutputFile::buildLINKEDITContent(ld::Internal& state)
+@@ -7987,7 +7987,7 @@ void OutputFile::buildLINKEDITContent(ld::Internal& state)
  {
  	dispatch_group_t 		group = dispatch_group_create();
  	// ld64-port: QOS_CLASS_USER_INITIATED -> DISPATCH_QUEUE_PRIORITY_HIGH
