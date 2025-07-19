@@ -7,9 +7,9 @@ c_stdlib:
 c_stdlib_version:
 - '11.0'
 channel_sources:
-- conda-forge
+- conda-forge/label/llvm_rc,conda-forge
 channel_targets:
-- conda-forge main
+- conda-forge llvm_rc
 cross_macos_machine:
 - arm64-apple-darwin20.0.0
 cross_platform:
@@ -19,7 +19,7 @@ cxx_compiler:
 cxx_compiler_version:
 - '19'
 llvm_version:
-- '18.1'
+- '21.1'
 macos_machine:
 - arm64-apple-darwin20.0.0
 target_platform:
@@ -27,5 +27,8 @@ target_platform:
 zip_keys:
 - - cross_macos_machine
   - cross_platform
+- - llvm_version
+  - channel_sources
+  - channel_targets
 zlib:
 - '1'

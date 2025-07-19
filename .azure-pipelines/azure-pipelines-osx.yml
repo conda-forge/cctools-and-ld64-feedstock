@@ -8,41 +8,41 @@ jobs:
     vmImage: macOS-13
   strategy:
     matrix:
-      osx_64_cross_platformosx-64llvm_version18.1:
-        CONFIG: osx_64_cross_platformosx-64llvm_version18.1
+      osx_64_channel_targetsconda-forge_llvm_rccross_platformosx-64llvm_version21.1:
+        CONFIG: osx_64_channel_targetsconda-forge_llvm_rccross_platformosx-64llvm_version21.1
         UPLOAD_PACKAGES: 'True'
-      osx_64_cross_platformosx-64llvm_version19.1:
-        CONFIG: osx_64_cross_platformosx-64llvm_version19.1
+      osx_64_channel_targetsconda-forge_llvm_rccross_platformosx-arm64llvm_version21.1:
+        CONFIG: osx_64_channel_targetsconda-forge_llvm_rccross_platformosx-arm64llvm_version21.1
         UPLOAD_PACKAGES: 'True'
-      osx_64_cross_platformosx-64llvm_version20.1:
-        CONFIG: osx_64_cross_platformosx-64llvm_version20.1
+      osx_64_channel_targetsconda-forge_maincross_platformosx-64llvm_version19.1:
+        CONFIG: osx_64_channel_targetsconda-forge_maincross_platformosx-64llvm_version19.1
         UPLOAD_PACKAGES: 'True'
-      osx_64_cross_platformosx-arm64llvm_version18.1:
-        CONFIG: osx_64_cross_platformosx-arm64llvm_version18.1
+      osx_64_channel_targetsconda-forge_maincross_platformosx-64llvm_version20.1:
+        CONFIG: osx_64_channel_targetsconda-forge_maincross_platformosx-64llvm_version20.1
         UPLOAD_PACKAGES: 'True'
-      osx_64_cross_platformosx-arm64llvm_version19.1:
-        CONFIG: osx_64_cross_platformosx-arm64llvm_version19.1
+      osx_64_channel_targetsconda-forge_maincross_platformosx-arm64llvm_version19.1:
+        CONFIG: osx_64_channel_targetsconda-forge_maincross_platformosx-arm64llvm_version19.1
         UPLOAD_PACKAGES: 'True'
-      osx_64_cross_platformosx-arm64llvm_version20.1:
-        CONFIG: osx_64_cross_platformosx-arm64llvm_version20.1
+      osx_64_channel_targetsconda-forge_maincross_platformosx-arm64llvm_version20.1:
+        CONFIG: osx_64_channel_targetsconda-forge_maincross_platformosx-arm64llvm_version20.1
         UPLOAD_PACKAGES: 'True'
-      osx_arm64_cross_platformosx-64llvm_version18.1:
-        CONFIG: osx_arm64_cross_platformosx-64llvm_version18.1
+      osx_arm64_channel_targetsconda-forge_llvm_rccross_platformosx-64llvm_version21.1:
+        CONFIG: osx_arm64_channel_targetsconda-forge_llvm_rccross_platformosx-64llvm_version21.1
         UPLOAD_PACKAGES: 'True'
-      osx_arm64_cross_platformosx-64llvm_version19.1:
-        CONFIG: osx_arm64_cross_platformosx-64llvm_version19.1
+      osx_arm64_channel_targetsconda-forge_llvm_rccross_platformosx-arm64llvm_version21.1:
+        CONFIG: osx_arm64_channel_targetsconda-forge_llvm_rccross_platformosx-arm64llvm_version21.1
         UPLOAD_PACKAGES: 'True'
-      osx_arm64_cross_platformosx-64llvm_version20.1:
-        CONFIG: osx_arm64_cross_platformosx-64llvm_version20.1
+      osx_arm64_channel_targetsconda-forge_maincross_platformosx-64llvm_version19.1:
+        CONFIG: osx_arm64_channel_targetsconda-forge_maincross_platformosx-64llvm_version19.1
         UPLOAD_PACKAGES: 'True'
-      osx_arm64_cross_platformosx-arm64llvm_version18.1:
-        CONFIG: osx_arm64_cross_platformosx-arm64llvm_version18.1
+      osx_arm64_channel_targetsconda-forge_maincross_platformosx-64llvm_version20.1:
+        CONFIG: osx_arm64_channel_targetsconda-forge_maincross_platformosx-64llvm_version20.1
         UPLOAD_PACKAGES: 'True'
-      osx_arm64_cross_platformosx-arm64llvm_version19.1:
-        CONFIG: osx_arm64_cross_platformosx-arm64llvm_version19.1
+      osx_arm64_channel_targetsconda-forge_maincross_platformosx-arm64llvm_version19.1:
+        CONFIG: osx_arm64_channel_targetsconda-forge_maincross_platformosx-arm64llvm_version19.1
         UPLOAD_PACKAGES: 'True'
-      osx_arm64_cross_platformosx-arm64llvm_version20.1:
-        CONFIG: osx_arm64_cross_platformosx-arm64llvm_version20.1
+      osx_arm64_channel_targetsconda-forge_maincross_platformosx-arm64llvm_version20.1:
+        CONFIG: osx_arm64_channel_targetsconda-forge_maincross_platformosx-arm64llvm_version20.1
         UPLOAD_PACKAGES: 'True'
   timeoutInMinutes: 360
   variables: {}
