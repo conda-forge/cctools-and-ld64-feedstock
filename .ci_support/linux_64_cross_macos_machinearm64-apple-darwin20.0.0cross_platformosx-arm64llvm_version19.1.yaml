@@ -27,8 +27,5 @@ target_platform:
 zip_keys:
 - - cross_macos_machine
   - cross_platform
-- - llvm_version
-  - channel_sources
-  - channel_targets
 zlib:
 - '1'
