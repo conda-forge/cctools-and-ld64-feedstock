@@ -1,7 +1,7 @@
 From 837e34f99512db3b4d3aaf8b711d22600954ff20 Mon Sep 17 00:00:00 2001
 From: Isuru Fernando <isuruf@gmail.com>
 Date: Mon, 16 Sep 2019 05:17:30 +0000
-Subject: [PATCH 2/3] ld64: add conda specific env vars to modify lib search
+Subject: [PATCH 2/4] ld64: add conda specific env vars to modify lib search
  paths
 
 ---

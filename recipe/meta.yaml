@@ -20,7 +20,7 @@ source:
       - patches/0001-Don-t-link-with-libc-abi.patch
       - patches/0002-ld64-add-conda-specific-env-vars-to-modify-lib-searc.patch
       - patches/0003-macos-system-dispatch.patch    # [osx]
-      - patches/0004-macos-dont-strip-libSystem.patch    # [osx]
+      - patches/0004-avoid-stripping-out-C-stdlib-too-zealously.patch    # [osx]
 
 build:
   number: 2
