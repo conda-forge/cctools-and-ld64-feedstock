@@ -1,7 +1,7 @@
 From f903ea64a30fe261d838c36877c355e4df1ce034 Mon Sep 17 00:00:00 2001
 From: Peter Williams <peter@newton.cx>
 Date: Thu, 5 Sep 2024 16:35:00 -0400
-Subject: [PATCH 3/3] macos system dispatch
+Subject: [PATCH 3/4] macos system dispatch
 
 ---
  cctools/ld64/src/ld/OutputFile.cpp | 2 +-
