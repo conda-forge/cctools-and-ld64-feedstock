@@ -24,7 +24,7 @@ source:
       - patches/0004-avoid-stripping-out-C-stdlib-too-zealously.patch    # [osx]
 
 build:
-  number: 3
+  number: 4
   skip: True  # [win]
   ignore_run_exports:
     - zlib
@@ -82,6 +82,8 @@ outputs:
       run_constrained:
         - ld64 {{ ld64_version }}.*
         - cctools {{ cctools_version }}.*
+        # clang might pull in the wrong cctools otherwise
+        - clang {{ llvm_version }}.*
     test:
       commands:
         - test -f $PREFIX/bin/{{ cross_macos_machine }}-ar
@@ -130,7 +132,8 @@ outputs:
         - libcxx    # [osx]
         - sigtool
       run_constrained:
-        - ld {{ ld64_version }}.*
+        - ld64 {{ ld64_version }}.*
+        - clang {{ llvm_version }}.*
         - cctools {{ cctools_version }}.*
         - cctools_{{ cross_platform }} {{ cctools_version }}.*
     test:
