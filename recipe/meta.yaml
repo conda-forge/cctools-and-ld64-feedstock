@@ -3,6 +3,7 @@
 {% if llvm_version is not defined %}
 {% set llvm_version = "21.1" %}
 {% endif %}
+{% set clang_exe_version = "19" %}
 
 {% if cross_platform is not defined %}
 {% set cross_platform = "osx-64" %}
@@ -23,14 +24,16 @@ source:
       - patches/0004-avoid-stripping-out-C-stdlib-too-zealously.patch    # [osx]
 
 build:
-  number: 2
+  number: 3
   skip: True  # [win]
   ignore_run_exports:
     - zlib
+  script_env:
+    - CLANG_EXE_VERSION={{ clang_exe_version }}
 
 requirements:
   build:
-    - clangxx {{ llvm_version }}.*  # [linux]
+    - clang-{{ clang_exe_version }}   # [linux]
     - {{ stdlib('c') }}
     - {{ compiler('cxx') }}
     - autoconf
@@ -79,8 +82,6 @@ outputs:
       run_constrained:
         - ld64 {{ ld64_version }}.*
         - cctools {{ cctools_version }}.*
-        # clang might pull in the wrong cctools otherwise
-        - clang {{ llvm_version }}.*
     test:
       commands:
         - test -f $PREFIX/bin/{{ cross_macos_machine }}-ar
@@ -120,7 +121,6 @@ outputs:
         - sed
       host:
         - llvm {{ llvm_version }}.*
-        - clang {{ llvm_version }}.*
         - tapi
         - libcxx    # [osx]
         - libdispatch   # [linux]
@@ -130,17 +130,16 @@ outputs:
         - libcxx    # [osx]
         - sigtool
       run_constrained:
-        - {{ pin_compatible("clang") }}
         - ld {{ ld64_version }}.*
         - cctools {{ cctools_version }}.*
         - cctools_{{ cross_platform }} {{ cctools_version }}.*
     test:
       requires:
-        - clang {{ llvm_version }}.*
+        - clang-{{ clang_exe_version }}
       commands:
         - test -f $PREFIX/bin/{{ cross_macos_machine }}-ld
         - echo "int main() {}" > lto.c                                                  # [osx]
-        - clang -c lto.c -o lto.o -flto                                                 # [osx]
+        - clang-{{ clang_exe_version }} -c lto.c -o lto.o -flto                         # [osx]
         - $PREFIX/bin/{{ cross_macos_machine }}-ld lto.o -o lto -lSystem -arch x86_64   # [osx]
       downstreams:
         - gfortran_osx-64  # [osx and cross_platform=="osx-64"]
@@ -159,7 +158,6 @@ outputs:
     requirements:
       host:
         - llvm  {{ llvm_version }}.*
-        - clang {{ llvm_version }}.*
         - {{ pin_subpackage("ld64_" + cross_platform, exact=True) }}
       run:
         - {{ pin_subpackage("ld64_" + cross_platform, exact=True) }}
@@ -184,7 +182,6 @@ outputs:
     requirements:
       host:
         - llvm {{ llvm_version }}.*
-        - clang {{ llvm_version }}.*
         - {{ pin_subpackage("ld64", exact=True) }}
         - {{ pin_subpackage("cctools_" + cross_platform, exact=True) }}
       run:
