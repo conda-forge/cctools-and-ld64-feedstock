@@ -4,8 +4,8 @@ set -ex
 if [[ $target_platform == osx-* ]]; then
   export CPU_COUNT=1
 else
-  export CC=$(which clang)
-  export CXX=$(which clang++)
+  export CC=$(which clang-${CLANG_EXE_VERSION})
+  export CXX=$(which clang-${CLANG_EXE_VERSION})
   export TCROOT=$CONDA_BUILD_SYSROOT
 fi
 export cctools_cv_tapi_support=yes
