@@ -24,7 +24,7 @@ source:
       - patches/0004-avoid-stripping-out-C-stdlib-too-zealously.patch    # [osx]
 
 build:
-  number: 4
+  number: 5
   skip: True  # [win]
   ignore_run_exports:
     - zlib
@@ -56,6 +56,7 @@ outputs:
     version: {{ cctools_version }}
     script: install-cctools.sh
     build:
+      string: llvm{{ llvm_version.replace(".", "_") }}_h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}
       activate_in_script: True
       ignore_run_exports:
         - zlib
@@ -110,6 +111,7 @@ outputs:
     version: {{ ld64_version }}
     script: install-ld64.sh
     build:
+      string: llvm{{ llvm_version.replace(".", "_") }}_h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}
       activate_in_script: True
       missing_dso_whitelist:
         - /usr/lib/libxar.1.dylib  # [osx]
