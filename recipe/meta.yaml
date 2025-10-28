@@ -23,6 +23,7 @@ source:
       - patches/0003-macos-system-dispatch.patch    # [osx]
       - patches/0004-avoid-stripping-out-C-stdlib-too-zealously.patch    # [osx]
       - patches/0005-fix-as-triple.diff
+      - patches/0006-avoid-a-conflict-of-__unused-in-system-headers.patch
 
 build:
   number: 6
