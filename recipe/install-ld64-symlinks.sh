@@ -1,1 +1,1 @@
-ln -s $PREFIX/bin/${macos_machine}-ld $PREFIX/bin/ld
+ln -s $PREFIX/bin/${cross_macos_machine}-ld $PREFIX/bin/ld

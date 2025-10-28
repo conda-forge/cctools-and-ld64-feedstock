@@ -1,31 +1,25 @@
-macos_machine:
+cross_macos_machine:
   - x86_64-apple-darwin13.4.0
   - arm64-apple-darwin20.0.0
-MACOSX_SDK_VERSION:  # [osx and x86_64]
-  - 10.13            # [osx and x86_64]
 cross_platform:
   - osx-64
   - osx-arm64
 uname_machine:
   - x86_64
   - arm64
-zip_keys:
-  - - macos_machine
-    - cross_platform
-    - uname_machine
 
-c_compiler:
-  - clang_bootstrap  # [osx]
-  - gcc              # [linux]
-cxx_compiler:
-  - clang_bootstrap  # [osx]
-  - gxx              # [linux]
-
-c_compiler_version:     # [osx]
-  - "*"                 # [osx]
-cxx_compiler_version:   # [osx]
-  - "*"                 # [osx]
+c_compiler:             # [osx]
+  - clang_bootstrap     # [osx]
+cxx_compiler:           # [osx]
+  - clang_bootstrap     # [osx]
 
 llvm_version:
-  - 13.0
-  - 14.0
+  - 21.1
+  - 20.1
+  - 19.1
+
+zip_keys:
+  -
+    - cross_macos_machine
+    - cross_platform
+    - uname_machine
