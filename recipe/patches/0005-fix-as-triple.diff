@@ -16,7 +16,7 @@
 -    }
 -
 -    return "x86_64-apple-darwin";
-+    return @TRIPLE@;
++    return "@TRIPLE@";
  }
  #endif
  
