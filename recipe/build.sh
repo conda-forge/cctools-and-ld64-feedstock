@@ -1,6 +1,8 @@
 #!/bin/bash
 set -ex
 
+llvm_major=${llvm_version%%.*}
+
 if [[ $target_platform == osx-* ]]; then
   export CPU_COUNT=1
 elif [[ $target_platform == linux-* ]]; then
@@ -23,6 +25,8 @@ pushd cctools
   sed -i.bak "s/libLTO.so/${LLVM_LTO_LIBRARY}/g" ld64/src/ld/parsers/lto_file.cpp
   sed -i.bak "s/libLTO.dylib/${LLVM_LTO_LIBRARY}/g" libstuff/lto.c
   sed -i.bak "s/libLTO.so/${LLVM_LTO_LIBRARY}/g" libstuff/lto.c
+  sed -i.bak "s/@TRIPLE@/${HOST}/g" as/as.c
+  sed -i.bak "s/@CLANG@/clang-${llvm_major}/g" as/as.c
 popd
 
 if [[ "$CONDA_BUILD_CROSS_COMPILATION" == "1" ]]; then
