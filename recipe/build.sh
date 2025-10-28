@@ -25,7 +25,7 @@ pushd cctools
   sed -i.bak "s/libLTO.so/${LLVM_LTO_LIBRARY}/g" ld64/src/ld/parsers/lto_file.cpp
   sed -i.bak "s/libLTO.dylib/${LLVM_LTO_LIBRARY}/g" libstuff/lto.c
   sed -i.bak "s/libLTO.so/${LLVM_LTO_LIBRARY}/g" libstuff/lto.c
-  sed -i.bak "s/@TRIPLE@/${HOST}/g" as/as.c
+  sed -i.bak "s/@TRIPLE@/${cross_macos_machine}/g" as/as.c
   sed -i.bak "s/@CLANG@/clang-${llvm_major}/g" as/as.c
 popd
 

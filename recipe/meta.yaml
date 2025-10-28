@@ -26,7 +26,7 @@ source:
       - patches/0006-avoid-a-conflict-of-__unused-in-system-headers.patch
 
 build:
-  number: 6
+  number: 7
   skip: True  # [win]
   ignore_run_exports:
     - zlib
