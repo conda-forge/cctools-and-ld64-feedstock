@@ -21,7 +21,7 @@ libuuid:
 llvm_version:
 - '19.1'
 target_platform:
-- linux-64
+- linux-ppc64le
 zip_keys:
 - - cross_macos_machine
   - cross_platform
