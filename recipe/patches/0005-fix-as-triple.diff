@@ -1,0 +1,42 @@
+--- cctools/as/as.c	2025-10-27 20:35:30.081823109 -0700
++++ cctools/as/as.c	2025-10-27 20:38:13.385379211 -0700
+@@ -14,18 +14,7 @@
+     const char *progname = strrchr(argv0, '/');
+     progname = progname ? progname + 1 : argv0;
+ 
+-    // Example: "i386-apple-darwin-as"
+-    static char triple_buf[64];
+-    const char *dash = strchr(progname, '-');
+-    if (dash) {
+-        size_t len = dash - progname;
+-        if (len < sizeof(triple_buf)) {
+-            snprintf(triple_buf, sizeof(triple_buf), "%.*s-apple-darwin", (int)len, progname);
+-            return triple_buf;
+-        }
+-    }
+-
+-    return "x86_64-apple-darwin";
++    return @TRIPLE@;
+ }
+ #endif
+ 
+@@ -44,7 +33,7 @@
+     bool oflag_specified = false;
+ 
+     char *clang_exe = getenv("CCTOOLS_CLANG_AS_EXECUTABLE");
+-    clang_exe = clang_exe ? clang_exe : "clang";
++    clang_exe = clang_exe ? clang_exe : "@CLANG@";
+ 
+     char **given_args = malloc(sizeof(char*) * argc);
+     char **args = malloc(sizeof(char*) * (argc + 16));
+@@ -129,10 +118,8 @@
+     /* Silence clang warnings for unused -I etc. */
+     args[j++] = "-Wno-unused-command-line-argument";
+ 
+-#ifndef __APPLE__
+     args[j++] = "-target";
+     args[j++] = (char*)get_target_triple(argv[0]);
+-#endif
+ 
+     args[j] = NULL;
+ 
