@@ -1,15 +1,13 @@
 #!/bin/bash
 set -ex
 
+llvm_major=${llvm_version%%.*}
+
 if [[ $target_platform == osx-* ]]; then
   export CPU_COUNT=1
 elif [[ $target_platform == linux-* ]]; then
   export CC=${BUILD_PREFIX}/bin/clang-${CLANG_EXE_VERSION}
   export CXX=${BUILD_PREFIX}/bin/clang++-${CLANG_EXE_VERSION}
-  if [[ ! -f ${CXX} ]]; then
-    # Remove after https://github.com/conda-forge/clangdev-feedstock/pull/387 is in
-    ln -sf ${CC} ${CXX}
-  fi
   export TCROOT=$CONDA_BUILD_SYSROOT
 fi
 export cctools_cv_tapi_support=yes
@@ -27,6 +25,8 @@ pushd cctools
   sed -i.bak "s/libLTO.so/${LLVM_LTO_LIBRARY}/g" ld64/src/ld/parsers/lto_file.cpp
   sed -i.bak "s/libLTO.dylib/${LLVM_LTO_LIBRARY}/g" libstuff/lto.c
   sed -i.bak "s/libLTO.so/${LLVM_LTO_LIBRARY}/g" libstuff/lto.c
+  sed -i.bak "s/@TRIPLE@/${HOST}/g" as/as.c
+  sed -i.bak "s/@CLANG@/clang-${llvm_major}/g" as/as.c
 popd
 
 if [[ "$CONDA_BUILD_CROSS_COMPILATION" == "1" ]]; then
