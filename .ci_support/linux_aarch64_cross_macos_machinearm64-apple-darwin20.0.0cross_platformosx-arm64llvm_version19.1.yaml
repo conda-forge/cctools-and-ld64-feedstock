@@ -7,9 +7,9 @@ channel_sources:
 channel_targets:
 - conda-forge main
 cross_macos_machine:
-- x86_64-apple-darwin13.4.0
+- arm64-apple-darwin20.0.0
 cross_platform:
-- osx-64
+- osx-arm64
 cxx_compiler:
 - gxx
 cxx_compiler_version:
@@ -21,7 +21,7 @@ libuuid:
 llvm_version:
 - '19.1'
 target_platform:
-- linux-64
+- linux-aarch64
 zip_keys:
 - - cross_macos_machine
   - cross_platform

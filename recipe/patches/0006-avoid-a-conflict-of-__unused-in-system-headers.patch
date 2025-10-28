@@ -1,0 +1,50 @@
+From 63ce0cb2beacfc47d329fe120daacc591fa10e3f Mon Sep 17 00:00:00 2001
+From: Isuru Fernando <isuruf@gmail.com>
+Date: Tue, 28 Oct 2025 14:34:05 -0700
+Subject: [PATCH] avoid a conflict of __unused in system headers
+
+---
+ cctools/ld64/src/ld/libcodedirectory.c | 2 +-
+ cctools/ld64/src/ld/libcodedirectory.h | 6 +++---
+ 2 files changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/cctools/ld64/src/ld/libcodedirectory.c b/cctools/ld64/src/ld/libcodedirectory.c
+index 4e17cd1..6cf229d 100644
+--- a/cctools/ld64/src/ld/libcodedirectory.c
++++ b/cctools/ld64/src/ld/libcodedirectory.c
+@@ -226,7 +226,7 @@ libcd_log_stderr (char *stmt)
+ }
+ 
+ void
+-libcd_log_none (char *stmt __unused)
++libcd_log_none (char *stmt ATTRIBUTE_UNUSED)
+ {}
+ 
+ static libcd_log_writer *_configured_log_writer = libcd_log_default;
+diff --git a/cctools/ld64/src/ld/libcodedirectory.h b/cctools/ld64/src/ld/libcodedirectory.h
+index 133eb2e..a4da4b5 100644
+--- a/cctools/ld64/src/ld/libcodedirectory.h
++++ b/cctools/ld64/src/ld/libcodedirectory.h
+@@ -5,8 +5,8 @@
+ #include <stddef.h>
+ #include <stdint.h>
+ 
+-#ifndef __unused // ld64-port
+-#define __unused __attribute__ ((unused))
++#ifndef ATTRIBUTE_UNUSED __unused // ld64-port
++#define ATTRIBUTE_UNUSED __attribute__ ((unused))
+ #endif
+ 
+ #if 0 // __has_include(<Kernel/kern/cs_blobs.h>)
+@@ -26,7 +26,7 @@ typedef size_t libcd_read_page (libcd *s, int page_no, size_t pos, size_t page_s
+ typedef bool libcd_signature_generator (libcd *s, void *user_ctx, size_t signature_size, uint8_t *signature_buf);
+ typedef void libcd_log_writer (char *stmt);
+ 
+-void libcd_log_none (char *stmt __unused);
++void libcd_log_none (char *stmt ATTRIBUTE_UNUSED);
+ void libcd_log_stderr (char *stmt);
+ #define libcd_log_default libcd_log_stderr
+ 
+-- 
+2.45.2
+

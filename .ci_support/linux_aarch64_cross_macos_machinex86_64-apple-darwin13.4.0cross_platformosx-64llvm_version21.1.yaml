@@ -19,9 +19,9 @@ docker_image:
 libuuid:
 - '2'
 llvm_version:
-- '19.1'
+- '21.1'
 target_platform:
-- linux-64
+- linux-aarch64
 zip_keys:
 - - cross_macos_machine
   - cross_platform

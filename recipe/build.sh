@@ -6,8 +6,8 @@ llvm_major=${llvm_version%%.*}
 if [[ $target_platform == osx-* ]]; then
   export CPU_COUNT=1
 elif [[ $target_platform == linux-* ]]; then
-  export CC=${BUILD_PREFIX}/bin/clang-${CLANG_EXE_VERSION}
-  export CXX=${BUILD_PREFIX}/bin/clang++-${CLANG_EXE_VERSION}
+  export CC="${BUILD_PREFIX}/bin/clang-${CLANG_EXE_VERSION} --target=${CONDA_TOOLCHAIN_HOST}"
+  export CXX="${BUILD_PREFIX}/bin/clang++-${CLANG_EXE_VERSION} --target=${CONDA_TOOLCHAIN_HOST}"
   export TCROOT=$CONDA_BUILD_SYSROOT
 fi
 export cctools_cv_tapi_support=yes
