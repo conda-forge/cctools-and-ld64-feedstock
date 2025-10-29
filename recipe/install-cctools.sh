@@ -13,3 +13,5 @@ pushd "${PREFIX}"
   # This is packaged in ld64
   rm bin/*-ld
 popd
+
+ln -sf ${PREFIX}/bin/dsymutil ${PREFIX}/bin/${cross_macos_machine}-dsymutil
