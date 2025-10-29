@@ -4,10 +4,6 @@ cross_macos_machine:
 cross_platform:
   - osx-64
   - osx-arm64
-uname_machine:
-  - x86_64
-  - arm64
-
 c_compiler:             # [osx]
   - clang_bootstrap     # [osx]
 cxx_compiler:           # [osx]
@@ -22,4 +18,3 @@ zip_keys:
   -
     - cross_macos_machine
     - cross_platform
-    - uname_machine
