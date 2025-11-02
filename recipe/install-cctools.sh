@@ -15,3 +15,4 @@ pushd "${PREFIX}"
 popd
 
 ln -sf ${PREFIX}/bin/dsymutil ${PREFIX}/bin/${cross_macos_machine}-dsymutil
+ln -sf ${PREFIX}/bin/llvm-cxxfilt ${PREFIX}/bin/${cross_macos_machine}-c++filt
