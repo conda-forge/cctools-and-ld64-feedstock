@@ -1,7 +1,7 @@
-From 63ce0cb2beacfc47d329fe120daacc591fa10e3f Mon Sep 17 00:00:00 2001
+From 2695b87ba1f1966164621ce71d14d961dfb6d392 Mon Sep 17 00:00:00 2001
 From: Isuru Fernando <isuruf@gmail.com>
 Date: Tue, 28 Oct 2025 14:34:05 -0700
-Subject: [PATCH] avoid a conflict of __unused in system headers
+Subject: [PATCH 6/6] avoid a conflict of __unused in system headers
 
 ---
  cctools/ld64/src/ld/libcodedirectory.c | 2 +-
@@ -9,10 +9,10 @@ Subject: [PATCH] avoid a conflict of __unused in system headers
  2 files changed, 4 insertions(+), 4 deletions(-)
 
 diff --git a/cctools/ld64/src/ld/libcodedirectory.c b/cctools/ld64/src/ld/libcodedirectory.c
-index 4e17cd1..6cf229d 100644
+index f3d3601..8c54050 100644
 --- a/cctools/ld64/src/ld/libcodedirectory.c
 +++ b/cctools/ld64/src/ld/libcodedirectory.c
-@@ -226,7 +226,7 @@ libcd_log_stderr (char *stmt)
+@@ -227,7 +227,7 @@ libcd_log_stderr (char *stmt)
  }
  
  void
@@ -45,6 +45,3 @@ index 133eb2e..a4da4b5 100644
  void libcd_log_stderr (char *stmt);
  #define libcd_log_default libcd_log_stderr
  
--- 
-2.45.2
-
