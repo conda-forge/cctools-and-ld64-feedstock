@@ -1,7 +1,7 @@
-From 6e08f803991c3b68975d535b126c4413dbe35e70 Mon Sep 17 00:00:00 2001
+From d4713eea77bc91c60d76dda8612c9ed8b63b3188 Mon Sep 17 00:00:00 2001
 From: Lucas Colley <lucas.colley8@gmail.com>
 Date: Thu, 25 Sep 2025 21:24:29 +0100
-Subject: [PATCH 4/6] avoid stripping out C stdlib too zealously
+Subject: [PATCH 4/5] avoid stripping out C stdlib too zealously
 
 this avoids failures on macOS 26 like `must link with at least
 libSystem.dylib`
