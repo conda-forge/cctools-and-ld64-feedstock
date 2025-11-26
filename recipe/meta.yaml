@@ -53,9 +53,9 @@ requirements:
     - tapi
 
 outputs:
-  - name: cctools_{{ cross_platform }}
+  - name: cctools_impl_{{ cross_platform }}
     version: {{ cctools_version }}
-    script: install-cctools.sh
+    script: install-cctools-impl.sh
     build:
       string: llvm{{ llvm_version.replace(".", "_") }}_h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}
       activate_in_script: True
@@ -109,6 +109,25 @@ outputs:
       license_file: cctools/APPLE_LICENSE
       summary: Assembler, archiver, ranlib, libtool, otool et al for Darwin Mach-O files
 
+  - name: cctools_{{ cross_platform }}
+    version: {{ cctools_version }}
+    script: install-activation.sh
+    requirements:
+      run:
+        - {{ pin_subpackage("ld64_" + cross_platform, exact=True) }}
+        - {{ pin_subpackage("cctools_impl_" + cross_platform, exact=True) }}
+      run_constrained:
+        - cctools {{ cctools_version }}.*
+    test:
+      commands:
+        - test -f $PREFIX/bin/$LD
+    about:
+      home: https://github.com/tpoechtrager/cctools-port
+      license: APSL-2.0
+      license_family: Other
+      license_file: cctools/APPLE_LICENSE
+      summary: Activation scripts for assembler, archiver, ranlib, libtool, otool et al for Darwin Mach-O files
+
   - name: ld64_{{ cross_platform }}
     version: {{ ld64_version }}
     script: install-ld64.sh
@@ -139,7 +158,7 @@ outputs:
         - ld64 {{ ld64_version }}.*
         - clang {{ llvm_version }}.*
         - cctools {{ cctools_version }}.*
-        - cctools_{{ cross_platform }} {{ cctools_version }}.*
+        - cctools_impl_{{ cross_platform }} {{ cctools_version }}.*
     test:
       requires:
         - clang-{{ clang_exe_version }}
@@ -190,10 +209,10 @@ outputs:
       host:
         - llvm {{ llvm_version }}.*
         - {{ pin_subpackage("ld64", exact=True) }}
-        - {{ pin_subpackage("cctools_" + cross_platform, exact=True) }}
+        - {{ pin_subpackage("cctools_impl_" + cross_platform, exact=True) }}
       run:
         - {{ pin_subpackage("ld64", exact=True) }}
-        - {{ pin_subpackage("cctools_" + cross_platform, exact=True) }}
+        - {{ pin_subpackage("cctools_impl_" + cross_platform, exact=True) }}
     test:
       commands:
         - test -f $PREFIX/bin/as
