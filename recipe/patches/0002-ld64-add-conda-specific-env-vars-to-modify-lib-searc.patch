@@ -30,12 +30,12 @@ index d1afa57..1004a37 100644
 +	// If CONDA_BUILD_SYSROOT is set then add that as fSDKPaths, in the same way and
 +	// place that CROSS_SYSROOT is handled (though it is one or the other).
 +	const char* condaBuildDisableLD64Hacks = getenv("CONDA_BUILD_DISABLE_LD64_HACKS");
-+	const char* envCondaBuildSysroot = (condaBuildDisableLD64Hacks == NULL) ? getenv("CONDA_BUILD_SYSROOT") : NULL;
-+	if (envCondaBuildSysroot != NULL) {
++	const char* envSdkRoot = (condaBuildDisableLD64Hacks == NULL) ? getenv("SDKROOT") : NULL;
++	if (envSdkRoot != NULL) {
 +		addStandardLibraryDirectories = 2;
-+		realpath(envCondaBuildSysroot, path);
++		realpath(envSdkRoot, path);
 +		if (strlen(path)) {
-+			envCondaBuildSysroot = strdup(path);
++			envSdkRoot = strdup(path);
 +		}
 +	}
 +
@@ -56,8 +56,8 @@ index d1afa57..1004a37 100644
  		}
  	}
 +
-+	if((envCondaBuildSysroot != NULL) && (fSDKPaths.size() == 0))
-+		fSDKPaths.push_back(envCondaBuildSysroot);
++	if((envSdkRoot != NULL) && (fSDKPaths.size() == 0))
++		fSDKPaths.push_back(envSdkRoot);
 +
  	int standardLibraryPathsStartIndex = libraryPaths.size();
  	int standardFrameworkPathsStartIndex = frameworkPaths.size();
