@@ -1,18 +1,18 @@
-From 837e34f99512db3b4d3aaf8b711d22600954ff20 Mon Sep 17 00:00:00 2001
+From 426d0497fd6541f7ca0336ed7d2adf2bb826a0fc Mon Sep 17 00:00:00 2001
 From: Isuru Fernando <isuruf@gmail.com>
 Date: Mon, 16 Sep 2019 05:17:30 +0000
-Subject: [PATCH 2/4] ld64: add conda specific env vars to modify lib search
+Subject: [PATCH 2/5] ld64: add conda specific env vars to modify lib search
  paths
 
 ---
- cctools/ld64/src/ld/Options.cpp | 35 ++++++++++++++++++++++++++++-----
- 1 file changed, 30 insertions(+), 5 deletions(-)
+ cctools/ld64/src/ld/Options.cpp | 38 ++++++++++++++++++++++++++++-----
+ 1 file changed, 33 insertions(+), 5 deletions(-)
 
 diff --git a/cctools/ld64/src/ld/Options.cpp b/cctools/ld64/src/ld/Options.cpp
-index d1afa57..1004a37 100644
+index 2b7241c..677b4c0 100644
 --- a/cctools/ld64/src/ld/Options.cpp
 +++ b/cctools/ld64/src/ld/Options.cpp
-@@ -4455,12 +4455,28 @@ bool Options::shouldUseBuildVersion(ld::Platform plat, uint32_t minOSvers) const
+@@ -4456,12 +4456,31 @@ bool Options::shouldUseBuildVersion(ld::Platform plat, uint32_t minOSvers) const
  
  void Options::buildSearchPaths(int argc, const char* argv[])
  {
@@ -27,22 +27,25 @@ index d1afa57..1004a37 100644
  	frameworkPaths.reserve(10);
 +
 +	// Conda-specific modification:
-+	// If CONDA_BUILD_SYSROOT is set then add that as fSDKPaths, in the same way and
++	// If SDKROOT is set then add that as fSDKPaths, in the same way and
 +	// place that CROSS_SYSROOT is handled (though it is one or the other).
 +	const char* condaBuildDisableLD64Hacks = getenv("CONDA_BUILD_DISABLE_LD64_HACKS");
-+	const char* envCondaBuildSysroot = (condaBuildDisableLD64Hacks == NULL) ? getenv("CONDA_BUILD_SYSROOT") : NULL;
-+	if (envCondaBuildSysroot != NULL) {
++	const char* envSdkRoot = (condaBuildDisableLD64Hacks == NULL) ? getenv("SDKROOT") : NULL;
++	if (envSdkRoot == NULL && condaBuildDisableLD64Hacks == NULL) {
++		envSdkRoot = getenv("CONDA_BUILD_SYSROOT");
++	}
++	if (envSdkRoot != NULL) {
 +		addStandardLibraryDirectories = 2;
-+		realpath(envCondaBuildSysroot, path);
++		realpath(envSdkRoot, path);
 +		if (strlen(path)) {
-+			envCondaBuildSysroot = strdup(path);
++			envSdkRoot = strdup(path);
 +		}
 +	}
 +
  	// scan through argv looking for -L, -F, -Z, and -syslibroot options
  	for(int i=0; i < argc; ++i) {
  		if ( (argv[i][0] == '-') && (argv[i][1] == 'L') ) {
-@@ -4492,7 +4508,7 @@ void Options::buildSearchPaths(int argc, const char* argv[])
+@@ -4493,7 +4512,7 @@ void Options::buildSearchPaths(int argc, const char* argv[])
  			frameworkPaths.push_back(frameworkSearchDir);
  		}
  		else if ( strcmp(argv[i], "-Z") == 0 )
@@ -51,18 +54,18 @@ index d1afa57..1004a37 100644
  		else if ( strcmp(argv[i], "-v") == 0 ) {
  			fVerbose = true;
  			extern const char ld_classicVersionString[];
-@@ -4616,6 +4632,10 @@ void Options::buildSearchPaths(int argc, const char* argv[])
+@@ -4617,6 +4636,10 @@ void Options::buildSearchPaths(int argc, const char* argv[])
  			fForceLoadSwiftLibs = true;
  		}
  	}
 +
-+	if((envCondaBuildSysroot != NULL) && (fSDKPaths.size() == 0))
-+		fSDKPaths.push_back(envCondaBuildSysroot);
++	if((envSdkRoot != NULL) && (fSDKPaths.size() == 0))
++		fSDKPaths.push_back(envSdkRoot);
 +
  	int standardLibraryPathsStartIndex = libraryPaths.size();
  	int standardFrameworkPathsStartIndex = frameworkPaths.size();
  	if ( addStandardLibraryDirectories ) {
-@@ -4625,8 +4645,12 @@ void Options::buildSearchPaths(int argc, const char* argv[])
+@@ -4626,8 +4649,12 @@ void Options::buildSearchPaths(int argc, const char* argv[])
  			frameworkPaths.push_back("/System/DriverKit/System/Library/Frameworks/");
  		}
  		else {
@@ -76,7 +79,7 @@ index d1afa57..1004a37 100644
  
  			frameworkPaths.push_back("/Library/Frameworks/");
  			frameworkPaths.push_back("/System/Library/Frameworks/");
-@@ -4642,7 +4666,8 @@ void Options::buildSearchPaths(int argc, const char* argv[])
+@@ -4643,7 +4670,8 @@ void Options::buildSearchPaths(int argc, const char* argv[])
  	}
  
  	// now merge sdk and library paths to make real search paths
@@ -86,7 +89,7 @@ index d1afa57..1004a37 100644
  	int libIndex = 0;
  	for (std::vector<const char*>::iterator it = libraryPaths.begin(); it != libraryPaths.end(); ++it, ++libIndex) {
  		const char* libDir = *it;
-@@ -4687,7 +4712,7 @@ void Options::buildSearchPaths(int argc, const char* argv[])
+@@ -4688,7 +4716,7 @@ void Options::buildSearchPaths(int argc, const char* argv[])
  					else
  						fLibrarySearchPaths.push_back(libDir);
  				}

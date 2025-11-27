@@ -1,14 +1,14 @@
-From f903ea64a30fe261d838c36877c355e4df1ce034 Mon Sep 17 00:00:00 2001
+From ec6eab6e23191cd1e75595656433072908235c99 Mon Sep 17 00:00:00 2001
 From: Peter Williams <peter@newton.cx>
 Date: Thu, 5 Sep 2024 16:35:00 -0400
-Subject: [PATCH 3/4] macos system dispatch
+Subject: [PATCH 3/5] macos system dispatch
 
 ---
  cctools/ld64/src/ld/OutputFile.cpp | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/cctools/ld64/src/ld/OutputFile.cpp b/cctools/ld64/src/ld/OutputFile.cpp
-index c2eb971..d9e9a03 100644
+index 6d70bc0..8f06afe 100644
 --- a/cctools/ld64/src/ld/OutputFile.cpp
 +++ b/cctools/ld64/src/ld/OutputFile.cpp
 @@ -7987,7 +7987,7 @@ void OutputFile::buildLINKEDITContent(ld::Internal& state)

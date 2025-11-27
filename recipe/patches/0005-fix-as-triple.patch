@@ -1,0 +1,52 @@
+From ff9a2818e277c5d6911890faf63fc9b222b477b0 Mon Sep 17 00:00:00 2001
+From: Isuru Fernando <isuruf@gmail.com>
+Date: Thu, 27 Nov 2025 09:28:41 -0800
+Subject: [PATCH 5/5] fix as triple
+
+---
+ cctools/as/as.c | 8 ++------
+ 1 file changed, 2 insertions(+), 6 deletions(-)
+
+diff --git a/cctools/as/as.c b/cctools/as/as.c
+index 1231bd9..9307e94 100644
+--- a/cctools/as/as.c
++++ b/cctools/as/as.c
+@@ -4,7 +4,6 @@
+ #include <unistd.h>
+ #include <stdbool.h>
+ 
+-#ifndef __APPLE__
+ static const char *get_target_triple(const char *argv0) {
+     const char *env = getenv("CCTOOLS_CLANG_AS_TARGET_TRIPLE");
+     if (env) {
+@@ -25,9 +24,8 @@ static const char *get_target_triple(const char *argv0) {
+         }
+     }
+ 
+-    return "x86_64-apple-darwin";
++    return "@TRIPLE@";
+ }
+-#endif
+ 
+ int main(int argc, char **argv) {
+     /*
+@@ -44,7 +42,7 @@ int main(int argc, char **argv) {
+     bool oflag_specified = false;
+ 
+     char *clang_exe = getenv("CCTOOLS_CLANG_AS_EXECUTABLE");
+-    clang_exe = clang_exe ? clang_exe : "clang";
++    clang_exe = clang_exe ? clang_exe : "@CLANG@";
+ 
+     char **given_args = malloc(sizeof(char*) * argc);
+     char **args = malloc(sizeof(char*) * (argc + 16));
+@@ -129,10 +127,8 @@ int main(int argc, char **argv) {
+     /* Silence clang warnings for unused -I etc. */
+     args[j++] = "-Wno-unused-command-line-argument";
+ 
+-#ifndef __APPLE__
+     args[j++] = "-target";
+     args[j++] = (char*)get_target_triple(argv[0]);
+-#endif
+ 
+     args[j] = NULL;
+ 
