@@ -1,17 +1,17 @@
-From 91763bef16cd576858816547483d8e64ef70160d Mon Sep 17 00:00:00 2001
+From ff9a2818e277c5d6911890faf63fc9b222b477b0 Mon Sep 17 00:00:00 2001
 From: Isuru Fernando <isuruf@gmail.com>
-Date: Mon, 27 Oct 2025 20:42:12 -0700
+Date: Thu, 27 Nov 2025 09:28:41 -0800
 Subject: [PATCH 5/5] fix as triple
 
 ---
- cctools/as/as.c | 23 ++---------------------
- 1 file changed, 2 insertions(+), 21 deletions(-)
+ cctools/as/as.c | 8 ++------
+ 1 file changed, 2 insertions(+), 6 deletions(-)
 
 diff --git a/cctools/as/as.c b/cctools/as/as.c
-index d40f227..1a0b338 100644
+index 1231bd9..9307e94 100644
 --- a/cctools/as/as.c
 +++ b/cctools/as/as.c
-@@ -4,30 +4,13 @@
+@@ -4,7 +4,6 @@
  #include <unistd.h>
  #include <stdbool.h>
  
@@ -19,23 +19,10 @@ index d40f227..1a0b338 100644
  static const char *get_target_triple(const char *argv0) {
      const char *env = getenv("CCTOOLS_CLANG_AS_TARGET_TRIPLE");
      if (env) {
-         return env;
+@@ -25,9 +24,8 @@ static const char *get_target_triple(const char *argv0) {
+         }
      }
--
--    const char *progname = strrchr(argv0, '/');
--    progname = progname ? progname + 1 : argv0;
--
--    // Example: "i386-apple-darwin-as"
--    static char triple_buf[64];
--    const char *dash = strchr(progname, '-');
--    if (dash) {
--        size_t len = dash - progname;
--        if (len < sizeof(triple_buf)) {
--            snprintf(triple_buf, sizeof(triple_buf), "%.*s-apple-darwin", (int)len, progname);
--            return triple_buf;
--        }
--    }
--
+ 
 -    return "x86_64-apple-darwin";
 +    return "@TRIPLE@";
  }
@@ -43,7 +30,7 @@ index d40f227..1a0b338 100644
  
  int main(int argc, char **argv) {
      /*
-@@ -44,7 +27,7 @@ int main(int argc, char **argv) {
+@@ -44,7 +42,7 @@ int main(int argc, char **argv) {
      bool oflag_specified = false;
  
      char *clang_exe = getenv("CCTOOLS_CLANG_AS_EXECUTABLE");
@@ -52,7 +39,7 @@ index d40f227..1a0b338 100644
  
      char **given_args = malloc(sizeof(char*) * argc);
      char **args = malloc(sizeof(char*) * (argc + 16));
-@@ -129,10 +112,8 @@ int main(int argc, char **argv) {
+@@ -129,10 +127,8 @@ int main(int argc, char **argv) {
      /* Silence clang warnings for unused -I etc. */
      args[j++] = "-Wno-unused-command-line-argument";
  
