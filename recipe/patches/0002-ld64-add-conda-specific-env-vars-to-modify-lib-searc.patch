@@ -1,18 +1,18 @@
-From ebcbc42341d5b06612d6abbe46d0bf34adfcbb2a Mon Sep 17 00:00:00 2001
+From 63bc44deb409c4a94f2df03ab930ed08b9336ab2 Mon Sep 17 00:00:00 2001
 From: Isuru Fernando <isuruf@gmail.com>
 Date: Mon, 16 Sep 2019 05:17:30 +0000
 Subject: [PATCH 2/5] ld64: add conda specific env vars to modify lib search
  paths
 
 ---
- cctools/ld64/src/ld/Options.cpp | 35 ++++++++++++++++++++++++++++-----
- 1 file changed, 30 insertions(+), 5 deletions(-)
+ cctools/ld64/src/ld/Options.cpp | 38 ++++++++++++++++++++++++++++-----
+ 1 file changed, 33 insertions(+), 5 deletions(-)
 
 diff --git a/cctools/ld64/src/ld/Options.cpp b/cctools/ld64/src/ld/Options.cpp
-index 2b7241c..894fffd 100644
+index d65d86b..09270bd 100644
 --- a/cctools/ld64/src/ld/Options.cpp
 +++ b/cctools/ld64/src/ld/Options.cpp
-@@ -4456,12 +4456,28 @@ bool Options::shouldUseBuildVersion(ld::Platform plat, uint32_t minOSvers) const
+@@ -4458,12 +4458,31 @@ bool Options::shouldUseBuildVersion(ld::Platform plat, uint32_t minOSvers) const
  
  void Options::buildSearchPaths(int argc, const char* argv[])
  {
@@ -31,6 +31,9 @@ index 2b7241c..894fffd 100644
 +	// place that CROSS_SYSROOT is handled (though it is one or the other).
 +	const char* condaBuildDisableLD64Hacks = getenv("CONDA_BUILD_DISABLE_LD64_HACKS");
 +	const char* envSdkRoot = (condaBuildDisableLD64Hacks == NULL) ? getenv("SDKROOT") : NULL;
++	if (envSdkRoot == NULL && condaBuildDisableLD64Hacks == NULL) {
++		envSdkRoot = getenv("CONDA_BUILD_SYSROOT");
++	}
 +	if (envSdkRoot != NULL) {
 +		addStandardLibraryDirectories = 2;
 +		realpath(envSdkRoot, path);
@@ -42,7 +45,7 @@ index 2b7241c..894fffd 100644
  	// scan through argv looking for -L, -F, -Z, and -syslibroot options
  	for(int i=0; i < argc; ++i) {
  		if ( (argv[i][0] == '-') && (argv[i][1] == 'L') ) {
-@@ -4493,7 +4509,7 @@ void Options::buildSearchPaths(int argc, const char* argv[])
+@@ -4495,7 +4514,7 @@ void Options::buildSearchPaths(int argc, const char* argv[])
  			frameworkPaths.push_back(frameworkSearchDir);
  		}
  		else if ( strcmp(argv[i], "-Z") == 0 )
@@ -51,7 +54,7 @@ index 2b7241c..894fffd 100644
  		else if ( strcmp(argv[i], "-v") == 0 ) {
  			fVerbose = true;
  			extern const char ld_classicVersionString[];
-@@ -4617,6 +4633,10 @@ void Options::buildSearchPaths(int argc, const char* argv[])
+@@ -4619,6 +4638,10 @@ void Options::buildSearchPaths(int argc, const char* argv[])
  			fForceLoadSwiftLibs = true;
  		}
  	}
@@ -62,7 +65,7 @@ index 2b7241c..894fffd 100644
  	int standardLibraryPathsStartIndex = libraryPaths.size();
  	int standardFrameworkPathsStartIndex = frameworkPaths.size();
  	if ( addStandardLibraryDirectories ) {
-@@ -4626,8 +4646,12 @@ void Options::buildSearchPaths(int argc, const char* argv[])
+@@ -4628,8 +4651,12 @@ void Options::buildSearchPaths(int argc, const char* argv[])
  			frameworkPaths.push_back("/System/DriverKit/System/Library/Frameworks/");
  		}
  		else {
@@ -76,7 +79,7 @@ index 2b7241c..894fffd 100644
  
  			frameworkPaths.push_back("/Library/Frameworks/");
  			frameworkPaths.push_back("/System/Library/Frameworks/");
-@@ -4643,7 +4667,8 @@ void Options::buildSearchPaths(int argc, const char* argv[])
+@@ -4645,7 +4672,8 @@ void Options::buildSearchPaths(int argc, const char* argv[])
  	}
  
  	// now merge sdk and library paths to make real search paths
@@ -86,7 +89,7 @@ index 2b7241c..894fffd 100644
  	int libIndex = 0;
  	for (std::vector<const char*>::iterator it = libraryPaths.begin(); it != libraryPaths.end(); ++it, ++libIndex) {
  		const char* libDir = *it;
-@@ -4688,7 +4713,7 @@ void Options::buildSearchPaths(int argc, const char* argv[])
+@@ -4690,7 +4718,7 @@ void Options::buildSearchPaths(int argc, const char* argv[])
  					else
  						fLibrarySearchPaths.push_back(libDir);
  				}

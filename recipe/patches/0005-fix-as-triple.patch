@@ -1,4 +1,4 @@
-From 4a8ac1219620f48d294946a191ff3498f44460d9 Mon Sep 17 00:00:00 2001
+From 91763bef16cd576858816547483d8e64ef70160d Mon Sep 17 00:00:00 2001
 From: Isuru Fernando <isuruf@gmail.com>
 Date: Mon, 27 Oct 2025 20:42:12 -0700
 Subject: [PATCH 5/5] fix as triple
@@ -8,7 +8,7 @@ Subject: [PATCH 5/5] fix as triple
  1 file changed, 2 insertions(+), 21 deletions(-)
 
 diff --git a/cctools/as/as.c b/cctools/as/as.c
-index 1231bd9..b81eeac 100644
+index d40f227..1a0b338 100644
 --- a/cctools/as/as.c
 +++ b/cctools/as/as.c
 @@ -4,30 +4,13 @@
