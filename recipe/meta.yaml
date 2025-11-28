@@ -25,7 +25,7 @@ source:
       - patches/0005-fix-as-triple.patch
 
 build:
-  number: 0
+  number: 1
   skip: True  # [win]
   ignore_run_exports:
     - zlib
@@ -112,6 +112,8 @@ outputs:
   - name: cctools_{{ cross_platform }}
     version: {{ cctools_version }}
     script: install-activation.sh
+    build:
+      string: llvm{{ llvm_version.replace(".", "_") }}_h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}
     requirements:
       run:
         - {{ pin_subpackage("ld64_" + cross_platform, exact=True) }}
@@ -179,6 +181,7 @@ outputs:
   - name: ld64
     version: {{ ld64_version }}
     build:
+      string: llvm{{ llvm_version.replace(".", "_") }}_h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}
       skip: True   # [cross_platform != target_platform]
     script: install-ld64-symlinks.sh
     requirements:
@@ -204,6 +207,7 @@ outputs:
     version: {{ cctools_version }}
     script: install-cctools-symlinks.sh
     build:
+      string: llvm{{ llvm_version.replace(".", "_") }}_h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}
       skip: True   # [cross_platform != target_platform]
     requirements:
       host:
