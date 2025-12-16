@@ -25,7 +25,7 @@ source:
       - patches/0005-fix-as-triple.patch
 
 build:
-  number: 1
+  number: 2
   skip: True  # [win]
   ignore_run_exports:
     - zlib
@@ -225,6 +225,7 @@ outputs:
         - test -f $PREFIX/bin/otool
         - test -f $PREFIX/bin/install_name_tool
         - test -f $PREFIX/bin/strip
+        - test ! -f $PREFIX/bin/libtool
     about:
       home: https://github.com/tpoechtrager/cctools-port
       license: APSL-2.0
