@@ -1,0 +1,28 @@
+From 09a9e783c4c426c2cfeeaa55c101017504d38dba Mon Sep 17 00:00:00 2001
+From: Isuru Fernando <isuruf@gmail.com>
+Date: Mon, 29 Dec 2025 13:33:39 -0800
+Subject: [PATCH 6/6] Find sigtool-codesign first
+
+---
+ cctools/include/stuff/port.h | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
+
+diff --git a/cctools/include/stuff/port.h b/cctools/include/stuff/port.h
+index 884696f..7f986c7 100644
+--- a/cctools/include/stuff/port.h
++++ b/cctools/include/stuff/port.h
+@@ -52,7 +52,10 @@ do { \
+ 	char codesign_command[MAXPATHLEN]; \
+ 	char *codesign; \
+ 	codesign_debug = getenv("CODESIGN_DEBUG"); \
+-	codesign = find_executable("codesign"); \
++	codesign = find_executable("sigtool-codesign"); \
++	if (!codesign) { \
++	    codesign = find_executable("codesign"); \
++        } \
+ 	if (!codesign) { \
+ 		if (codesign_debug) { \
+ 			fprintf(stderr, "[cctools-port]: " \
+-- 
+2.45.2
+

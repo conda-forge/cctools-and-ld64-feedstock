@@ -23,9 +23,10 @@ source:
       - patches/0003-macos-system-dispatch.patch    # [osx]
       - patches/0004-avoid-stripping-out-C-stdlib-too-zealously.patch    # [osx]
       - patches/0005-fix-as-triple.patch
+      - patches/0006-Find-sigtool-codesign-first.patch
 
 build:
-  number: 2
+  number: 3
   skip: True  # [win]
   ignore_run_exports:
     - zlib
@@ -80,7 +81,7 @@ outputs:
         - libcxx  # [osx]
         - {{ pin_subpackage("ld64_" + cross_platform, max_pin="x.x") }}
         - llvm-tools {{ llvm_version }}.*
-        - sigtool
+        - sigtool-codesign
       run_constrained:
         - ld64 {{ ld64_version }}.*
         - cctools {{ cctools_version }}.*
@@ -155,7 +156,7 @@ outputs:
       run:
         - {{ pin_compatible("tapi") }}
         - libcxx    # [osx]
-        - sigtool
+        - sigtool-codesign
       run_constrained:
         - ld64 {{ ld64_version }}.*
         - clang {{ llvm_version }}.*
