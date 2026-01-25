@@ -17,7 +17,7 @@ llvm_version:
 
 # zip it to avoid using rc-builds for already-released-in-conda-forge LLVM versions
 channel_sources:
-  - conda-forge/label/llvm_rc,conda-forge
+  - conda-forge,conda-forge/label/llvm_rc
   - conda-forge
   - conda-forge
   - conda-forge
