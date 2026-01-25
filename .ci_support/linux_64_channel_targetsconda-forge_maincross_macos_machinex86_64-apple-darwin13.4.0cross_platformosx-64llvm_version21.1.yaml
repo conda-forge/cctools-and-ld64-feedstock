@@ -1,0 +1,32 @@
+c_stdlib:
+- sysroot
+c_stdlib_version:
+- '2.17'
+channel_sources:
+- conda-forge
+channel_targets:
+- conda-forge main
+cross_macos_machine:
+- x86_64-apple-darwin13.4.0
+cross_platform:
+- osx-64
+cxx_compiler:
+- gxx
+cxx_compiler_version:
+- '14'
+docker_image:
+- quay.io/condaforge/linux-anvil-x86_64:alma9
+libuuid:
+- '2'
+llvm_version:
+- '21.1'
+target_platform:
+- linux-64
+zip_keys:
+- - cross_macos_machine
+  - cross_platform
+- - llvm_version
+  - channel_sources
+  - channel_targets
+zlib:
+- '1'
