@@ -2,8 +2,6 @@ build_platform:
   osx_arm64: osx_64
   linux_aarch64: linux_64
   linux_ppc64le: linux_64
-# we need to sort llvm_rc after the main channel to avoid old rc-compilers
-channel_priority: flexible
 conda_build:
   pkg_format: '2'
   error_overlinking: true
@@ -11,8 +9,4 @@ conda_forge_output_validation: true
 github:
   branch_name: main
   tooling_branch_name: main
-remote_ci_setup:
-  - conda-forge-ci-setup=4
-  # https://github.com/conda/conda-build/issues/5613
-  - conda-build <24.11
 test: native_and_emulated
