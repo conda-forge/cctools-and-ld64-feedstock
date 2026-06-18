@@ -13,6 +13,15 @@ Package license: APSL-2.0
 
 Summary: Assembler, archiver, ranlib, libtool, otool et al for Darwin Mach-O files. Darwin Mach-O linker.
 
+About cctools
+-------------
+
+Home: https://github.com/tpoechtrager/cctools-port
+
+Package license: APSL-2.0
+
+Summary: Native assembler, archiver, ranlib, libtool, otool et al for Darwin Mach-O files
+
 About cctools_impl_osx-64
 -------------------------
 
@@ -49,6 +58,15 @@ Package license: APSL-2.0
 
 Summary: Activation scripts for assembler, archiver, ranlib, libtool, otool et al for Darwin Mach-O files
 
+About ld64
+----------
+
+Home: https://github.com/tpoechtrager/cctools-port
+
+Package license: APSL-2.0
+
+Summary: Darwin Mach-O native linker
+
 About ld64_osx-64
 -----------------
 
@@ -67,29 +85,18 @@ Package license: APSL-2.0
 
 Summary: Darwin Mach-O cross linker
 
-About cctools
--------------
-
-Home: https://github.com/tpoechtrager/cctools-port
-
-Package license: APSL-2.0
-
-Summary: Native assembler, archiver, ranlib, libtool, otool et al for Darwin Mach-O files
-
-About ld64
-----------
-
-Home: https://github.com/tpoechtrager/cctools-port
-
-Package license: APSL-2.0
-
-Summary: Darwin Mach-O native linker
-
 Current build status
 ====================
 
 
-<table>
+<table><tr>
+    <td>GitHub Actions</td>
+    <td>
+      <a href="https://github.com/conda-forge/cctools-and-ld64-feedstock/actions/workflows/conda-build.yml">
+        <img src="https://github.com/conda-forge/cctools-and-ld64-feedstock/actions/workflows/conda-build.yml/badge.svg?event=push&branch=main">
+      </a>
+    </td>
+  </tr>
     
   <tr>
     <td>Azure</td>
@@ -103,174 +110,6 @@ Current build status
         <table>
           <thead><tr><th>Variant</th><th>Status</th></tr></thead>
           <tbody><tr>
-              <td>linux_64_cross_macos_machinearm64-apple-darwin20.0.0cross_platformosx-arm64llvm_version19.1</td>
-              <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=7875&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/cctools-and-ld64-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_cross_macos_machinearm64-apple-darwin20.0.0cross_platformosx-arm64llvm_version19.1" alt="variant">
-                </a>
-              </td>
-            </tr><tr>
-              <td>linux_64_cross_macos_machinearm64-apple-darwin20.0.0cross_platformosx-arm64llvm_version20.1</td>
-              <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=7875&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/cctools-and-ld64-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_cross_macos_machinearm64-apple-darwin20.0.0cross_platformosx-arm64llvm_version20.1" alt="variant">
-                </a>
-              </td>
-            </tr><tr>
-              <td>linux_64_cross_macos_machinearm64-apple-darwin20.0.0cross_platformosx-arm64llvm_version21.1</td>
-              <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=7875&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/cctools-and-ld64-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_cross_macos_machinearm64-apple-darwin20.0.0cross_platformosx-arm64llvm_version21.1" alt="variant">
-                </a>
-              </td>
-            </tr><tr>
-              <td>linux_64_cross_macos_machinearm64-apple-darwin20.0.0cross_platformosx-arm64llvm_version22.1</td>
-              <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=7875&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/cctools-and-ld64-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_cross_macos_machinearm64-apple-darwin20.0.0cross_platformosx-arm64llvm_version22.1" alt="variant">
-                </a>
-              </td>
-            </tr><tr>
-              <td>linux_64_cross_macos_machinex86_64-apple-darwin13.4.0cross_platformosx-64llvm_version19.1</td>
-              <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=7875&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/cctools-and-ld64-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_cross_macos_machinex86_64-apple-darwin13.4.0cross_platformosx-64llvm_version19.1" alt="variant">
-                </a>
-              </td>
-            </tr><tr>
-              <td>linux_64_cross_macos_machinex86_64-apple-darwin13.4.0cross_platformosx-64llvm_version20.1</td>
-              <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=7875&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/cctools-and-ld64-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_cross_macos_machinex86_64-apple-darwin13.4.0cross_platformosx-64llvm_version20.1" alt="variant">
-                </a>
-              </td>
-            </tr><tr>
-              <td>linux_64_cross_macos_machinex86_64-apple-darwin13.4.0cross_platformosx-64llvm_version21.1</td>
-              <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=7875&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/cctools-and-ld64-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_cross_macos_machinex86_64-apple-darwin13.4.0cross_platformosx-64llvm_version21.1" alt="variant">
-                </a>
-              </td>
-            </tr><tr>
-              <td>linux_64_cross_macos_machinex86_64-apple-darwin13.4.0cross_platformosx-64llvm_version22.1</td>
-              <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=7875&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/cctools-and-ld64-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_cross_macos_machinex86_64-apple-darwin13.4.0cross_platformosx-64llvm_version22.1" alt="variant">
-                </a>
-              </td>
-            </tr><tr>
-              <td>linux_aarch64_cross_macos_machinearm64-apple-darwin20.0.0cross_platformosx-arm64llvm_version19.1</td>
-              <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=7875&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/cctools-and-ld64-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_aarch64_cross_macos_machinearm64-apple-darwin20.0.0cross_platformosx-arm64llvm_version19.1" alt="variant">
-                </a>
-              </td>
-            </tr><tr>
-              <td>linux_aarch64_cross_macos_machinearm64-apple-darwin20.0.0cross_platformosx-arm64llvm_version20.1</td>
-              <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=7875&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/cctools-and-ld64-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_aarch64_cross_macos_machinearm64-apple-darwin20.0.0cross_platformosx-arm64llvm_version20.1" alt="variant">
-                </a>
-              </td>
-            </tr><tr>
-              <td>linux_aarch64_cross_macos_machinearm64-apple-darwin20.0.0cross_platformosx-arm64llvm_version21.1</td>
-              <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=7875&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/cctools-and-ld64-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_aarch64_cross_macos_machinearm64-apple-darwin20.0.0cross_platformosx-arm64llvm_version21.1" alt="variant">
-                </a>
-              </td>
-            </tr><tr>
-              <td>linux_aarch64_cross_macos_machinearm64-apple-darwin20.0.0cross_platformosx-arm64llvm_version22.1</td>
-              <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=7875&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/cctools-and-ld64-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_aarch64_cross_macos_machinearm64-apple-darwin20.0.0cross_platformosx-arm64llvm_version22.1" alt="variant">
-                </a>
-              </td>
-            </tr><tr>
-              <td>linux_aarch64_cross_macos_machinex86_64-apple-darwin13.4.0cross_platformosx-64llvm_version19.1</td>
-              <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=7875&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/cctools-and-ld64-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_aarch64_cross_macos_machinex86_64-apple-darwin13.4.0cross_platformosx-64llvm_version19.1" alt="variant">
-                </a>
-              </td>
-            </tr><tr>
-              <td>linux_aarch64_cross_macos_machinex86_64-apple-darwin13.4.0cross_platformosx-64llvm_version20.1</td>
-              <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=7875&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/cctools-and-ld64-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_aarch64_cross_macos_machinex86_64-apple-darwin13.4.0cross_platformosx-64llvm_version20.1" alt="variant">
-                </a>
-              </td>
-            </tr><tr>
-              <td>linux_aarch64_cross_macos_machinex86_64-apple-darwin13.4.0cross_platformosx-64llvm_version21.1</td>
-              <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=7875&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/cctools-and-ld64-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_aarch64_cross_macos_machinex86_64-apple-darwin13.4.0cross_platformosx-64llvm_version21.1" alt="variant">
-                </a>
-              </td>
-            </tr><tr>
-              <td>linux_aarch64_cross_macos_machinex86_64-apple-darwin13.4.0cross_platformosx-64llvm_version22.1</td>
-              <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=7875&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/cctools-and-ld64-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_aarch64_cross_macos_machinex86_64-apple-darwin13.4.0cross_platformosx-64llvm_version22.1" alt="variant">
-                </a>
-              </td>
-            </tr><tr>
-              <td>linux_ppc64le_cross_macos_machinearm64-apple-darwin20.0.0cross_platformosx-arm64llvm_version19.1</td>
-              <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=7875&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/cctools-and-ld64-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_ppc64le_cross_macos_machinearm64-apple-darwin20.0.0cross_platformosx-arm64llvm_version19.1" alt="variant">
-                </a>
-              </td>
-            </tr><tr>
-              <td>linux_ppc64le_cross_macos_machinearm64-apple-darwin20.0.0cross_platformosx-arm64llvm_version20.1</td>
-              <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=7875&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/cctools-and-ld64-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_ppc64le_cross_macos_machinearm64-apple-darwin20.0.0cross_platformosx-arm64llvm_version20.1" alt="variant">
-                </a>
-              </td>
-            </tr><tr>
-              <td>linux_ppc64le_cross_macos_machinearm64-apple-darwin20.0.0cross_platformosx-arm64llvm_version21.1</td>
-              <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=7875&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/cctools-and-ld64-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_ppc64le_cross_macos_machinearm64-apple-darwin20.0.0cross_platformosx-arm64llvm_version21.1" alt="variant">
-                </a>
-              </td>
-            </tr><tr>
-              <td>linux_ppc64le_cross_macos_machinearm64-apple-darwin20.0.0cross_platformosx-arm64llvm_version22.1</td>
-              <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=7875&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/cctools-and-ld64-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_ppc64le_cross_macos_machinearm64-apple-darwin20.0.0cross_platformosx-arm64llvm_version22.1" alt="variant">
-                </a>
-              </td>
-            </tr><tr>
-              <td>linux_ppc64le_cross_macos_machinex86_64-apple-darwin13.4.0cross_platformosx-64llvm_version19.1</td>
-              <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=7875&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/cctools-and-ld64-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_ppc64le_cross_macos_machinex86_64-apple-darwin13.4.0cross_platformosx-64llvm_version19.1" alt="variant">
-                </a>
-              </td>
-            </tr><tr>
-              <td>linux_ppc64le_cross_macos_machinex86_64-apple-darwin13.4.0cross_platformosx-64llvm_version20.1</td>
-              <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=7875&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/cctools-and-ld64-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_ppc64le_cross_macos_machinex86_64-apple-darwin13.4.0cross_platformosx-64llvm_version20.1" alt="variant">
-                </a>
-              </td>
-            </tr><tr>
-              <td>linux_ppc64le_cross_macos_machinex86_64-apple-darwin13.4.0cross_platformosx-64llvm_version21.1</td>
-              <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=7875&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/cctools-and-ld64-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_ppc64le_cross_macos_machinex86_64-apple-darwin13.4.0cross_platformosx-64llvm_version21.1" alt="variant">
-                </a>
-              </td>
-            </tr><tr>
-              <td>linux_ppc64le_cross_macos_machinex86_64-apple-darwin13.4.0cross_platformosx-64llvm_version22.1</td>
-              <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=7875&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/cctools-and-ld64-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_ppc64le_cross_macos_machinex86_64-apple-darwin13.4.0cross_platformosx-64llvm_version22.1" alt="variant">
-                </a>
-              </td>
-            </tr><tr>
               <td>osx_64_cross_platformosx-64llvm_version19.1</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=7875&branchName=main">
@@ -324,62 +163,6 @@ Current build status
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=7875&branchName=main">
                   <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/cctools-and-ld64-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_64_cross_platformosx-arm64llvm_version22.1" alt="variant">
-                </a>
-              </td>
-            </tr><tr>
-              <td>osx_arm64_cross_platformosx-64llvm_version19.1</td>
-              <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=7875&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/cctools-and-ld64-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_arm64_cross_platformosx-64llvm_version19.1" alt="variant">
-                </a>
-              </td>
-            </tr><tr>
-              <td>osx_arm64_cross_platformosx-64llvm_version20.1</td>
-              <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=7875&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/cctools-and-ld64-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_arm64_cross_platformosx-64llvm_version20.1" alt="variant">
-                </a>
-              </td>
-            </tr><tr>
-              <td>osx_arm64_cross_platformosx-64llvm_version21.1</td>
-              <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=7875&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/cctools-and-ld64-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_arm64_cross_platformosx-64llvm_version21.1" alt="variant">
-                </a>
-              </td>
-            </tr><tr>
-              <td>osx_arm64_cross_platformosx-64llvm_version22.1</td>
-              <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=7875&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/cctools-and-ld64-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_arm64_cross_platformosx-64llvm_version22.1" alt="variant">
-                </a>
-              </td>
-            </tr><tr>
-              <td>osx_arm64_cross_platformosx-arm64llvm_version19.1</td>
-              <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=7875&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/cctools-and-ld64-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_arm64_cross_platformosx-arm64llvm_version19.1" alt="variant">
-                </a>
-              </td>
-            </tr><tr>
-              <td>osx_arm64_cross_platformosx-arm64llvm_version20.1</td>
-              <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=7875&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/cctools-and-ld64-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_arm64_cross_platformosx-arm64llvm_version20.1" alt="variant">
-                </a>
-              </td>
-            </tr><tr>
-              <td>osx_arm64_cross_platformosx-arm64llvm_version21.1</td>
-              <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=7875&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/cctools-and-ld64-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_arm64_cross_platformosx-arm64llvm_version21.1" alt="variant">
-                </a>
-              </td>
-            </tr><tr>
-              <td>osx_arm64_cross_platformosx-arm64llvm_version22.1</td>
-              <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=7875&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/cctools-and-ld64-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_arm64_cross_platformosx-arm64llvm_version22.1" alt="variant">
                 </a>
               </td>
             </tr>
