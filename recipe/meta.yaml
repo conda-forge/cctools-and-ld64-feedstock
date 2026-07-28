@@ -1,7 +1,7 @@
 {% set cctools_version = '1030.6.3' %}
 {% set ld64_version = '956.6' %}
 {% if llvm_version is not defined %}
-{% set llvm_version = "21.1" %}
+{% set llvm_version = "23.1" %}
 {% endif %}
 {% set clang_exe_version = "19" %}
 
