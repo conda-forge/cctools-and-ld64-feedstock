@@ -169,7 +169,8 @@ outputs:
         - test -f $PREFIX/bin/{{ cross_macos_machine }}-ld
         - echo "int main() {}" > lto.c                                                  # [osx]
         - clang-{{ clang_exe_version }} -c lto.c -o lto.o -flto                         # [osx]
-        - $PREFIX/bin/{{ cross_macos_machine }}-ld lto.o -o lto -lSystem -arch x86_64   # [osx]
+        - $PREFIX/bin/{{ cross_macos_machine }}-ld lto.o -o lto -lSystem -arch x86_64   # [osx and x86_64]
+        - $PREFIX/bin/{{ cross_macos_machine }}-ld lto.o -o lto -lSystem -arch arm64    # [osx and arm64]
       downstreams:
         - gfortran_osx-64  # [osx and cross_platform=="osx-64"]
     about:
