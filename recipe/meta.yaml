@@ -1,7 +1,7 @@
 {% set cctools_version = '1030.6.3' %}
 {% set ld64_version = '956.6' %}
 {% if llvm_version is not defined %}
-{% set llvm_version = "21.1" %}
+{% set llvm_version = "23.1" %}
 {% endif %}
 {% set clang_exe_version = "19" %}
 
@@ -11,7 +11,7 @@
 
 package:
   name: cctools-and-ld64
-  version: {{ ld64_version }}
+  version: "{{ ld64_version }}"
 
 source:
   # latest commit from branch {{ cctools_version }}-ld64-{{ ld64_version }}
@@ -26,7 +26,7 @@ source:
       - patches/0006-Find-sigtool-codesign-first.patch
 
 build:
-  number: 4
+  number: 5
   skip: True  # [win]
   ignore_run_exports:
     - zlib
@@ -55,7 +55,7 @@ requirements:
 
 outputs:
   - name: cctools_impl_{{ cross_platform }}
-    version: {{ cctools_version }}
+    version: "{{ cctools_version }}"
     script: install-cctools-impl.sh
     build:
       string: llvm{{ llvm_version.replace(".", "_") }}_h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}
@@ -111,7 +111,7 @@ outputs:
       summary: Assembler, archiver, ranlib, libtool, otool et al for Darwin Mach-O files
 
   - name: cctools_{{ cross_platform }}
-    version: {{ cctools_version }}
+    version: "{{ cctools_version }}"
     script: install-activation.sh
     build:
       string: llvm{{ llvm_version.replace(".", "_") }}_h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}
@@ -132,7 +132,7 @@ outputs:
       summary: Activation scripts for assembler, archiver, ranlib, libtool, otool et al for Darwin Mach-O files
 
   - name: ld64_{{ cross_platform }}
-    version: {{ ld64_version }}
+    version: "{{ ld64_version }}"
     script: install-ld64.sh
     build:
       string: llvm{{ llvm_version.replace(".", "_") }}_h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}
@@ -169,7 +169,8 @@ outputs:
         - test -f $PREFIX/bin/{{ cross_macos_machine }}-ld
         - echo "int main() {}" > lto.c                                                  # [osx]
         - clang-{{ clang_exe_version }} -c lto.c -o lto.o -flto                         # [osx]
-        - $PREFIX/bin/{{ cross_macos_machine }}-ld lto.o -o lto -lSystem -arch x86_64   # [osx]
+        - $PREFIX/bin/{{ cross_macos_machine }}-ld lto.o -o lto -lSystem -arch x86_64   # [osx and x86_64]
+        - $PREFIX/bin/{{ cross_macos_machine }}-ld lto.o -o lto -lSystem -arch arm64    # [osx and arm64]
       downstreams:
         - gfortran_osx-64  # [osx and cross_platform=="osx-64"]
     about:
@@ -180,7 +181,7 @@ outputs:
       summary: Darwin Mach-O cross linker
 
   - name: ld64
-    version: {{ ld64_version }}
+    version: "{{ ld64_version }}"
     build:
       string: llvm{{ llvm_version.replace(".", "_") }}_h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}
       skip: True   # [cross_platform != target_platform]
@@ -205,7 +206,7 @@ outputs:
       summary: Darwin Mach-O native linker
 
   - name: cctools
-    version: {{ cctools_version }}
+    version: "{{ cctools_version }}"
     script: install-cctools-symlinks.sh
     build:
       string: llvm{{ llvm_version.replace(".", "_") }}_h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}
