@@ -11,7 +11,7 @@
 
 package:
   name: cctools-and-ld64
-  version: {{ ld64_version }}
+  version: "{{ ld64_version }}"
 
 source:
   # latest commit from branch {{ cctools_version }}-ld64-{{ ld64_version }}
@@ -55,7 +55,7 @@ requirements:
 
 outputs:
   - name: cctools_impl_{{ cross_platform }}
-    version: {{ cctools_version }}
+    version: "{{ cctools_version }}"
     script: install-cctools-impl.sh
     build:
       string: llvm{{ llvm_version.replace(".", "_") }}_h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}
@@ -111,7 +111,7 @@ outputs:
       summary: Assembler, archiver, ranlib, libtool, otool et al for Darwin Mach-O files
 
   - name: cctools_{{ cross_platform }}
-    version: {{ cctools_version }}
+    version: "{{ cctools_version }}"
     script: install-activation.sh
     build:
       string: llvm{{ llvm_version.replace(".", "_") }}_h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}
@@ -132,7 +132,7 @@ outputs:
       summary: Activation scripts for assembler, archiver, ranlib, libtool, otool et al for Darwin Mach-O files
 
   - name: ld64_{{ cross_platform }}
-    version: {{ ld64_version }}
+    version: "{{ ld64_version }}"
     script: install-ld64.sh
     build:
       string: llvm{{ llvm_version.replace(".", "_") }}_h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}
@@ -180,7 +180,7 @@ outputs:
       summary: Darwin Mach-O cross linker
 
   - name: ld64
-    version: {{ ld64_version }}
+    version: "{{ ld64_version }}"
     build:
       string: llvm{{ llvm_version.replace(".", "_") }}_h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}
       skip: True   # [cross_platform != target_platform]
@@ -205,7 +205,7 @@ outputs:
       summary: Darwin Mach-O native linker
 
   - name: cctools
-    version: {{ cctools_version }}
+    version: "{{ cctools_version }}"
     script: install-cctools-symlinks.sh
     build:
       string: llvm{{ llvm_version.replace(".", "_") }}_h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}
