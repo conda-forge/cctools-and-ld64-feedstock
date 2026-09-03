@@ -26,7 +26,7 @@ source:
       - patches/0006-Find-sigtool-codesign-first.patch
 
 build:
-  number: 6
+  number: 7
   skip: True  # [win]
   ignore_run_exports:
     - zlib
@@ -137,6 +137,10 @@ outputs:
     build:
       string: llvm{{ llvm_version.replace(".", "_") }}_h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}
       activate_in_script: True
+      # If dyld resolves this hardlink through the package cache,
+      # @loader_path points away from the environment's libtapi.
+      no_link:
+        - bin/{{ cross_macos_machine }}-ld  # [osx]
       missing_dso_whitelist:
         - /usr/lib/libxar.1.dylib  # [osx]
     requirements:
@@ -167,6 +171,7 @@ outputs:
         - clang-{{ clang_exe_version }}
       commands:
         - test -f $PREFIX/bin/{{ cross_macos_machine }}-ld
+        - test "$(stat -f '%l' "$PREFIX/bin/{{ cross_macos_machine }}-ld")" -eq 1        # [osx]
         - echo "int main() {}" > lto.c                                                  # [osx]
         - clang-{{ clang_exe_version }} -c lto.c -o lto.o -flto                         # [osx]
         - $PREFIX/bin/{{ cross_macos_machine }}-ld lto.o -o lto -lSystem -arch x86_64   # [osx and x86_64]
