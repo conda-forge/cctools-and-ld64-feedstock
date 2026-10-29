@@ -1,5 +1,7 @@
 build_platform:
   linux_ppc64le: linux_64
+# we need to sort llvm_{rc,dev} after the main channel to avoid old compilers from those labels
+channel_priority: flexible
 conda_build:
   pkg_format: '2'
   error_overlinking: true
